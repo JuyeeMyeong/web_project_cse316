@@ -2,3 +2,10 @@ body {
   background-image: url("../public/SUNYKorea_AcBldg.jpg");
   overflow-x: hidden;
 }
+
+h2 {
+  width: 100%;
+  color: white;
+  font-size: 24px;
+}
+

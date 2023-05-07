@@ -6,7 +6,7 @@ function PreviousCourses() {
 
     return (
         <div>
-
+            <h2 className='text-center'>CourseMan!</h2>
 
 
 
