@@ -11,15 +11,16 @@ import SelectCourses from './components/SelectCourses';
 
 
 function App() {
+
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/Instructions" element={<Instructions />} />
-          <Route path="/Login" element={<Login />} />
+          <Route path="/Login" element={<Login />}/>
           <Route path="/PreviousCourses" element={<PreviousCourses />} />
-          <Route path="/SelectCourses" element={<SelectCourses />} />
+          <Route path="/SelectCourses" element={<SelectCourses />}/>
         </Routes>
       </BrowserRouter>
     </div>
