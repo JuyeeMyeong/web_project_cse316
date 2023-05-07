@@ -26,6 +26,23 @@ function Login() {
                 </h1>
             </header>
 
+            <div className='LoginPage'>
+                <p className='login_title'>Login Form</p>
+                <div className='loginform d-flex justify-content-around'>
+                    <label id="ID"for="" className="idpw">ID:</label>
+                    <input type="text" name="user" id="" placeholder='Student ID...'></input>
+                    <div></div>
+                </div>
+                <div className='loginform d-flex justify-content-around'>
+                    <label id="PW" for="" className="idpw">Password:</label>
+                    <input type="text" name="password" id="" placeholder='Password...'></input>
+                    <div></div>
+                </div>
+                <div className='text-center'>
+                    <button id="Loginbtn" type="button" form="">Login</button>
+                </div>
+            </div>
+
 
         </div>
     );

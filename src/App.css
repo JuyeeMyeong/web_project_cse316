@@ -40,3 +40,38 @@ h1 {
 }
 
 /***********         Login              ***********/
+.LoginPage {
+  margin: 10px 200px;
+  padding: 10px 20px;
+  background-color: #4682B4;
+}
+
+.login_title {
+  font-family:'Times New Roman', Times, serif;
+  font-size: 28px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.loginform {
+  margin-bottom: 30px;
+}
+
+.LoginPage input {
+  margin-left: 70px;
+  border-radius: 10px;
+}
+
+.idpw {
+  width: 150px;
+}
+
+#ID {
+  padding-left: 30px;
+}
+
+.Loginbtn {
+  display: inline-block;
+}
+
+/***********         PreviousCourses              ***********/
