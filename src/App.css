@@ -25,3 +25,18 @@ h1 {
   font-weight: 450;
   font-size: 18px;
 }
+
+/***********         Instruction              ***********/
+.instruction {
+  margin: 10px 200px;
+  padding: 10px 20px;
+  background-color: lightBlue;
+  border: 2px solid grey;
+}
+
+.instruction .textShown {
+  font-family: 'Helvetica';
+  font-size: 24px;
+}
+
+/***********         Login              ***********/

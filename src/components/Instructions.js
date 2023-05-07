@@ -25,6 +25,13 @@ function Instructions() {
                 </h1>
             </header>
 
+            <div className='instruction'>
+                <p className='textShown'> Paragraph 1</p>
+                <p className='textShown'> Paragraph 2</p>
+                <p className='textShown'> Paragraph 3</p>
+                <p className='textShown'> Paragraph 4</p>
+            </div>
+
 
         </div>
     );
