@@ -72,6 +72,41 @@ h1 {
 
 .Loginbtn {
   display: inline-block;
+  border-radius: 10px;
+  background-color: aquamarine;
 }
 
 /***********         PreviousCourses              ***********/
+.previousTitle h1 {
+  font-weight: 500;
+  font-size: 36px;
+}
+
+
+.coursePage {
+  margin: 10px 200px;
+  padding: 10px 20px;
+  background-color: #4682B4;
+}
+
+.prevSecond {
+  margin-bottom: 40px;
+}
+
+.courseRow {
+  margin-top: 30px;
+  width: 70%;
+}
+
+.prevCourseInput {
+  margin-left: 100px;
+  margin-right: 20px;
+}
+
+
+#setCourse {
+  margin-top: 60px;
+  border-radius: 10px;
+  background-color: aquamarine;
+}
+/***********         SelectCourses              ***********/
