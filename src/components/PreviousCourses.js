@@ -6,24 +6,26 @@ function PreviousCourses() {
 
     return (
         <div>
-            <h2 className='text-center'>CourseMan!</h2>
-            <header className="header d-flex justify-content-end">
-                <h1>
-                    <NavLink to="/" className={({isActive}) => (isActive? "activeNav" : "defaultNav")} style={{ textDecoration: "none" }}>Home</NavLink>
-                </h1>
-                <h1>
-                    <NavLink to="/Instructions" className={({isActive}) => (isActive? "activeNav" : "defaultNav")} style={{ textDecoration: "none" }}>Instructions</NavLink>
-                </h1>
-                <h1>
-                    <NavLink to="/Login" className={({isActive}) => (isActive? "activeNav" : "defaultNav")} style={{ textDecoration: "none" }}>Login</NavLink>
-                </h1>
-                <h1>
-                    <NavLink to="/PreviousCourses" className={({isActive}) => (isActive? "activeNav" : "defaultNav")} style={{ textDecoration: "none" }}>PreviousCourses</NavLink>
-                </h1>
-                <h1>
-                    <NavLink to="/SelectCourses" className={({isActive}) => (isActive? "activeNav" : "defaultNav")} style={{ textDecoration: "none" }}>SelectCourses</NavLink>
-                </h1>
-            </header>
+            <h2 className='text-center d-flex flex-column align-items-center'>CourseMan!</h2>
+            <div className='header-container'>
+                <header className="header d-flex justify-content-end">
+                    <h1>
+                        <NavLink to="/" className={({isActive}) => (isActive? "activeNav" : "defaultNav")} style={{ textDecoration: "none" }}>Home</NavLink>
+                    </h1>
+                    <h1>
+                        <NavLink to="/Instructions" className={({isActive}) => (isActive? "activeNav" : "defaultNav")} style={{ textDecoration: "none" }}>Instructions</NavLink>
+                    </h1>
+                    <h1>
+                        <NavLink to="/Login" className={({isActive}) => (isActive? "activeNav" : "defaultNav")} style={{ textDecoration: "none" }}>Login</NavLink>
+                    </h1>
+                    <h1>
+                        <NavLink to="/PreviousCourses" className={({isActive}) => (isActive? "activeNav" : "defaultNav")} style={{ textDecoration: "none" }}>PreviousCourses</NavLink>
+                    </h1>
+                    <h1>
+                        <NavLink to="/SelectCourses" className={({isActive}) => (isActive? "activeNav" : "defaultNav")} style={{ textDecoration: "none" }}>SelectCourses</NavLink>
+                    </h1>
+                </header>
+            </div>
 
             <div className='previousTitle text-center'>
                 <h1 className='title'>Previous Courses</h1>
@@ -31,30 +33,56 @@ function PreviousCourses() {
 
             <div className='coursePage d-flex flex-column align-items-center'>
                 <h3>Student ID: {}</h3>
-                <p className='prevSecond'>Check off the courses you have completed with a C or better.</p>
-                <div className='courseRow'>
-                    <input type="radio" className='prevCourseInput' name="checkCourse" value="CSE101"/>CSE101
-                    <input type="radio" className='prevCourseInput' name="checkCourse" value="CSE114"/>CSE114
-                    <input type="radio" className='prevCourseInput' name="checkCourse" value="CSE214"/>CSE214
-                    <input type="radio" className='prevCourseInput' name="checkCourse" value="CSE215"/>CSE215
-                </div>
-                <div className='courseRow'>
-                    <input type="radio" className='prevCourseInput' name="checkCourse" value="CSE216"/>CSE216
-                    <input type="radio" className='prevCourseInput' name="checkCourse" value="CSE220"/>CSE220
-                    <input type="radio" className='prevCourseInput' name="checkCourse" value="CSE300"/>CSE300
-                    <input type="radio" className='prevCourseInput' name="checkCourse" value="CSE303"/>CSE303
-                </div>
-                <div className='courseRow'>
-                    <input type="radio" className='prevCourseInput' name="checkCourse" value="CSE304"/>CSE304
-                    <input type="radio" className='prevCourseInput' name="checkCourse" value="CSE305"/>CSE305
-                    <input type="radio" className='prevCourseInput' name="checkCourse" value="CSE306"/>CSE306
-                    <input type="radio" className='prevCourseInput' name="checkCourse" value="CSE310"/>CSE310
-                </div>
-                <div className='courseRow'>
-                    <input type="radio" className='prevCourseInput' name="checkCourse" value="CSE316"/>CSE316
-                    <input type="radio" className='prevCourseInput' name="checkCourse" value="CSE320"/>CSE320
-                    <input type="radio" className='prevCourseInput' name="checkCourse" value="CSE331"/>CSE331
-                    <input type="radio" className='prevCourseInput' name="checkCourse" value="CSE416"/>CSE416
+                <p className='prevSecond text-center'>Check off the courses you have completed with a C or better.</p>
+                <div className='courseList d-flex justify-content-end flex-wrap'>
+                    <div className="inputContainer d-flex justify-content-end col-md-3">
+                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE101"/><label className="courseLabel">CSE101</label>
+                    </div>
+                    <div className="inputContainer d-flex justify-content-end col-md-3">
+                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE114"/><label className="courseLabel">CSE114</label>
+                    </div>
+                    <div className="inputContainer d-flex justify-content-end col-md-3">
+                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE101"/><label className="courseLabel">CSE214</label>
+                    </div>
+                    <div className="inputContainer d-flex justify-content-end col-md-3">
+                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE114"/><label className="courseLabel">CSE215</label>
+                    </div>
+                    <div className="inputContainer d-flex justify-content-end col-md-3">
+                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE101"/><label className="courseLabel">CSE216</label>
+                    </div>
+                    <div className="inputContainer d-flex justify-content-end col-md-3">
+                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE114"/><label className="courseLabel">CSE220</label>
+                    </div>
+                    <div className="inputContainer d-flex justify-content-end col-md-3">
+                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE101"/><label className="courseLabel">CSE300</label>
+                    </div>
+                    <div className="inputContainer d-flex justify-content-end col-md-3">
+                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE114"/><label className="courseLabel">CSE303</label>
+                    </div>
+                    <div className="inputContainer d-flex justify-content-end col-md-3">
+                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE101"/><label className="courseLabel">CSE304</label>
+                    </div>
+                    <div className="inputContainer d-flex justify-content-end col-md-3">
+                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE114"/><label className="courseLabel">CSE305</label>
+                    </div>
+                    <div className="inputContainer d-flex justify-content-end col-md-3">
+                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE101"/><label className="courseLabel">CSE306</label>
+                    </div>
+                    <div className="inputContainer d-flex justify-content-end col-md-3">
+                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE114"/><label className="courseLabel">CSE310</label>
+                    </div>
+                    <div className="inputContainer d-flex justify-content-end col-md-3">
+                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE101"/><label className="courseLabel">CSE316</label>
+                    </div>
+                    <div className="inputContainer d-flex justify-content-end col-md-3">
+                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE114"/><label className="courseLabel">CSE320</label>
+                    </div>
+                    <div className="inputContainer d-flex justify-content-end col-md-3">
+                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE101"/><label className="courseLabel">CSE331</label>
+                    </div>
+                    <div className="inputContainer d-flex justify-content-end col-md-3">
+                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE114"/><label className="courseLabel">CSE416</label>
+                    </div>
                 </div>
                 <div className='text-center'>
                     <button id="setCourse" type="button" form="">Set Previous Courses</button>
