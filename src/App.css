@@ -66,6 +66,13 @@ h2 {
   font-size: 24px;
 }
 
+@media (max-width: 40em){
+  .instruction {
+    margin: 20px 40px;
+  }
+  
+}
+
 /***********         Login              ***********/
 .LoginPage {
   margin: 10px 200px;
