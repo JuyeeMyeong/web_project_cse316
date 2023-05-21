@@ -97,10 +97,10 @@ h2 {
   padding-left: 30px;
 }
 
-.Loginbtn {
+#Loginbtn {
   display: inline-block;
   border-radius: 10px;
-  background-color: aquamarine;
+  background-color:lightBlue;
 }
 
 /***********         PreviousCourses              ***********/
