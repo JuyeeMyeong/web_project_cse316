@@ -10,27 +10,35 @@ h2 {
 }
 
 /***********           Navbar               ***********/
+
 .header-container {
   display: inline-block;
   width: 100%;
   overflow: hidden;
 }
+
+.navigator {
+  width: 210px;
+}
+
 .activeNav {
   color: black;
   font-weight: 600;
   font-size: 18px;
+  margin: 20px;
 }
 
 .defaultNav {
   color: #2f2f2f;
   font-weight: 450;
   font-size: 18px;
+  margin: 20px;
 }
 
 @supports (backdrop-filter: blur(1rem)){
   .header {
     float: right;
-    max-width: 100%;
+    width: 100%;
     flex: 1;
     flex-basis: 50px;
     background: hsl(0 0% 100% / 0.005);

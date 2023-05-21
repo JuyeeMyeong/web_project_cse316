@@ -8,20 +8,20 @@ function PreviousCourses() {
         <div>
             <h2 className='text-center d-flex flex-column align-items-center'>CourseMan!</h2>
             <div className='header-container'>
-                <header className="header d-flex justify-content-end">
-                    <h1>
+                <header className="header d-flex justify-content-end align-items-center">
+                    <h1 className="navigator text-center">
                         <NavLink to="/" className={({isActive}) => (isActive? "activeNav" : "defaultNav")} style={{ textDecoration: "none" }}>Home</NavLink>
                     </h1>
-                    <h1>
+                    <h1 className="navigator text-center">
                         <NavLink to="/Instructions" className={({isActive}) => (isActive? "activeNav" : "defaultNav")} style={{ textDecoration: "none" }}>Instructions</NavLink>
                     </h1>
-                    <h1>
+                    <h1 className="navigator text-center">
                         <NavLink to="/Login" className={({isActive}) => (isActive? "activeNav" : "defaultNav")} style={{ textDecoration: "none" }}>Login</NavLink>
                     </h1>
-                    <h1>
+                    <h1 className="navigator text-center">
                         <NavLink to="/PreviousCourses" className={({isActive}) => (isActive? "activeNav" : "defaultNav")} style={{ textDecoration: "none" }}>PreviousCourses</NavLink>
                     </h1>
-                    <h1>
+                    <h1 className="navigator text-center">
                         <NavLink to="/SelectCourses" className={({isActive}) => (isActive? "activeNav" : "defaultNav")} style={{ textDecoration: "none" }}>SelectCourses</NavLink>
                     </h1>
                 </header>
