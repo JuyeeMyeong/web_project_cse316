@@ -4,14 +4,6 @@ import { NavLink } from 'react-router-dom';
 
 function Navbar() {
     const [isNavExpanded, setIsNavExpanded] = useState(false);
-    
-    const buttonSytle = () => {
-        if (!isNavExpanded) {
-            return "Menu";
-        } else {
-            return "&times";
-        }
-    };
 
     const handleNavExpand = () => {
         setIsNavExpanded(!isNavExpanded);
@@ -30,7 +22,7 @@ function Navbar() {
             <h2 className='text-center'>CourseMan!</h2>
             <div className="button-container">
                 <button className="navBtn" onClick={handleNavExpand}> 
-                    Menu
+                    {isNavExpanded ? '×' : 'Menu'}
                 </button>
             </div>
             <div className={ isNavExpanded ? "header-container navigation-menu expanded" : "header-container navigation-menu notExpanded"}>
