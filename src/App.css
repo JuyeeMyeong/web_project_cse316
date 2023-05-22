@@ -67,7 +67,7 @@ ul {
   .navBtn {
     display: block;
     position: fixed;
-    left: 400px;
+    right: 0;
     margin: 40px 40px 0 0;
     width: 50px;
     height: 50px;
@@ -77,27 +77,21 @@ ul {
     z-index: 5;
   }
 
-  .notExpanded {
-    display: none;
-  }
-
-  .expanded {
-    display: block;
-  }
-
   .navigation-menu ul {
     flex-direction: column;
     justify-content: start;
-    position: absolute;
+    position: fixed;
     top: 0;
-    left: 150px;
+    right: 0;
     width: 100%;
     height: 100%;
     display: none;
+    transform: translateX(30%);
+    transition: transform 0.3s ease-out;
   }
 
   .navigation-menu.expanded ul {
-    display: block;
+    transform: translateX(100%);
   }
 
   .header {
@@ -113,7 +107,6 @@ ul {
     margin-bottom: 30px;
     margin-right: 180px;
   }
-
 }
 
 /***********         Instruction              ***********/
@@ -306,8 +299,21 @@ ul {
   margin: 0 0 20px 15px;
   border-radius: 10px;
   background-color: lightblue;
+  font-style: italic;
+}
+
+#searchHdr {
+  margin: 20px 0;
 }
 
 .courseContainer {
-  width: 100%;
+  margin: 0 40px 30px 40px;
+  border: 2px solid blue;
+}
+
+.resgisterBtn {
+  margin: 20px;
+  border-radius: 10px;
+  background-color: lightblue;
+  font-style: italic;
 }
