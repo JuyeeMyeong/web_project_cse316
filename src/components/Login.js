@@ -5,48 +5,44 @@ import { useNavigate } from "react-router-dom";
 
 function Login({ stuId, setStuId, setIsLoggedIn }) {
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   const handleSubmit = () => {
     if (stuId.length !== 9) {
       alert("Invalid ID");
+      setIsLoggedIn(false);
       return;
+    } else {
+      fetch("http://localhost:4000/login", {
+        method: "POST",
+        body: JSON.stringify({
+          // check body
+          stuId: stuId,
+          password: password,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.status === "Success") {
+            setIsLoggedIn(true);
+          } else {
+            setIsLoggedIn(false);
+            throw new Error("Login failed");
+          }
+        })
+        .then(() => {
+          navigate("/Home", {
+            state: { stuId, setIsLoggedIn },
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
     setIsLoggedIn(true);
     alert("Welcome! Login~" + stuId);
-  };
-
-  const navigate = useNavigate();
-
-  const checkLogin = () => {
-    fetch("http://localhost:4000/login", {
-      method: "POST",
-      body: JSON.stringify({
-        // check body
-        stuId: stuId,
-        password: password,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status === "Success") {
-          setIsLoggedIn(true);
-        } else {
-          setIsLoggedIn(false);
-          alert("Invalid");
-          throw new Error("Login failed");
-        }
-      })
-      .then(() => {
-        navigate("/Home", {
-          state: { stuId, setIsLoggedIn },
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   };
 
   return (

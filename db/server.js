@@ -36,15 +36,14 @@ app.post("/login", function (req, res) {
       if (data.length === 0) {
         res.status(401).json({
           status: "Failed",
-          message: "No user found with the provided email.",
+          message: "No user found with the provided student_id.",
         });
         return;
       }
 
       const id = data[0].id;
-      const hashCheck = hashutil(student_id, password);
 
-      if (hashCheck !== data[0].password) {
+      if (password !== data[0].password) {
         res
           .status(402)
           .json({ status: "Failed", message: "Invalid password." });
