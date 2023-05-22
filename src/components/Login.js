@@ -1,44 +1,96 @@
-import '../App.css';
-import React, { useState, useEffect }  from 'react';
-import Navbar from './Navbar';
+import "../App.css";
+import React, { useState, useEffect } from "react";
+import Navbar from "./Navbar";
 
-function Login({stuId, setStuId, setIsLoggedIn}) {
+function Login({ stuId, setStuId, setIsLoggedIn }) {
+  const [password, setPassword] = useState("");
 
-    const [password, setPassword] = useState("");
+  const handleSubmit = () => {
+    if (stuId.length !== 9) {
+      alert("Invalid ID");
+      return;
+    }
+    setIsLoggedIn(true);
+    alert("Welcome! Login~" + stuId);
+  };
 
-    const handleSubmit = () => {
-        if (stuId.length !== 9 ) {
-            alert("Invalid ID");
-            return;
+  const navigate = useNavigate();
+
+  const [login, setLogin] = useState(false);
+  const [errMessage, setErrMessage] = useState("");
+
+  const checkLogin = () => {
+    fetch("http://localhost:4000/login", {
+      method: "POST",
+      body: JSON.stringify({
+        // check body
+        first_name: first_name,
+        last_name: last_name,
+        password: pwd,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === "Success") {
+          setLogin(true);
+        } else {
+          setLogin(false);
+          setErrMessage("Error: Invaild email and/or password");
+          throw new Error("Login failed");
         }
-        setIsLoggedIn(true);
-        alert("Welcome! Login~" + stuId);
-    };
+      })
+      .then(() => {
+        navigate("/Home", {
+          state: {},
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-    return (
-        <div>
-            <Navbar />
-            <div className='LoginPage'>
-                <p className='login_title'>Login Form</p>
-                <div className='loginform d-flex justify-content-around'>
-                    <label id="ID" htmlFor='' className="idpw">ID:</label>
-                    <input type="text" name="user" id="" placeholder='Student ID...' onChange={(e) => setStuId(e.target.value)}></input>
-                    <div></div>
-                </div>
-                <div className='loginform d-flex justify-content-around'>
-                    <label id="PW" htmlFor='' className="idpw">Password:</label>
-                    <input type="text" name="password" id="" placeholder='Password...' onChange={(e) => setPassword(e.target.value)}></input>
-                    <div></div>
-                </div>
-                <div className='text-center'>
-                    <button id="Loginbtn" type="button" form="" onClick={handleSubmit}>Login</button>
-                </div>
-
-            </div>
-
-
+  return (
+    <div>
+      <Navbar />
+      <div className="LoginPage">
+        <p className="login_title">Login Form</p>
+        <div className="loginform d-flex justify-content-around">
+          <label id="ID" htmlFor="" className="idpw">
+            ID:
+          </label>
+          <input
+            type="text"
+            name="user"
+            id=""
+            placeholder="Student ID..."
+            onChange={(e) => setStuId(e.target.value)}
+          ></input>
+          <div></div>
         </div>
-    );
-};
+        <div className="loginform d-flex justify-content-around">
+          <label id="PW" htmlFor="" className="idpw">
+            Password:
+          </label>
+          <input
+            type="text"
+            name="password"
+            id=""
+            placeholder="Password..."
+            onChange={(e) => setPassword(e.target.value)}
+          ></input>
+          <div></div>
+        </div>
+        <div className="text-center">
+          <button id="Loginbtn" type="button" form="" onClick={handleSubmit}>
+            Login
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default Login;
