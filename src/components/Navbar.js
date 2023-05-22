@@ -9,12 +9,16 @@ function Navbar() {
         setIsNavExpanded(!isNavExpanded);
     };
 
+    const btnClass = isNavExpanded ? 'navBtn rotate' : 'navBtn';
+
     return (
         <div>
             <h2 className='text-center'>CourseMan!</h2>
             <div className="button-container">
-                <button className="navBtn" onClick={handleNavExpand}> 
-                    {isNavExpanded ? '×' : 'Menu'}
+                <button className={btnClass} onClick={handleNavExpand}> 
+                    <div className="bar1"></div>
+                    <div className="bar2"></div>
+                    <div className="bar3"></div>
                 </button>
             </div>
             <div className={ isNavExpanded ? "header-container navigation-menu expanded" : "header-container navigation-menu notExpanded"}>

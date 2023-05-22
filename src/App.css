@@ -64,8 +64,21 @@ ul {
 }
 
 @media screen and (max-width: 40em) {
+  .rotate {
+    transform: rotate(90deg);
+  }
+  
+  .bar1, .bar2, .bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: #333;
+    margin: 6px 0;
+    transition: 0.4s;
+  }
+
   .navBtn {
-    display: block;
+    display: inline-block;
+    cursor: pointer;
     position: fixed;
     right: 0;
     margin: 40px 40px 0 0;
@@ -75,6 +88,7 @@ ul {
     background-color: lightBlue;
     color: black;
     z-index: 5;
+    transition: transform 0.3s ease-out;
   }
 
   .navigation-menu ul {
@@ -86,12 +100,12 @@ ul {
     width: 100%;
     height: 100%;
     display: none;
-    transform: translateX(30%);
+    transform: translateX(100%);
     transition: transform 0.3s ease-out;
   }
 
   .navigation-menu.expanded ul {
-    transform: translateX(100%);
+    transform: translateX(30%);
   }
 
   .header {
