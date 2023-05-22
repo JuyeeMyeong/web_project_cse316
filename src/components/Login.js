@@ -18,16 +18,15 @@ function Login() {
     return (
         <div>
             <Navbar />
-
             <div className='LoginPage'>
                 <p className='login_title'>Login Form</p>
                 <div className='loginform d-flex justify-content-around'>
-                    <label id="ID"for="" className="idpw">ID:</label>
+                    <label id="ID" htmlFor='' className="idpw">ID:</label>
                     <input type="text" name="user" id="" placeholder='Student ID...' onChange={(e) => setStuId(e.target.value)}></input>
                     <div></div>
                 </div>
                 <div className='loginform d-flex justify-content-around'>
-                    <label id="PW" for="" className="idpw">Password:</label>
+                    <label id="PW" htmlFor='' className="idpw">Password:</label>
                     <input type="text" name="password" id="" placeholder='Password...' onChange={(e) => setPassword(e.target.value)}></input>
                     <div></div>
                 </div>

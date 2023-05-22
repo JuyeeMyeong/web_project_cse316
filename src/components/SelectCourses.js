@@ -14,11 +14,11 @@ function SelectCourses() {
             <div className='searchForm'>
                 <div className='formTitle'>Search Form</div>
                 <div className='searchRow'>
-                    <label id="Name"for="" className="userName">Name:</label>
+                    <label id="Name" htmlFor='' className="userName">Name:</label>
                     <input type="text" name="user" id="" placeholder='Name here...'></input>
                 </div>
                 <div className='searchRow'>
-                    <label id="SearchFor"for="" className="searchBox">Search for:</label>
+                    <label id="SearchFor" htmlFor='' className="searchBox">Search for:</label>
                     <input type="text" name="searchString" id="" placeholder='Name here...'></input>
                 </div>
 
