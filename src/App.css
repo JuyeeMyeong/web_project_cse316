@@ -265,7 +265,7 @@ ul {
 /***********         SelectCourses              ***********/
 .container {
   display: flex;
-  height: 300px;
+  height: 280px;
   width: 500px;
   background-color: #4682B4;
 }
@@ -273,24 +273,34 @@ ul {
 .searchForm {
   position: relative;
   width: 100%;
-  margin-top: 20px;
+  margin: 25px 0;
   border: 2px solid grey;
 }
+
 .formTitle {
   position: absolute;
-  top: -20px;
+  top: -25px;
   left: 20px;
   background-color: #4682B4;
   font-weight: 500;
   font-size: 32px;
 }
 
+.searchRow label {
+  font-weight: 600;
+}
+
 .searchRow {
-  margin: 30px 0 60px 20px;
+  margin: 40px 0 20px 20px;
+  width: 60%;
+}
+
+.searchInput {
+  border-radius: 10px;
 }
 
 .showCoursebtn{
-  margin-left: 40px;
+  margin-left: 15px;
   border-radius: 10px;
-  background-color: aquamarine;
+  background-color: lightblue;
 }
