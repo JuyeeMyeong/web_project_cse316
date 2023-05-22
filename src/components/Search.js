@@ -1,6 +1,5 @@
 import '../App.css';
 import React, { useState, useEffect, useMemo }  from 'react';
-import { NavLink } from 'react-router-dom';
 
 
 //list of courses can be taken 

@@ -1,6 +1,4 @@
-// Antonino Mione
-// CSE316
-
+//Juyee Myeong, Juyeong Nam
 import sha256 from 'crypto-js/sha256.js';
 
 var UInt32 = function (value) {
@@ -14,10 +12,8 @@ var highbit = function(value) {
 // hashutil generates a SHA256 from first name, last name and
 // password. Pass in the 3 strings and the hash is generated 
 // and returned.
-export function hashutil(fname, lname, password) {
-    let salt = fname + lname;
-    console.log("|"+salt+"|");
-    console.log("|"+password+"|");
+export function hashutil(email, password) {
+    let salt = email + 'asdf1348373534';
 
     const passhash = sha256(salt + password);
 
