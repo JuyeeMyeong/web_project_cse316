@@ -33,6 +33,20 @@ con.query("CREATE DATABASE IF NOT EXISTS ??", db, function (err, result) {
           console.log("User Table created");
         }
       );
+      con.query(
+        "CREATE TABLE IF NOT EXISTS Courses ( id INT PRIMARY KEY AUTO_INCREMENT, course_number VARCHAR(255), course_name VARCHAR(255))",
+        function (err) {
+          if (err) throw err;
+          console.log("Courses Table created");
+        }
+      );
+      con.query(
+        "CREATE TABLE IF NOT EXISTS Prerequisites (id INT PRIMARY KEY AUTO_INCREMENT, course_number INT, prerequisite VARCHAR(255), FOREIGN KEY (course_number) REFERENCES Courses(course_number)",
+        function (err) {
+          if (err) throw err;
+          console.log("Prerequesite Table created");
+        }
+      );
     }
   );
 });
