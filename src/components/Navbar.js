@@ -28,14 +28,14 @@ function Navbar() {
     return (
         <div>
             <h2 className='text-center'>CourseMan!</h2>
-            <div>
+            <div className="button-container">
                 <button className="navBtn" onClick={handleNavExpand}> 
                     Menu
                 </button>
             </div>
             <div className={ isNavExpanded ? "header-container navigation-menu expanded" : "header-container navigation-menu notExpanded"}>
-                <ul className="header d-flex justify-content-end align-items-center">
-                    <li className="navigator text-center">
+                <ul className="header d-flex align-items-center">
+                    <li className="navigator topnav text-center">
                         <NavLink to="/" className={({isActive}) => (isActive? "activeNav" : "defaultNav")} style={{ textDecoration: "none" }}>Home</NavLink>
                     </li>
                     <li className="navigator text-center">
