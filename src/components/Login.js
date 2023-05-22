@@ -2,9 +2,8 @@ import '../App.css';
 import React, { useState, useEffect }  from 'react';
 import Navbar from './Navbar';
 
-function Login() {
+function Login({stuId, setStuId, setIsLoggedIn}) {
 
-    const [stuId, setStuId] = useState("");
     const [password, setPassword] = useState("");
 
     const handleSubmit = () => {
@@ -12,8 +11,9 @@ function Login() {
             alert("Invalid ID");
             return;
         }
+        setIsLoggedIn(true);
+        alert("Welcome! Login~" + stuId);
     };
-
 
     return (
         <div>
