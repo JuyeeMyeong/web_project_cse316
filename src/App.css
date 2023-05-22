@@ -263,6 +263,10 @@ ul {
 
 }
 /***********         SelectCourses              ***********/
+.selectCoursePage {
+  width:100%;
+}
+
 .form-container {
   width: 90%;
   background-color: #4682B4;

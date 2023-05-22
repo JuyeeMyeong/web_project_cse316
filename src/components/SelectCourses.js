@@ -6,8 +6,9 @@ import Navbar from './Navbar';
 function SelectCourses() {
 
     return (
+    <div>
+        <Navbar />
         <div className="selectCoursePage d-flex flex-column align-items-center">
-            <Navbar />
 
             <div className="form-container d-flex flex-column">
                 <div className='searchForm'>
@@ -27,6 +28,7 @@ function SelectCourses() {
                 <Search/>
             </div>
         </div>
+    </div>
     );
 };
 
