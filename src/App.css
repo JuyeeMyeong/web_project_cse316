@@ -9,7 +9,18 @@ h2 {
   font-size: 32px;
 }
 
+input:focus {
+  border-color: lightblue;
+}
+
+ul {
+  list-style-type: none;
+}
+
 /***********           Navbar               ***********/
+.navBtn {
+  display: none;
+}
 
 .header-container {
   display: inline-block;
@@ -39,6 +50,7 @@ h2 {
   .header {
     float: right;
     width: 100%;
+    height: 50px;
     flex: 1;
     flex-basis: 50px;
     background: hsl(0 0% 100% / 0.005);
@@ -47,10 +59,41 @@ h2 {
   }
 }
 
-@media (max-width: 40em){
-  .header-container {
+@media screen and (max-width: 40em) {
+  .navBtn {
+    display: block;
+    float: right;
+    margin: 40px 40px 0 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 10%;
+    background-color: lightBlue;
+    z-index: 999;
+  }
+
+  .notExpanded {
     display: none;
   }
+
+  .expanded {
+    display: block;
+  }
+
+  .navigation-menu ul {
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 150px;
+    width: 100%;
+    height: 100%;
+    border-top: 1px solid black;
+    display: none;
+  }
+
+  .navigation-menu.expanded ul {
+    display: block;
+  }
+
 }
 
 /***********         Instruction              ***********/

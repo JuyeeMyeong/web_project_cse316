@@ -2,6 +2,7 @@ import '../App.css';
 import React, { useState, useEffect }  from 'react';
 import { NavLink } from 'react-router-dom';
 import Search from './Search';
+import Navbar from './Navbar';
 
 
 

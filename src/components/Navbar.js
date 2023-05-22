@@ -3,28 +3,54 @@ import React, { useState, useEffect }  from 'react';
 import { NavLink } from 'react-router-dom';
 
 function Navbar() {
+    const [isNavExpanded, setIsNavExpanded] = useState(false);
+    
+    const buttonSytle = () => {
+        if (!isNavExpanded) {
+            return "Menu";
+        } else {
+            return "&times";
+        }
+    };
+
+    const handleNavExpand = () => {
+        setIsNavExpanded(!isNavExpanded);
+    };
+
+    useEffect(() => {
+        window.addEventListener('resize', handleNavExpand);
+
+        return () => {
+            window.removeEventListener('resize', handleNavExpand);
+        };
+    }, []);
 
     return (
         <div>
             <h2 className='text-center'>CourseMan!</h2>
-            <div className='header-container'>
-                <header className="header d-flex justify-content-end align-items-center">
-                    <h1 className="navigator text-center">
+            <div>
+                <button className="navBtn" onClick={handleNavExpand}> 
+                    Menu
+                </button>
+            </div>
+            <div className={ isNavExpanded ? "header-container navigation-menu expanded" : "header-container navigation-menu notExpanded"}>
+                <ul className="header d-flex justify-content-end align-items-center">
+                    <li className="navigator text-center">
                         <NavLink to="/" className={({isActive}) => (isActive? "activeNav" : "defaultNav")} style={{ textDecoration: "none" }}>Home</NavLink>
-                    </h1>
-                    <h1 className="navigator text-center">
+                    </li>
+                    <li className="navigator text-center">
                         <NavLink to="/Instructions" className={({isActive}) => (isActive? "activeNav" : "defaultNav")} style={{ textDecoration: "none" }}>Instructions</NavLink>
-                    </h1>
-                    <h1 className="navigator text-center">
+                    </li>
+                    <li className="navigator text-center">
                         <NavLink to="/Login" className={({isActive}) => (isActive? "activeNav" : "defaultNav")} style={{ textDecoration: "none" }}>Login</NavLink>
-                    </h1>
-                    <h1 className="navigator text-center">
+                    </li>
+                    <li className="navigator text-center">
                         <NavLink to="/PreviousCourses" className={({isActive}) => (isActive? "activeNav" : "defaultNav")} style={{ textDecoration: "none" }}>PreviousCourses</NavLink>
-                    </h1>
-                    <h1 className="navigator text-center">
+                    </li>
+                    <li className="navigator text-center">
                         <NavLink to="/SelectCourses" className={({isActive}) => (isActive? "activeNav" : "defaultNav")} style={{ textDecoration: "none" }}>SelectCourses</NavLink>
-                    </h1>
-                </header>
+                    </li>
+                </ul>
             </div>
         </div>
     );
