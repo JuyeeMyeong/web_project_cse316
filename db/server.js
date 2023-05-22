@@ -25,10 +25,11 @@ app.listen(PORT, () => {
 // Login
 app.post("/login", function (req, res) {
   // get first and last name from body
+  const student_id = req.body.stuId;
   const password = req.body.password;
   con.query(
-    "SELECT * FROM User WHERE email = ?", //instead of email=?, use first and last name
-    [email], // change this also
+    "SELECT * FROM User WHERE student_id = ?", //instead of email=?, use first and last name
+    [student_id], // change this also
 
     function (err, data, field) {
       if (err) throw err;
@@ -41,8 +42,7 @@ app.post("/login", function (req, res) {
       }
 
       const id = data[0].id;
-      const studentId = data[0].student_id;
-      const hashCheck = hashutil(email, password);
+      const hashCheck = hashutil(student_id, password);
 
       if (hashCheck !== data[0].password) {
         res
@@ -56,8 +56,8 @@ app.post("/login", function (req, res) {
         message: "Successfully logged in.",
         firstName: first_name,
         lastName: last_name,
+        student_id: student_id,
         id,
-        studentId,
       });
     }
   );
