@@ -3,15 +3,13 @@ import React, { useState, useEffect }  from 'react';
 import Search from './Search';
 import Navbar from './Navbar';
 
-
-
 function SelectCourses() {
 
     return (
-        <div>
+        <div className="selectCoursePage d-flex flex-column align-items-center">
             <Navbar />
 
-            <div className="container">
+            <div className="form-container d-flex flex-column">
                 <div className='searchForm'>
                     <div className='formTitle'>Search Form</div>
                     <div className='d-flex justify-content-between searchRow'>
@@ -26,9 +24,8 @@ function SelectCourses() {
                         <button className='showCoursebtn'>Show Courses</button>
                     </div>
                 </div>
+                <Search/>
             </div>
-
-            <Search/>
         </div>
     );
 };
