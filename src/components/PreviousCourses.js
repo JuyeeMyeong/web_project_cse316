@@ -57,16 +57,16 @@ function PreviousCourses() {
                 <h3>Student ID: {}</h3>
                 <p className='prevSecond text-center'>Check off the courses you have completed with a C or better.</p>
                 <div className='courseList d-flex justify-content-end flex-wrap'>
-                {courseList.map((item) => {
+                {courseList.map((item, index) => {
                     return (
-                            <div className="inputContainer d-flex justify-content-end col-md-3">
-                                <input type="checkbox" id={item.name} className='prevCourseInput' name="checkCourse" value={item.name} onChange={(e) => {
-                                onCheckedItem(e.target.checked, e.target.id)}} /><label className="courseLabel">
-                                {item.name}
-                                </label>
-                            </div>
+                        <div key={index} className="inputContainer d-flex justify-content-end col-md-3">
+                            <input type="checkbox" id={item.name} className='prevCourseInput' name="checkCourse" value={item.name} onChange={(e) => {
+                            onCheckedItem(e.target.checked, e.target.id)}} /><label className="courseLabel">
+                            {item.name}
+                            </label>
+                        </div>
                         );
-                    })}
+                })}
                 </div>
                 <div className='text-center'>
                     <button id="setCourse" type="button" form="">Set Previous Courses</button>
