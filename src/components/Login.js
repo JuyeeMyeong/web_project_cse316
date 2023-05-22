@@ -17,17 +17,13 @@ function Login({ stuId, setStuId, setIsLoggedIn }) {
 
   const navigate = useNavigate();
 
-  const [login, setLogin] = useState(false);
-  const [errMessage, setErrMessage] = useState("");
-
   const checkLogin = () => {
     fetch("http://localhost:4000/login", {
       method: "POST",
       body: JSON.stringify({
         // check body
-        first_name: first_name,
-        last_name: last_name,
-        password: pwd,
+        stuId: stuId,
+        password: password,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -36,16 +32,16 @@ function Login({ stuId, setStuId, setIsLoggedIn }) {
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "Success") {
-          setLogin(true);
+          setIsLoggedIn(true);
         } else {
-          setLogin(false);
-          setErrMessage("Error: Invaild email and/or password");
+          setIsLoggedIn(false);
+          alert("Invalid");
           throw new Error("Login failed");
         }
       })
       .then(() => {
         navigate("/Home", {
-          state: {},
+          state: { stuId, setIsLoggedIn },
         });
       })
       .catch((err) => {
