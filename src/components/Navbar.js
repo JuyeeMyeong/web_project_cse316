@@ -6,16 +6,16 @@ function Navbar() {
     const [isNavExpanded, setIsNavExpanded] = useState(false);
 
     const handleNavExpand = () => {
-        setIsNavExpanded(!isNavExpanded);
+        setIsNavExpanded(isNavExpanded);
     };
 
     useEffect(() => {
         window.addEventListener('resize', handleNavExpand);
-
+    
         return () => {
             window.removeEventListener('resize', handleNavExpand);
         };
-    }, []);
+    }, [handleNavExpand]);
 
     return (
         <div>
