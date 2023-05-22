@@ -33,7 +33,7 @@ function Login({ stuId, setStuId, setIsLoggedIn }) {
           }
         })
         .then(() => {
-          navigate("/Home", {
+          navigate("/", {
             state: { stuId, setIsLoggedIn },
           });
         })
