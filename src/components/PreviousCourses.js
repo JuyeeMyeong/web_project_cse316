@@ -1,10 +1,43 @@
 import '../App.css';
-import React, { useState, useEffect }  from 'react';
+import React, { useState, useEffect, useCallback }  from 'react';
 import Navbar from './Navbar';
 
 function PreviousCourses() {
 
     const[isLoggedIn, SetIsLoggedIn] = useState(false);
+    const courseList = [
+        { name: 'CSE101' },
+        { name: 'CSE114' },
+        { name: 'CSE214' },
+        { name: 'CSE215' },
+        { name: 'CSE216' },
+        { name: 'CSE220' },
+        { name: 'CSE300' },
+        { name: 'CSE303' },
+        { name: 'CSE304' },
+        { name: 'CSE305' },
+        { name: 'CSE306' },
+        { name: 'CSE310' },
+        { name: 'CSE316' },
+        { name: 'CSE320' },
+        { name: 'CSE331' },
+        { name: 'CSE416' },
+    ];
+
+    const [checkedList, setCheckedList] = useState([]);
+
+    const onCheckedItem = useCallback(
+        (checked, item) => {
+        if (checked) {
+            setCheckedList((prev) => [...prev, item]);
+        } else if (!checked) {
+            setCheckedList(checkedList.filter((el) => el !== item));
+        }
+        },
+        [checkedList, setCheckedList]
+    );
+    
+
 
     const userNotFound = () => {
         if (!isLoggedIn) {
@@ -24,54 +57,16 @@ function PreviousCourses() {
                 <h3>Student ID: {}</h3>
                 <p className='prevSecond text-center'>Check off the courses you have completed with a C or better.</p>
                 <div className='courseList d-flex justify-content-end flex-wrap'>
-                    <div className="inputContainer d-flex justify-content-end col-md-3">
-                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE101"/><label className="courseLabel">CSE101</label>
-                    </div>
-                    <div className="inputContainer d-flex justify-content-end col-md-3">
-                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE114"/><label className="courseLabel">CSE114</label>
-                    </div>
-                    <div className="inputContainer d-flex justify-content-end col-md-3">
-                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE101"/><label className="courseLabel">CSE214</label>
-                    </div>
-                    <div className="inputContainer d-flex justify-content-end col-md-3">
-                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE114"/><label className="courseLabel">CSE215</label>
-                    </div>
-                    <div className="inputContainer d-flex justify-content-end col-md-3">
-                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE101"/><label className="courseLabel">CSE216</label>
-                    </div>
-                    <div className="inputContainer d-flex justify-content-end col-md-3">
-                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE114"/><label className="courseLabel">CSE220</label>
-                    </div>
-                    <div className="inputContainer d-flex justify-content-end col-md-3">
-                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE101"/><label className="courseLabel">CSE300</label>
-                    </div>
-                    <div className="inputContainer d-flex justify-content-end col-md-3">
-                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE114"/><label className="courseLabel">CSE303</label>
-                    </div>
-                    <div className="inputContainer d-flex justify-content-end col-md-3">
-                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE101"/><label className="courseLabel">CSE304</label>
-                    </div>
-                    <div className="inputContainer d-flex justify-content-end col-md-3">
-                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE114"/><label className="courseLabel">CSE305</label>
-                    </div>
-                    <div className="inputContainer d-flex justify-content-end col-md-3">
-                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE101"/><label className="courseLabel">CSE306</label>
-                    </div>
-                    <div className="inputContainer d-flex justify-content-end col-md-3">
-                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE114"/><label className="courseLabel">CSE310</label>
-                    </div>
-                    <div className="inputContainer d-flex justify-content-end col-md-3">
-                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE101"/><label className="courseLabel">CSE316</label>
-                    </div>
-                    <div className="inputContainer d-flex justify-content-end col-md-3">
-                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE114"/><label className="courseLabel">CSE320</label>
-                    </div>
-                    <div className="inputContainer d-flex justify-content-end col-md-3">
-                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE101"/><label className="courseLabel">CSE331</label>
-                    </div>
-                    <div className="inputContainer d-flex justify-content-end col-md-3">
-                        <input type="checkbox" className='prevCourseInput' name="checkCourse" value="CSE114"/><label className="courseLabel">CSE416</label>
-                    </div>
+                {courseList.map((item) => {
+                    return (
+                            <div className="inputContainer d-flex justify-content-end col-md-3">
+                                <input type="checkbox" id={item.name} className='prevCourseInput' name="checkCourse" value={item.name} onChange={(e) => {
+                                onCheckedItem(e.target.checked, e.target.id)}} /><label className="courseLabel">
+                                {item.name}
+                                </label>
+                            </div>
+                        );
+                    })}
                 </div>
                 <div className='text-center'>
                     <button id="setCourse" type="button" form="">Set Previous Courses</button>
