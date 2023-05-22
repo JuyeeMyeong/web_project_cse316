@@ -27,7 +27,7 @@ con.query("CREATE DATABASE IF NOT EXISTS ??", db, function (err, result) {
       }
       // Create User Table
       con.query(
-        "CREATE TABLE IF NOT EXISTS User ( id INT AUTO_INCREMENT PRIMARY KEY, student_id INT UNIQUE, first_name VARCHAR(100), last_name VARCHAR(100), password VARCHAR(256), level CHAR(2))",
+        "CREATE TABLE IF NOT EXISTS User ( id INT AUTO_INCREMENT PRIMARY KEY, student_id INT UNIQUE, first_name VARCHAR(100), last_name VARCHAR(100), password VARCHAR(256))",
         function (err) {
           if (err) throw err;
           console.log("User Table created");
