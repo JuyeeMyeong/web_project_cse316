@@ -45,6 +45,10 @@ function PreviousCourses() {
         };
     };
 
+    const printIt = () => {
+        console.log(checkedList);
+    };
+
     return (
         <div>
             <Navbar />
@@ -69,7 +73,7 @@ function PreviousCourses() {
                 })}
                 </div>
                 <div className='text-center'>
-                    <button id="setCourse" type="button" form="">Set Previous Courses</button>
+                    <button id="setCourse" type="button" form="" onClick={printIt}>Set Previous Courses</button>
                 </div>
             </div>
         </div>
