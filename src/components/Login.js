@@ -1,6 +1,7 @@
 import "../App.css";
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
+import { useNavigate } from "react-router-dom";
 
 function Login({ stuId, setStuId, setIsLoggedIn }) {
   const [password, setPassword] = useState("");
