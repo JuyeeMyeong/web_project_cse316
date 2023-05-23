@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-var mysql = require("mysql");
+var mysql = require("mysql2");
 var db = "courseman";
 
 console.log("hi! im sql");
@@ -11,6 +11,12 @@ var con = mysql.createConnection({
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
 });
+
+con.connect((err) => {
+  if (err) throw err;
+  console.log("Connected to MySQL server");
+});
+
 
 //Create Database
 con.query("CREATE DATABASE IF NOT EXISTS ??", db, function (err, result) {
