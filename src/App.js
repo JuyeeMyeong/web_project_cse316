@@ -86,8 +86,8 @@ function App() {
               />
             }
           />
-          <Route path="/PreviousCourses" element={<PreviousCourses stuId={stuId}/>} />
-          <Route path="/SelectCourses" element={<SelectCourses stuId={stuId}/>} />
+          <Route path="/PreviousCourses" element={<PreviousCourses />} />
+          <Route path="/SelectCourses" element={<SelectCourses />} />
         </Routes>
       </BrowserRouter>
     </div>
