@@ -1,7 +1,7 @@
-const http = require('http');
 import "../App.css";
 import React, { useState, useEffect, useCallback } from "react";
 import Navbar from "./Navbar";
+import axios from 'axios';
 
 function PreviousCourses({ stuId }) {
   const [isLoggedIn, SetIsLoggedIn] = useState(false);
@@ -39,34 +39,14 @@ function PreviousCourses({ stuId }) {
 
   const updateCourses = () => {
     const requestData = JSON.stringify({ courses: checkedList });
-    console.log(checkedList);
-
-    const options = {
-      hostname: "localhost",
-      port: 4000,
-      path: `/user/${stuId}`,
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        "Content-Length": requestData.length,
-      },
-    };
-
-    const req = http.request(options, (res) => {
-      let responseData = "";
-
-      res.on("data", (chunk) => {
-        responseData += chunk;
+  
+    axios.put(`http://localhost:4000/user/${stuId}`, requestData)
+      .then((response) => {
+        console.log('Courses updated:', response.data);
+      })
+      .catch((error) => {
+        console.error('Failed to update courses:', error);
       });
-      res.on("end", () => {
-        console.log("Courses updated:", JSON.parse(responseData));
-      });
-    });
-    req.on("error", (error) => {
-      console.error("Failed to update courses:", error);
-    });
-    req.write(requestData);
-    req.end();
   };
 
   return (
