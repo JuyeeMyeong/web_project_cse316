@@ -19,6 +19,22 @@ app.listen(PORT, () => {
   console.log(`Check out the app at http://localhost:${PORT}`);
 });
 
+app.get("/user", function (req, res) {
+  const { stuId } = req.query;
+  con.query(
+    "SELECT * FROM User WHERE stuId=?",
+    [stuId],
+    function (err, data, fields) {
+      if (err) throw err;
+      res.status(200).json({
+        status: "success",
+        length: data?.length,
+        userId: data[0].stuId,
+      });
+    }
+  );
+});
+
 // Login
 app.post("/login", function (req, res) {
   // get first and last name from body
@@ -40,7 +56,9 @@ app.post("/login", function (req, res) {
       const id = data[0].id;
 
       if (password !== data[0].password) {
-        res.status(402).json({ status: "Failed", message: "Invalid password." });
+        res
+          .status(402)
+          .json({ status: "Failed", message: "Invalid password." });
         return;
       }
 
