@@ -38,7 +38,6 @@ function PreviousCourses({ stuId }) {
   );
 
   const updateCourses = () => {
-    console.log(checkedList)
     if (stuId === undefined) {
       console.error('Failed to update courses: stuId is undefined');
       return;
@@ -53,7 +52,7 @@ function PreviousCourses({ stuId }) {
   
     axios.put(`http://localhost:4000/user/${stuId}`, requestData)
       .then((response) => {
-        console.log('Courses updated:', response.data);
+        alert("Courses Updated! Please go to SelectCourses")
       })
       .catch((error) => {
         console.error('Failed to update courses:', error);
