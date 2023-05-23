@@ -77,37 +77,36 @@ INSERT INTO Courses (course_id, course_name)
 INSERT INTO Courses (course_id, course_name)
        VALUES ("CSE416", "Software Engineering");
 
-
 -- Prerequsite Table --
 INSERT INTO Prerequisites (course_number, prerequisite)
        VALUES (101, "");
 INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (114, "{CSE101}");
+       VALUES (114, '["CSE101"]');
 INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (214, "{CSE114}");
+       VALUES (214, '["CSE114"]');
 INSERT INTO Prerequisites (course_number, prerequisite)
        VALUES (215, "");
 INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (216, "{CSE214}");
+       VALUES (216, '["CSE214"]');
 INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (220, "{CSE214}");
+       VALUES (220, '["CSE214"]');
 INSERT INTO Prerequisites (course_number, prerequisite)
        VALUES (300, "");
 INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (303, "{CSE214}");
+       VALUES (303, '["CSE214"]');
 INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (304, "{CSE216, CSE 220, CSE 303}");
+       VALUES (304, '["CSE216", "CSE 220", "CSE 303"]');
 INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (310, "{CSE214}");
+       VALUES (310, '["CSE214"]');
 INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (316, "{CSE216}");
+       VALUES (316, '["CSE216"]');
 INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (320, "{CSE 220}");
+       VALUES (320, '["CSE220"]');
 INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (352, "{CSE216}");
+       VALUES (352, '["CSE216"]');
 INSERT INTO Prerequisites (course_number, prerequisite)
        VALUES (354, "");
 INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (373, "{CSE214}");
+       VALUES (373, '["CSE214"]');
 INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (416, "{CSE316}");
+       VALUES (416, '["CSE316"]');
