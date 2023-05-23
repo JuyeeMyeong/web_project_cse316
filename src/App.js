@@ -28,12 +28,12 @@ function App() {
     fetchLoggedInStatus();
   }, [cookies]);
 
-  const handleLogin = (id, pw) => {
-    fetch("/login", {
+  const handleLogin = (stuId, password) => {
+    fetch("http://localhost:4000/login", {
       method: "POST",
       body: JSON.stringify({
-        stuId: id,
-        password: pw,
+        stuId: stuId,
+        password: password,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -42,9 +42,9 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "Success") {
-          setStuId(id);
+          setStuId(stuId);
           setCookie('isLoggedIn', true, { path: '/' });
-          setCookie('stuId', id, { path: '/' });
+          setCookie('stuId', stuId, { path: '/' });
           setIsLoggedIn(true);
         } else {
           throw new Error("Login failed");
@@ -66,6 +66,8 @@ function App() {
             path="/Login"
             element={
               <Login
+                stuId={stuId}
+                setStuId={setStuId}
                 isLoggedIn={isLoggedIn}
                 onLogin={handleLogin}
               />

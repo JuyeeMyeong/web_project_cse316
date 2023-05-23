@@ -2,16 +2,15 @@ import "../App.css";
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 
-function Login({ onLogin, isLoggedIn }) {
+function Login({ stuId, setStuId, onLogin, isLoggedIn }) {
   const [password, setPassword] = useState("");
-  const [studentId, setStudnetId] = useState("");
 
   const handleSubmit = () => {
-    if (studentId.length !== 9) {
+    if (stuId.length !== 9) {
       alert("Invalid ID");
       return;
     } else {
-      onLogin(studentId, password);
+      onLogin(stuId, password);
     }
   };
 
@@ -37,7 +36,7 @@ function Login({ onLogin, isLoggedIn }) {
               name="user"
               id=""
               placeholder="Student ID..."
-              onChange={(e) => setStudnetId(e.target.value)}
+              onChange={(e) => setStuId(e.target.value)}
             ></input>
             <div></div>
           </div>
