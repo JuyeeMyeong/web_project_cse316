@@ -1,3 +1,8 @@
+-- Use data.sql
+-- <Mysql command line client>
+-- source <data.sql path>
+
+
 -- User Table --
 
 INSERT INTO User (student_id, first_name, last_name, password, courses) 
