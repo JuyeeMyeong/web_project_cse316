@@ -2,7 +2,7 @@ import '../App.css';
 import React, { useState, useEffect, useCallback }  from 'react';
 import Navbar from './Navbar';
 
-function PreviousCourses() {
+function PreviousCourses({ stuId }) {
 
     const[isLoggedIn, SetIsLoggedIn] = useState(false);
     const courseList = [
@@ -58,7 +58,7 @@ function PreviousCourses() {
             </div>
 
             <div className='coursePage d-flex flex-column align-items-center'>
-                <h3>Student ID: {}</h3>
+                <h3>Student ID: {stuId}</h3>
                 <p className='prevSecond text-center'>Check off the courses you have completed with a C or better.</p>
                 <div className='courseList d-flex justify-content-end flex-wrap'>
                 {courseList.map((item, index) => {

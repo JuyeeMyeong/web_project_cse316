@@ -3,7 +3,7 @@ import React, { useState, useEffect }  from 'react';
 import Search from './Search';
 import Navbar from './Navbar';
 
-function SelectCourses() {
+function SelectCourses({ stuId }) {
     const [searchString, setSearchString] = useState("");
     const [name, setName] = useState('Tony');
     const [preName, setPreName] = useState('');
