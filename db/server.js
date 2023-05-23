@@ -37,12 +37,11 @@ app.get("/user", function (req, res) {
 
 // Login
 app.post("/login", function (req, res) {
-  // get first and last name from body
   const student_id = req.body.stuId;
   const password = req.body.password;
   con.query(
-    "SELECT * FROM User WHERE student_id = ?", //instead of email=?, use first and last name
-    [student_id], // change this also
+    "SELECT * FROM User WHERE student_id = ?",
+    [student_id],
     function (err, data, field) {
       if (err) throw err;
       if (data.length === 0) {
@@ -69,6 +68,25 @@ app.post("/login", function (req, res) {
         // lastName: last_name,
         student_id: student_id,
         id,
+      });
+    }
+  );
+});
+
+app.put("/user/:id", function (req, res) {
+  if (!req.params.id) {
+    res.status(404).json({});
+  }
+  con.query(
+    "INSERT INTO User (id, courses) VALUES(?) ON DUPLICATE KEY UPDATE courses = ?",
+    [[Number(req.params.id), req.body.courses], req.body.courses],
+    function (err) {
+      if (err) throw err;
+      res.status(201).json({
+        courses: req.body.courses,
+        student_id: data[0].student_id,
+        first_name: data[0].first_name,
+        last_name: data[0].last_name,
       });
     }
   );
