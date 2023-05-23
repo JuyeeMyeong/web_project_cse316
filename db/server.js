@@ -50,6 +50,20 @@ app.get("/prerequisite", function (req, res) {
   );
 });
 
+app.get("/course", function (req, res) {
+  con.query(
+    "SELECT course_id FROM Courses",
+    [courseId],
+    function (err, data, fields) {
+      if (err) throw err;
+      res.status(200).json({
+        status: "success",
+        length: data?.length,
+      });
+    }
+  );
+});
+
 // Login
 app.post("/login", function (req, res) {
   const student_id = req.body.stuId;
@@ -122,8 +136,8 @@ app.put("/user/:id", function (req, res) {
   const { courses } = req.body;
 
   con.query(
-    "UPDATE User SET courses = ? WHERE id = ?",
-    [courses, userId],
+    "UPDATE User SET courses = ? WHERE student_id = ?",
+    [JSON.stringify(courses), userId],
     function (err, result) {
       if (err) {
         console.error("Failed to update courses in MySQL:", err);
