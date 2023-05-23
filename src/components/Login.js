@@ -1,9 +1,11 @@
 import "../App.css";
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 
 function Login({ stuId, setStuId, onLogin, isLoggedIn, onLogout }) {
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
     if (stuId.length !== 9) {
@@ -11,6 +13,7 @@ function Login({ stuId, setStuId, onLogin, isLoggedIn, onLogout }) {
       return;
     } else {
       onLogin(stuId, password);
+      navigate('/');
     }
   };
 
