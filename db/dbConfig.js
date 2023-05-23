@@ -46,7 +46,7 @@ con.query("CREATE DATABASE IF NOT EXISTS ??", db, function (err, result) {
         }
       );
       con.query(
-        "CREATE TABLE IF NOT EXISTS Prerequisites (id INT PRIMARY KEY AUTO_INCREMENT, course_number INT, prerequisite VARCHAR(255))",
+        "CREATE TABLE IF NOT EXISTS Prerequisites (id INT PRIMARY KEY AUTO_INCREMENT, course_number INT, prerequisite JSON)",
         function (err) {
           if (err) throw err;
           console.log("Prerequesite Table created");
