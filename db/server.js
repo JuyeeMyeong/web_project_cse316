@@ -35,6 +35,21 @@ app.get("/user", function (req, res) {
   );
 });
 
+app.get("/prerequisite", function (req, res) {
+  const { courseId } = req.query;
+  con.query(
+    "SELECT prerequisite FROM Prerequisites WHERE course_id=?",
+    [courseId],
+    function (err, data, fields) {
+      if (err) throw err;
+      res.status(200).json({
+        status: "success",
+        length: data?.length,
+      });
+    }
+  );
+});
+
 // Login
 app.post("/login", function (req, res) {
   const student_id = req.body.stuId;
