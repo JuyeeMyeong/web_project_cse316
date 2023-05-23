@@ -39,14 +39,14 @@ con.query("CREATE DATABASE IF NOT EXISTS ??", db, function (err, result) {
         }
       );
       con.query(
-        "CREATE TABLE IF NOT EXISTS Courses ( id INT PRIMARY KEY AUTO_INCREMENT, course_number VARCHAR(255), course_name VARCHAR(255))",
+        "CREATE TABLE IF NOT EXISTS Courses ( id INT PRIMARY KEY AUTO_INCREMENT, course_id VARCHAR(255), course_name VARCHAR(255))",
         function (err) {
           if (err) throw err;
           console.log("Courses Table created");
         }
       );
       con.query(
-        "CREATE TABLE IF NOT EXISTS Prerequisites (id INT PRIMARY KEY AUTO_INCREMENT, course_number INT, prerequisite JSON)",
+        "CREATE TABLE IF NOT EXISTS Prerequisites (id INT PRIMARY KEY AUTO_INCREMENT, course_id VARCHAR(255), prerequisite JSON)",
         function (err) {
           if (err) throw err;
           console.log("Prerequesite Table created");
