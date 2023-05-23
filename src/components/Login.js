@@ -7,13 +7,18 @@ function Login({ stuId, setStuId, onLogin, isLoggedIn, onLogout }) {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (stuId.length !== 9) {
       alert("Invalid ID");
       return;
     } else {
-      onLogin(stuId, password);
-      navigate('/');
+      const success = await onLogin(stuId, password);
+
+      if (success) {
+        navigate('/');
+      } else {
+        alert("Login failed. Please try again.");
+      }
     }
   };
 

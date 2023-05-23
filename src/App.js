@@ -28,32 +28,36 @@ function App() {
     fetchLoggedInStatus();
   }, [cookies]);
 
-  const handleLogin = (stuId, password) => {
-    fetch("http://localhost:4000/login", {
-      method: "POST",
-      body: JSON.stringify({
-        stuId: stuId,
-        password: password,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status === "Success") {
-          setStuId(stuId);
-          setCookie('isLoggedIn', true, { path: '/' });
-          setCookie('stuId', stuId, { path: '/' });
-          setIsLoggedIn(true);
-        } else {
-          throw new Error("Login failed");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
+  const handleLogin = async (stuId, password) => {
+    try {
+      const response = await fetch("http://localhost:4000/login", {
+        method: "POST",
+        body: JSON.stringify({
+          stuId: stuId,
+          password: password,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
+
+      const data = await response.json();
+
+      if (data.status === "Success") {
+        setStuId(stuId);
+        setCookie('isLoggedIn', true, { path: '/' });
+        setCookie('stuId', stuId, { path: '/' });
+        setIsLoggedIn(true);
+        return true; // Login Success!
+      } else {
+        throw new Error("Login failed");
+      }
+    } catch (error) {
+      console.log(error);
+      return false; // Login Failed!
+    }
   };
+
 
   const handleLogout = () => {
     removeCookie('isLoggedIn');
