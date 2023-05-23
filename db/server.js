@@ -52,9 +52,9 @@ app.post("/login", function (req, res) {
 
       res.status(201).json({
         status: "Success",
-        message: "Successfully logged in.",
-        firstName: first_name,
-        lastName: last_name,
+        // message: "Successfully logged in.",
+        // firstName: first_name,
+        // lastName: last_name,
         student_id: student_id,
         id,
       });
