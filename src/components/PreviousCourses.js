@@ -38,7 +38,18 @@ function PreviousCourses({ stuId }) {
   );
 
   const updateCourses = () => {
-    const requestData = JSON.stringify({ courses: checkedList });
+    console.log(checkedList)
+    if (stuId === undefined) {
+      console.error('Failed to update courses: stuId is undefined');
+      return;
+    }
+  
+    if (checkedList === undefined || checkedList.length === 0) {
+      console.error('Failed to update courses: checkedList is empty');
+      return;
+    }
+  
+    const requestData = { courses: checkedList };
   
     axios.put(`http://localhost:4000/user/${stuId}`, requestData)
       .then((response) => {
