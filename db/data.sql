@@ -82,32 +82,32 @@ INSERT INTO Courses (course_id, course_name)
 INSERT INTO Prerequisites (course_number, prerequisite)
        VALUES (101, "");
 INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (114, "");
+       VALUES (114, "{CSE101}");
 INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (214, "");
+       VALUES (214, "{CSE114}");
 INSERT INTO Prerequisites (course_number, prerequisite)
        VALUES (215, "");
 INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (216, "");
+       VALUES (216, "{CSE214}");
 INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (220, "");
+       VALUES (220, "{CSE214}");
 INSERT INTO Prerequisites (course_number, prerequisite)
        VALUES (300, "");
 INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (303, "");
+       VALUES (303, "{CSE214}");
 INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (304, "");
+       VALUES (304, "{CSE216, CSE 220, CSE 303}");
 INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (310, "");
+       VALUES (310, "{CSE214}");
 INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (316, "");
+       VALUES (316, "{CSE216}");
 INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (320, "");
+       VALUES (320, "{CSE 220}");
 INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (352, "");
+       VALUES (352, "{CSE216}");
 INSERT INTO Prerequisites (course_number, prerequisite)
        VALUES (354, "");
 INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (373, "");
+       VALUES (373, "{CSE214}");
 INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (416, "");
+       VALUES (416, "{CSE316}");
