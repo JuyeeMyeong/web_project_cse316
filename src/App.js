@@ -55,6 +55,14 @@ function App() {
       });
   };
 
+  const handleLogout = () => {
+    removeCookie('isLoggedIn');
+    removeCookie('stuId');
+    setIsLoggedIn(false);
+    setStuId('');
+  };
+
+
 
   return (
     <div className="App">
@@ -70,11 +78,12 @@ function App() {
                 setStuId={setStuId}
                 isLoggedIn={isLoggedIn}
                 onLogin={handleLogin}
+                onLogout={handleLogout}
               />
             }
           />
-          <Route path="/PreviousCourses" element={<PreviousCourses />} />
-          <Route path="/SelectCourses" element={<SelectCourses />} />
+          <Route path="/PreviousCourses" element={<PreviousCourses stuId={stuId}/>} />
+          <Route path="/SelectCourses" element={<SelectCourses stuId={stuId}/>} />
         </Routes>
       </BrowserRouter>
     </div>

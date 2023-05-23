@@ -2,7 +2,7 @@ import "../App.css";
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 
-function Login({ stuId, setStuId, onLogin, isLoggedIn }) {
+function Login({ stuId, setStuId, onLogin, isLoggedIn, onLogout }) {
   const [password, setPassword] = useState("");
 
   const handleSubmit = () => {
@@ -19,7 +19,7 @@ function Login({ stuId, setStuId, onLogin, isLoggedIn }) {
       <Navbar />
       {isLoggedIn ? (
         <div className="text-center">
-          <button id="Logoutbtn" type="button" form="">
+          <button id="Logoutbtn" type="button" form="" onClick={onLogout}>
             Logout
           </button>
         </div>
