@@ -51,17 +51,13 @@ app.get("/prerequisite", function (req, res) {
 });
 
 app.get("/course", function (req, res) {
-  con.query(
-    "SELECT course_id FROM Courses",
-    [courseId],
-    function (err, data, fields) {
-      if (err) throw err;
-      res.status(200).json({
-        status: "success",
-        length: data?.length,
-      });
-    }
-  );
+  con.query("SELECT course_id FROM Courses", function (err, data, fields) {
+    if (err) throw err;
+    res.status(200).json({
+      status: "success",
+      length: data?.length,
+    });
+  });
 });
 
 // Login
