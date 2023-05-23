@@ -1,18 +1,15 @@
 const express = require("express");
-const fs = require("fs");
 const cors = require("cors");
-const path = require("path");
+const fs = require("fs");
 const bodyParser = require("body-parser");
+const path = require("path");
 const dbFunc = require("./dbConfig");
 const con = dbFunc.con;
 
 const app = express();
 
 app.use(express.json());
-var corsOptions = {
-  origin: "http://localhost:3000",
-};
-app.use(cors(corsOptions));
+app.use(cors());
 
 const PORT = process.env.PORT || 4000;
 
@@ -30,7 +27,6 @@ app.post("/login", function (req, res) {
   con.query(
     "SELECT * FROM User WHERE student_id = ?", //instead of email=?, use first and last name
     [student_id], // change this also
-
     function (err, data, field) {
       if (err) throw err;
       if (data.length === 0) {
@@ -44,9 +40,7 @@ app.post("/login", function (req, res) {
       const id = data[0].id;
 
       if (password !== data[0].password) {
-        res
-          .status(402)
-          .json({ status: "Failed", message: "Invalid password." });
+        res.status(402).json({ status: "Failed", message: "Invalid password." });
         return;
       }
 

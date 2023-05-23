@@ -1,87 +1,66 @@
 import "../App.css";
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
-import { useNavigate } from "react-router-dom";
 
-function Login({ stuId, setStuId, setIsLoggedIn }) {
+function Login({ onLogin, isLoggedIn }) {
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const [studentId, setStudnetId] = useState("");
+
   const handleSubmit = () => {
-    if (stuId.length !== 9) {
+    if (studentId.length !== 9) {
       alert("Invalid ID");
-      setIsLoggedIn(false);
       return;
     } else {
-      fetch("http://localhost:4000/login", {
-        method: "POST",
-        body: JSON.stringify({
-          // check body
-          stuId: stuId,
-          password: password,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.status === "Success") {
-            setIsLoggedIn(true);
-          } else {
-            setIsLoggedIn(false);
-            throw new Error("Login failed");
-          }
-        })
-        .then(() => {
-          navigate("/", {
-            state: { stuId, setIsLoggedIn },
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      onLogin(studentId, password);
     }
-    setIsLoggedIn(true);
-    alert("Welcome! Login~" + stuId);
   };
 
   return (
     <div>
       <Navbar />
-      <div className="LoginPage">
-        <p className="login_title">Login Form</p>
-        <div className="loginform d-flex justify-content-around">
-          <label id="ID" htmlFor="" className="idpw">
-            ID:
-          </label>
-          <input
-            type="text"
-            name="user"
-            id=""
-            placeholder="Student ID..."
-            onChange={(e) => setStuId(e.target.value)}
-          ></input>
-          <div></div>
-        </div>
-        <div className="loginform d-flex justify-content-around">
-          <label id="PW" htmlFor="" className="idpw">
-            Password:
-          </label>
-          <input
-            type="text"
-            name="password"
-            id=""
-            placeholder="Password..."
-            onChange={(e) => setPassword(e.target.value)}
-          ></input>
-          <div></div>
-        </div>
+      {isLoggedIn ? (
         <div className="text-center">
-          <button id="Loginbtn" type="button" form="" onClick={handleSubmit}>
-            Login
+          <button id="Logoutbtn" type="button" form="">
+            Logout
           </button>
         </div>
-      </div>
+      ) : (
+        <div className="LoginPage">
+          {/* Login form code */}
+          <p className="login_title">Login Form</p>
+          <div className="loginform d-flex justify-content-around">
+            <label id="ID" htmlFor="" className="idpw">
+              ID:
+            </label>
+            <input
+              type="text"
+              name="user"
+              id=""
+              placeholder="Student ID..."
+              onChange={(e) => setStudnetId(e.target.value)}
+            ></input>
+            <div></div>
+          </div>
+          <div className="loginform d-flex justify-content-around">
+            <label id="PW" htmlFor="" className="idpw">
+              Password:
+            </label>
+            <input
+              type="text"
+              name="password"
+              id=""
+              placeholder="Password..."
+              onChange={(e) => setPassword(e.target.value)}
+            ></input>
+            <div></div>
+          </div>
+          <div className="text-center">
+            <button id="Loginbtn" type="button" form="" onClick={handleSubmit}>
+              Login
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
