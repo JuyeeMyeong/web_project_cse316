@@ -64,8 +64,8 @@ function PreviousCourses() {
       return;
     }
   
-    if (checkedList === undefined || checkedList.length === 0) {
-      console.error('Failed to update courses: checkedList is empty');
+    if (checkedList === undefined ) {
+      console.error('Failed to update courses: checkedList is undefined');
       return;
     }
   
