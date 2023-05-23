@@ -2,9 +2,26 @@ import "../App.css";
 import React, { useState, useEffect, useCallback } from "react";
 import Navbar from "./Navbar";
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
 
-function PreviousCourses({ stuId }) {
-  const [isLoggedIn, SetIsLoggedIn] = useState(false);
+function PreviousCourses() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [stuId, setStuId] = useState('');
+  const [cookies] = useCookies(['isLoggedIn', 'stuId']);
+
+  useEffect(() => {
+    const isLoggedInCookie = cookies.isLoggedIn;
+    const stuIdCookie = cookies.stuId;
+    
+    if (isLoggedInCookie && stuIdCookie) {
+      setIsLoggedIn(true);
+      setStuId(stuIdCookie);
+    } else {
+      setIsLoggedIn(false);
+      setStuId('');
+    }
+  }, [cookies]);
+
   const courseList = [
     { name: "CSE101" },
     { name: "CSE114" },
@@ -38,6 +55,10 @@ function PreviousCourses({ stuId }) {
   );
 
   const updateCourses = () => {
+    if(!isLoggedIn) {
+        alert("Please Login first...")
+        return;
+    } 
     if (stuId === undefined) {
       console.error('Failed to update courses: stuId is undefined');
       return;
