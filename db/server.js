@@ -53,8 +53,13 @@ app.post("/login", function (req, res) {
       }
 
       const id = data[0].id;
+      const hashCheck = hashutil(
+        data[0].first_name,
+        data[0].last_name,
+        password
+      );
 
-      if (password !== data[0].password) {
+      if (hashCheck !== data[0].password) {
         res
           .status(402)
           .json({ status: "Failed", message: "Invalid password." });
@@ -63,9 +68,9 @@ app.post("/login", function (req, res) {
 
       res.status(201).json({
         status: "Success",
-        // message: "Successfully logged in.",
-        // firstName: first_name,
-        // lastName: last_name,
+        message: "Successfully logged in.",
+        firstName: data[0].first_name,
+        lastName: data[0].last_name,
         student_id: student_id,
         id,
       });
@@ -73,21 +78,44 @@ app.post("/login", function (req, res) {
   );
 });
 
-app.put("/user/:id", function (req, res) {
-  if (!req.params.id) {
-    res.status(404).json({});
+// Middleware checks if the user is logged in
+const checkLoggedIn = (req, res, next) => {
+  console.log("Session:", req.session);
+  if (!req.session.user) {
+    console.log("User not logged in");
+
+    return;
   }
+  next();
+};
+
+// Check if the user is logged in
+app.get("/api/checkLoggedInStatus", checkLoggedIn, (req, res) => {
+  console.log("User:", req.session.user);
+  if (req.session.user) {
+    const { email } = req.session.user;
+    res.status(200).json({ email });
+  } else {
+    res
+      .status(401)
+      .json({ status: "Failed", message: "Unauthorized. Please log in." });
+  }
+});
+
+app.put("/user/:id", function (req, res) {
+  const userId = req.params.id;
+  const { courses } = req.body;
+
   con.query(
-    "INSERT INTO User (id, courses) VALUES(?) ON DUPLICATE KEY UPDATE courses = ?",
-    [[Number(req.params.id), req.body.courses], req.body.courses],
+    "UPDATE User SET courses = ? WHERE id = ?",
+    [courses, userId],
     function (err) {
-      if (err) throw err;
-      res.status(201).json({
-        courses: req.body.courses,
-        student_id: data[0].student_id,
-        first_name: data[0].first_name,
-        last_name: data[0].last_name,
-      });
+      if (err) {
+        console.error("Failed to update courses in MySQL:", err);
+        res.status(500).json({ error: "Failed to update courses" });
+      } else {
+        res.status(200).json({ message: "Courses updated successfully" });
+      }
     }
   );
 });

@@ -1,7 +1,7 @@
 -- User Table --
 
 INSERT INTO User (student_id, first_name, last_name, password, courses) 
-        VALUES (113659563, "Harry", "Chung", "e71b258f98d6b92aef96ebb947b7843a199973603961c66b1f91d92b4c335e33", "");
+        VALUES (113659563, "Harry", "Chung", "e71b258f98d6b92aef96ebb947b7843a199973603961c66b1f91d92b4c335e33",  '["CSE101", "CSE114"]');
 INSERT INTO User (student_id, first_name, last_name, password, courses) VALUES 
     (114631693, "Matt", "Lee", "a24136aef3bad4fd8ddb24eundefined195a036283480eb5983e2350ede94e41863ee", "");
 INSERT INTO User (student_id, first_name, last_name, password, courses) VALUES 
@@ -78,35 +78,35 @@ INSERT INTO Courses (course_id, course_name)
        VALUES ("CSE416", "Software Engineering");
 
 -- Prerequsite Table --
-INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (101, "");
-INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (114, '["CSE101"]');
-INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (214, '["CSE114"]');
-INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (215, "");
-INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (216, '["CSE214"]');
-INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (220, '["CSE214"]');
-INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (300, "");
-INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (303, '["CSE214"]');
-INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (304, '["CSE216", "CSE 220", "CSE 303"]');
-INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (310, '["CSE214"]');
-INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (316, '["CSE216"]');
-INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (320, '["CSE220"]');
-INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (352, '["CSE216"]');
-INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (354, "");
-INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (373, '["CSE214"]');
-INSERT INTO Prerequisites (course_number, prerequisite)
-       VALUES (416, '["CSE316"]');
+INSERT INTO Prerequisites (course_id, prerequisite)
+       VALUES ("CSE101", "");
+INSERT INTO Prerequisites (course_id, prerequisite)
+       VALUES ("CSE114", '["CSE101"]');
+INSERT INTO Prerequisites (course_id, prerequisite)
+       VALUES ("CSE214", '["CSE114"]');
+INSERT INTO Prerequisites (course_id, prerequisite)
+       VALUES ("CSE215", "");
+INSERT INTO Prerequisites (course_id, prerequisite)
+       VALUES ("CSE216", '["CSE214"]');
+INSERT INTO Prerequisites (course_id, prerequisite)
+       VALUES ("CSE220", '["CSE214"]');
+INSERT INTO Prerequisites (course_id, prerequisite)
+       VALUES ("CSE300", "");
+INSERT INTO Prerequisites (course_id, prerequisite)
+       VALUES ("CSE303", '["CSE214"]');
+INSERT INTO Prerequisites (course_id, prerequisite)
+       VALUES ("CSE304", '["CSE216", "CSE 220", "CSE 303"]');
+INSERT INTO Prerequisites (course_id, prerequisite)
+       VALUES ("CSE310", '["CSE214"]');
+INSERT INTO Prerequisites (course_id, prerequisite)
+       VALUES ("CSE316", '["CSE216"]');
+INSERT INTO Prerequisites (course_id, prerequisite)
+       VALUES ("CSE320", '["CSE220"]');
+INSERT INTO Prerequisites (course_id, prerequisite)
+       VALUES ("CSE352", '["CSE216"]');
+INSERT INTO Prerequisites (course_id, prerequisite)
+       VALUES ("CSE354", "");
+INSERT INTO Prerequisites (course_id, prerequisite)
+       VALUES ("CSE373", '["CSE214"]');
+INSERT INTO Prerequisites (course_id, prerequisite)
+       VALUES ("CSE416", '["CSE316"]');
