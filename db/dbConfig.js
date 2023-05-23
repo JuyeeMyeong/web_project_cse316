@@ -1,6 +1,6 @@
-require("dotenv").config();
-
-var mysql = require("mysql2");
+import dotenv from "dotenv";
+// var mysql = require("mysql");
+import mysql from "mysql2";
 var db = "courseman";
 
 console.log("hi! im sql");
@@ -56,6 +56,4 @@ con.query("CREATE DATABASE IF NOT EXISTS ??", db, function (err, result) {
   );
 });
 
-module.exports = {
-  con,
-};
+export default con;

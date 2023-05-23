@@ -1,10 +1,16 @@
-const express = require("express");
-const cors = require("cors");
-const fs = require("fs");
-const bodyParser = require("body-parser");
-const path = require("path");
-const dbFunc = require("./dbConfig");
-const con = dbFunc.con;
+import express from "express";
+import path from "path";
+import cors from "cors";
+
+import con from "./dbConfig.js";
+
+import hashutil from "./../src/utils/hashutil.mjs";
+
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 
