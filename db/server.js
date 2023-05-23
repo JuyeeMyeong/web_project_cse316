@@ -109,12 +109,16 @@ app.put("/user/:id", function (req, res) {
   con.query(
     "UPDATE User SET courses = ? WHERE id = ?",
     [courses, userId],
-    function (err) {
+    function (err, result) {
       if (err) {
         console.error("Failed to update courses in MySQL:", err);
         res.status(500).json({ error: "Failed to update courses" });
       } else {
-        res.status(200).json({ message: "Courses updated successfully" });
+        if (result.affectedRows > 0) {
+          res.status(200).json({ message: "Courses updated successfully" });
+        } else {
+          res.status(404).json({ error: "User not found" });
+        }
       }
     }
   );
