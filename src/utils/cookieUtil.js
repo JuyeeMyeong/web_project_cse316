@@ -27,7 +27,6 @@ const useCookieUtil = () => {
           if (response.data.courses && response.data.courses.length !== 0) {
             setPrevCourses(response.data.courses);
           }
-          console.log(response);
         })
         .catch((err) => {
           console.log(err);
