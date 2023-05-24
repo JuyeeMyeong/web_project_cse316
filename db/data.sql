@@ -3,7 +3,13 @@
 -- source <data.sql path>
 
 
+CREATE DATABASE IF NOT EXISTS courseman;
+
+USE courseman;
+
+
 -- User Table --
+CREATE TABLE IF NOT EXISTS User ( id INT PRIMARY KEY AUTO_INCREMENT, student_id VARCHAR(50) NOT NULL UNIQUE, first_name VARCHAR(100), last_name VARCHAR(100), password VARCHAR(1024), courses JSON)
 
 INSERT INTO User (student_id, first_name, last_name, password, courses) 
         VALUES (113659563, "Harry", "Chung", "e71b258f98d6b92aef96ebb947b7843a199973603961c66b1f91d92b4c335e33",  '["CSE101", "CSE114"]');
@@ -34,6 +40,8 @@ INSERT INTO User (student_id, first_name, last_name, password, courses) VALUES
 
 
 -- Course Table --
+CREATE TABLE IF NOT EXISTS Courses ( id INT PRIMARY KEY AUTO_INCREMENT, course_id VARCHAR(255), course_name VARCHAR(255))
+
 INSERT INTO Courses (course_id, course_name)
        VALUES ("CSE101", "Computer Science Principles");
 
@@ -83,6 +91,8 @@ INSERT INTO Courses (course_id, course_name)
        VALUES ("CSE416", "Software Engineering");
 
 -- Prerequsite Table --
+CREATE TABLE IF NOT EXISTS Prerequisites (id INT PRIMARY KEY AUTO_INCREMENT, course_id VARCHAR(255), prerequisite JSON)
+
 INSERT INTO Prerequisites (course_id, prerequisite)
        VALUES ("CSE101", '[]');
 INSERT INTO Prerequisites (course_id, prerequisite)
