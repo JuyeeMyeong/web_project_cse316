@@ -10,7 +10,7 @@ import cookieUtil from "../hooks/useCookieUtil";
 
 function SelectCourses() {
   //cookieUtil
-  const { isLoggedIn } = cookieUtil();
+  const { isLoggedIn, stuId } = cookieUtil();
 
   // get all courseList from uesFetchCourses
   const courseList = useFetchCourses();
@@ -35,9 +35,6 @@ function SelectCourses() {
   };
 
   /**        Show Courses Button           **/
-
-  //여기서 Student_id 이름 확인하고 confirm 해주기!!!!!!!!
-  /*******************************************/
   const handleSearch = useSearch(
     isLoggedIn,
     searchString,
@@ -46,7 +43,8 @@ function SelectCourses() {
     setShowCourses,
     showCourses,
     setName,
-    preName
+    preName,
+    stuId
   );
 
   return (
