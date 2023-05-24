@@ -2,11 +2,20 @@ import '../App.css';
 import React, { useState, useEffect }  from 'react';
 import Search from './Search';
 import Navbar from './Navbar';
+import axios from 'axios';
+//utils
+import cookieUtil from '../utils/cookieUtil';
 
-function SelectCourses({ stuId }) {
+function SelectCourses() {
+  const {
+    stuId, prevCourses, setPrevCourses
+  } = cookieUtil ();
+
     const [searchString, setSearchString] = useState("");
     const [name, setName] = useState('Tony');
     const [preName, setPreName] = useState('');
+    const [showCourses, setShowCourses] = useState(false);
+
 
     const changeSearchString = (e) => {
         setSearchString(e.target.value);
@@ -16,28 +25,8 @@ function SelectCourses({ stuId }) {
         setPreName(e.target.value);
     };
 
-    const[prevCourses, setPrevCourses] = useState([
-        { name: 'CSE101' },
-        { name: 'CSE114' },
-        { name: 'CSE214' },
-        { name: 'CSE215' },
-        { name: 'CSE216' },
-        { name: 'CSE220' },
-        { name: 'CSE300' },
-        { name: 'CSE303' },
-        { name: 'CSE304' },
-        { name: 'CSE305' },
-        { name: 'CSE306' },
-        { name: 'CSE310' },
-        { name: 'CSE316' },
-        { name: 'CSE320' },
-        { name: 'CSE331' },
-        { name: 'CSE416' },
-    ]);
 
-    const [showCourses, setShowCourses] = useState(false);
-
-    const handleSearch = (searchString) => {
+    const handleSearch = () => {
         const filteredCourses = prevCourses.filter((course) =>
           course.name.toLowerCase().includes(searchString.toLowerCase())
         );

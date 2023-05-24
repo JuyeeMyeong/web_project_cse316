@@ -2,56 +2,38 @@ import "../App.css";
 import React, { useState, useEffect, useCallback } from "react";
 import Navbar from "./Navbar";
 import axios from 'axios';
-import { useCookies } from 'react-cookie';
+//utils
+import cookieUtil from "../utils/cookieUtil";
 
 function PreviousCourses() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [stuId, setStuId] = useState('');
-  const [cookies] = useCookies(['isLoggedIn', 'stuId']);
+  const {
+    stuId, setStuId, isLoggedIn, setIsLoggedIn, cookies, prevCourses, setPrevCourses
+  } = cookieUtil ();
+
+  const [courseList, setCourseList] = useState([]);
 
   useEffect(() => {
-    const isLoggedInCookie = cookies.isLoggedIn;
-    const stuIdCookie = cookies.stuId;
-    
-    if (isLoggedInCookie && stuIdCookie) {
-      setIsLoggedIn(true);
-      setStuId(stuIdCookie);
-    } else {
-      setIsLoggedIn(false);
-      setStuId('');
-    }
-  }, [cookies]);
-
-  const courseList = [
-    { name: "CSE101" },
-    { name: "CSE114" },
-    { name: "CSE214" },
-    { name: "CSE215" },
-    { name: "CSE216" },
-    { name: "CSE220" },
-    { name: "CSE300" },
-    { name: "CSE303" },
-    { name: "CSE304" },
-    { name: "CSE305" },
-    { name: "CSE306" },
-    { name: "CSE310" },
-    { name: "CSE316" },
-    { name: "CSE320" },
-    { name: "CSE331" },
-    { name: "CSE416" },
-  ];
-
-  const [checkedList, setCheckedList] = useState([]);
+    axios.get("http://localhost:4000/course")
+      .then((response) => {
+        if (response.data.status === "success") {
+          const courseIds = response.data.data.map((course) => course.course_id);
+          setCourseList(courseIds);
+        }
+      })
+      .catch((error) => {
+        console.error('Failed to fetch courses:', error);
+      });
+  }, []);
 
   const onCheckedItem = useCallback(
     (checked, item) => {
       if (checked) {
-        setCheckedList((prev) => [...prev, item]);
+        setPrevCourses((prev) => [...prev, item]);
       } else if (!checked) {
-        setCheckedList(checkedList.filter((el) => el !== item));
+        setPrevCourses(prevCourses.filter((el) => el !== item));
       }
     },
-    [checkedList, setCheckedList]
+    [prevCourses, setPrevCourses]
   );
 
   const updateCourses = () => {
@@ -69,7 +51,7 @@ function PreviousCourses() {
       return;
     }
   
-    const requestData = { courses: checkedList };
+    const requestData = { courses: prevCourses };
   
     axios.put(`http://localhost:4000/user/${stuId}`, requestData)
       .then((response) => {
@@ -102,15 +84,15 @@ function PreviousCourses() {
               >
                 <input
                   type="checkbox"
-                  id={item.name}
+                  id={item}
                   className="prevCourseInput"
                   name="checkCourse"
-                  value={item.name}
+                  value={item}
                   onChange={(e) => {
                     onCheckedItem(e.target.checked, e.target.id);
                   }}
                 />
-                <label className="courseLabel">{item.name}</label>
+                <label className="courseLabel">{item}</label>
               </div>
             );
           })}
