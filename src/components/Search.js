@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
 function Search({ prevCourses, handleRegistration, name }) {
   const [selectedCourses, setSelectedCourses] = useState([]);
@@ -16,33 +16,33 @@ function Search({ prevCourses, handleRegistration, name }) {
 
   const handleRegisterClick = async () => {
     const errors = [];
-  
+
     for (let course of selectedCourses) {
       const prerequisites = await getPrerequisites();
-  
+
       const hasPrerequisites = prerequisites.every((prerequisite) =>
         selectedCourses.includes(prerequisite)
       );
-  
+
       if (!hasPrerequisites) {
         errors.push(
           `You don't have the necessary prerequisites for ${course}.`
         );
       }
-  
+
       if (prevCourses.find((prevCourse) => prevCourse.name === course)) {
         errors.push(`You have already taken ${course}.`);
       }
     }
-  
+
     if (errors.length > 0) {
-      alert(errors.join('\n'));
+      alert(errors.join("\n"));
     } else {
-      alert('Courses registered successfully!');
+      alert("Courses registered successfully!");
       handleRegistration(selectedCourses);
     }
   };
-  
+
   async function getPrerequisites() {
     try {
       const response = await axios.get(`http://localhost:4000/prerequisite`);
@@ -54,14 +54,11 @@ function Search({ prevCourses, handleRegistration, name }) {
     }
     return [];
   }
-  
 
   return (
     <div className="courseContainer">
       <div className="listBox">
-        <h4 id="searchHdr">
-          {name}, here are the courses you may select.
-        </h4>
+        <h4 id="searchHdr">{name}, here are the courses you may select.</h4>
         <div className="d-flex flex-column">
           {prevCourses.map((course, index) => (
             <div key={index}>
@@ -73,7 +70,7 @@ function Search({ prevCourses, handleRegistration, name }) {
               />
               <label
                 htmlFor={`course-${index}`}
-                style={{ fontStyle: 'italic', fontWeight: '600' }}
+                style={{ fontStyle: "italic", fontWeight: "600" }}
               >
                 {course.name}
               </label>

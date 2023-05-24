@@ -8,15 +8,17 @@ import useFetchCourses from "../hooks/useFetchCourses";
 import useUpdateCourses from "../hooks/useUpdateCourses";
 
 function PreviousCourses() {
-
-/*********        cookieUtil/useFetchCourses/useUpdateCourses section            ********/
-  const {
-    stuId, isLoggedIn, prevCourses, setPrevCourses
-  } = cookieUtil ();
+  /*********        cookieUtil/useFetchCourses/useUpdateCourses section            ********/
+  const { stuId, isLoggedIn, prevCourses, setPrevCourses } = cookieUtil();
   const courseList = useFetchCourses();
-  const { onCheckedItem, updateCourses } = useUpdateCourses(stuId, prevCourses, setPrevCourses, isLoggedIn);
+  const { onCheckedItem, updateCourses } = useUpdateCourses(
+    stuId,
+    prevCourses,
+    setPrevCourses,
+    isLoggedIn
+  );
 
-/*********        Return            ********/
+  /*********        Return            ********/
   return (
     <div>
       <Navbar />
@@ -24,7 +26,7 @@ function PreviousCourses() {
       <div className="previousTitle text-center">
         <h1 className="title">Previous Courses</h1>
       </div>
-    {/*   Student ID   */}
+      {/*   Student ID   */}
       <div className="coursePage d-flex flex-column align-items-center">
         <h3>Student ID: {stuId}</h3>
         <p className="prevSecond text-center">
@@ -62,7 +64,6 @@ function PreviousCourses() {
             );
           })}
         </div>
-
 
         {/*  set Previous courses button   */}
         <div className="text-center">

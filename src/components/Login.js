@@ -4,14 +4,13 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 
 function Login({ stuId, setStuId, onLogin, isLoggedIn, onLogout }) {
-  
   //password string
   const [password, setPassword] = useState("");
 
   //useNavigate
   const navigate = useNavigate();
 
-  // login button 
+  // login button
   const handleSubmit = async () => {
     //check student id is 9 digits
     if (stuId.length !== 9) {
@@ -22,7 +21,7 @@ function Login({ stuId, setStuId, onLogin, isLoggedIn, onLogout }) {
       const success = await onLogin(stuId, password);
 
       if (success) {
-        navigate('/'); //go to Home page
+        navigate("/"); //go to Home page
       } else {
         alert("Login failed. Please try again.");
       }
@@ -33,10 +32,10 @@ function Login({ stuId, setStuId, onLogin, isLoggedIn, onLogout }) {
     <div>
       <Navbar />
 
-{/*********
- *    IF the user's logged in, there is logout Button
- *    Otherwise, login page 
- * ********/}
+      {/*********
+       *    IF the user's logged in, there is logout Button
+       *    Otherwise, login page
+       * ********/}
       {isLoggedIn ? (
         <div className="text-center">
           {/* Logout Button */}
@@ -45,12 +44,10 @@ function Login({ stuId, setStuId, onLogin, isLoggedIn, onLogout }) {
           </button>
         </div>
       ) : (
-
         <div className="LoginPage">
           {/* Login form code */}
           <p className="login_title">Login Form</p>
           <div className="loginform d-flex justify-content-around">
-
             {/* ID */}
             <label id="ID" htmlFor="" className="idpw">
               ID:
