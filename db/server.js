@@ -82,7 +82,7 @@ app.get("/course", function (req, res) {
 app.get("/getCourseName", function (req, res) {
   const { courseId } = req.query;
   con.query(
-    "SELECT course_name FROM Courses where course_id=?",
+    "SELECT * FROM Courses where course_id=?",
     [courseId],
     function (err, data, fields) {
       if (err) throw err;
@@ -217,6 +217,28 @@ app.put("/user/:id", function (req, res) {
           res.status(404).json({ error: "User not found" });
         }
       }
+    }
+  );
+});
+
+app.put("/courses", function (req, res) {
+  const course_id = req.body.course_id;
+  con.query(
+    "SELECT * From Courses WHERE course_id=?",
+    [course_id],
+    function (error, result) {
+      console.log(result[0].leftSeat);
+      if (error) throw error;
+      con.query(
+        "UPDATE Courses SET leftSeat = ? WHERE course_id=?",
+        [result[0].leftSeat - 1, course_id],
+        function (err, re) {
+          if (err) throw err;
+          res.status(201).json({
+            data: re,
+          });
+        }
+      );
     }
   );
 });
