@@ -18,7 +18,7 @@ export default function useFetchCourses() {
       .catch((error) => { //failed to fetch courses
         console.error('Failed to fetch courses:', error);
       });
-  }, []);s
+  }, []);
 
   return courseList;
 }
