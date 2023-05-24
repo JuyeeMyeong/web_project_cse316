@@ -13,26 +13,27 @@ function Search({ prevCourses, handleRegistration, name }) {
     });
   };
 
-  const handleRegisterClick = () => {
+  const handleRegisterClick = async () => {
     const errors = [];
-
-    selectedCourses.forEach((course) => {
-      const prerequisites = getPrerequisites(course);
+  
+    for (let course of selectedCourses) {
+      const prerequisites = await getPrerequisites();
+  
       const hasPrerequisites = prerequisites.every((prerequisite) =>
         selectedCourses.includes(prerequisite)
       );
-
+  
       if (!hasPrerequisites) {
         errors.push(
           `You don't have the necessary prerequisites for ${course}.`
         );
       }
-
+  
       if (prevCourses.find((prevCourse) => prevCourse.name === course)) {
         errors.push(`You have already taken ${course}.`);
       }
-    });
-
+    }
+  
     if (errors.length > 0) {
       alert(errors.join('\n'));
     } else {
@@ -40,18 +41,19 @@ function Search({ prevCourses, handleRegistration, name }) {
       handleRegistration(selectedCourses);
     }
   };
-
-  const getPrerequisites = (courseName) => {
-    switch (courseName) {
-      case 'CSE214':
-        return ['CSE114'];
-      case 'CSE216':
-        return ['CSE114', 'CSE214', 'CSE215'];
-      default:
-        return [];
+  
+  async function getPrerequisites() {
+    try {
+      const response = await axios.get(`http://localhost:4000/prerequisite`);
+      if (response.data.courses) {
+        return response.data.courses;
+      }
+    } catch (error) {
+      console.log(error);
     }
-  };
-
+    return [];
+  }
+  
 
   return (
     <div className="courseContainer">
@@ -65,8 +67,8 @@ function Search({ prevCourses, handleRegistration, name }) {
               <input
                 type="checkbox"
                 id={`course-${index}`}
-                checked={selectedCourses.includes(course.name)}
-                onChange={() => handleCheckboxChange(course.name)}
+                checked={selectedCourses.includes(course)}
+                onChange={() => handleCheckboxChange(course)}
               />
               <label
                 htmlFor={`course-${index}`}
