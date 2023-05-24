@@ -1,37 +1,12 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { getPrevCourses, getPrerequisites } from "../utils/api";
 import useCookieUtil from "../hooks/useCookieUtil";
 
 function Search({ filteredCourses, name }) {
   const { stuId } = useCookieUtil();
 
-  async function getPrevCourses() {
-    try {
-      const response = await axios.get(`http://localhost:4000/user/${stuId}`);
-      if (response.data && response.data.data) {
-        return response.data.data.courses;
-      }
-    } catch (error) {
-      console.log(error);
-      alert("There was an error fetching the prerequisites for a course. Please try again.");
-    }
-    return [];
-  };
-
-  async function getPrerequisites(courseId) {
-    try {
-      const response = await axios.get(`http://localhost:4000/prerequisite?courseId=${courseId}`);
-      if (response.data && response.data.data) {
-        return response.data.data.prerequisite;
-      }
-    } catch (error) {
-      console.log(error);
-      alert("There was an error fetching the courses for user. Please try again.");
-    }
-    return [];
-  };
-
   const [selectedCourses, setSelectedCourses] = useState([]);
+  const [registerable, setRegisterable] = useState([]);
 
   const handleCheckboxChange = (courseName) => {
     setSelectedCourses((prevSelectedCourses) => {
@@ -45,31 +20,33 @@ function Search({ filteredCourses, name }) {
 
   const handleRegisterClick = async () => {
     const errors = [];
+    let register = [];
 
     for (let course of selectedCourses) {
       const prerequisites = await getPrerequisites(course);
-      const prevCourses = await getPrevCourses();
+      const prevCourses = await getPrevCourses(stuId);
 
       const hasPrerequisites = prerequisites.every((prerequisite) =>
-        filteredCourses.find((course) => course === prerequisite)
+        prevCourses.find((course) => course === prerequisite)
       );
 
-      if (!hasPrerequisites) {
-        errors.push(
-          `You don't have the necessary prerequisites for ${course}.`
-        );
-      }
+      if (hasPrerequisites === false) {
+        errors.push(`You don't have the necessary prerequisites for ${course}.`);
+        continue;
+      };
+
       if (prevCourses.find((prev) => prev === course)) {
         errors.push(`You have already taken ${course}.`);
+        continue;
       }
+      register.push(course);
     }
-
     if (errors.length > 0) {
       alert(errors.join("\n"));
-    } else {
-
-      alert("Courses registered successfully!");
-      // handleRegistration(selectedCourses);
+    }
+    if (register.length > 0) {
+      setRegisterable(register);
+      console.log("register this: ", register);
     }
   };
 
