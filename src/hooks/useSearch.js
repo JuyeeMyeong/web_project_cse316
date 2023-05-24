@@ -11,47 +11,37 @@ export default function useSearch(
   preName,
   stuId
 ) {
-  const checkLoginStatus = async () => {
+  const handleSearch = async () => {
+    //check if the user's logged in first
     if (!isLoggedIn) {
       alert("Please Login first...");
-      return false;
+      return;
     };
-    
     try {
-      const response = await axios.post("http://localhost:4000/userCheck", {
-        stuId: stuId,
-        name: preName,
-      });
-      const data = response.data;
+        const response = await axios.post("http://localhost:4000/userCheck", {
+          stuId: stuId,
+          name: preName,
+        });
+  
+        const data = response.data;
+  
+        if (data.status === "Success") {
+            //set filtered courses & show courses (true) & setName (pass it to Search)
+            const filteredCourses = courseList.filter((course) =>
+            course.toLowerCase().includes(searchString.toLowerCase())
+            );
+            setFilteredCourses(filteredCourses);
+            setShowCourses(!showCourses);
+            setName(preName);
+            return true; // user Check!
 
-      if (data.status === "Success") {
-        return true;
-      } else {
-        throw new Error("Login failed");
+        } else {
+          throw new Error("Login failed");
+        }
+      } catch (error) {
+        console.log(error);
+        return false; // not a right name
       }
-    } catch (error) {
-      console.error(error);
-      return false;
-    }
-  };
-
-  const performSearch = () => {
-    const filteredCourses = courseList.filter((course) =>
-      course.toLowerCase().includes(searchString.toLowerCase())
-    );
-    setFilteredCourses(filteredCourses);
-  };
-
-  const updateUI = () => {
-    setShowCourses(!showCourses);
-    setName(preName);
-  };
-
-  const handleSearch = async () => {
-    if (await checkLoginStatus()) {
-      performSearch();
-      updateUI();
-    }
   };
 
   return handleSearch;

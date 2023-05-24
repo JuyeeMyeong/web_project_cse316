@@ -35,6 +35,7 @@ function SelectCourses() {
   };
 
   /**        Show Courses Button           **/
+
   const handleSearch = useSearch(
     isLoggedIn,
     searchString,

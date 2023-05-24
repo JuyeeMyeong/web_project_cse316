@@ -53,7 +53,7 @@ function Search({ filteredCourses, name }) {
   return (
     <div className="courseContainer">
       <div className="listBox">
-        <h4 id="searchHdr">{name}, here are the courses you may select.</h4>
+        <h4 id="searchHdr">{name} here are the courses you may select.</h4>
         <div className="d-flex flex-column">
           {filteredCourses.map((course, index) => (
             <div key={index}>
