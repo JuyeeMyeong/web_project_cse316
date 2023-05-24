@@ -8,7 +8,7 @@ import cookieUtil from '../utils/cookieUtil';
 
 function SelectCourses() {
   const {
-    stuId, prevCourses, setPrevCourses
+    stuId, isLoggedIn, prevCourses, setPrevCourses
   } = cookieUtil ();
 
     const [searchString, setSearchString] = useState("");
@@ -27,6 +27,12 @@ function SelectCourses() {
 
 
     const handleSearch = () => {
+      if(!isLoggedIn) {
+        alert("Please Login first...")
+        return;
+      } 
+
+      
         const filteredCourses = prevCourses.filter((course) =>
           course.name.toLowerCase().includes(searchString.toLowerCase())
         );
