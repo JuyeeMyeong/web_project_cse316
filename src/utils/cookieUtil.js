@@ -3,11 +3,15 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const useCookieUtil = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [stuId, setStuId] = useState('');
-    const [cookies, setCookie, removeCookie] = useCookies(['isLoggedIn', 'stuId']);
-    const [prevCourses, setPrevCourses] = useState([])
 
+/*********           useState & useCookies section             *********/
+    const [isLoggedIn, setIsLoggedIn] = useState(false); //login status
+    const [stuId, setStuId] = useState(''); //student_id 
+    const [cookies, setCookie, removeCookie] = useCookies(['isLoggedIn', 'stuId']); //useCookies
+    const [prevCourses, setPrevCourses] = useState([]); //previous courses selected
+
+
+/*********           useEffect for check cookies (student_id & isLoggedIn)             *********/
     useEffect(() => {
       const isLoggedInCookie = cookies.isLoggedIn;
       const student_id = cookies.stuId;
@@ -32,6 +36,7 @@ const useCookieUtil = () => {
       }
     }, [cookies, setPrevCourses]);
 
+/*********           handleLogout (for logout button) removeCookies            *********/
     const handleLogout = () => {
       removeCookie('isLoggedIn');
       removeCookie('stuId');
@@ -39,6 +44,7 @@ const useCookieUtil = () => {
       setStuId('');
     };
 
+/*********           handleLogin (for login button) setCookies & set student_id & isLoggedin status            *********/
     const handleLogin = async (stuId, password) => {
       try {
         const response = await axios.post("http://localhost:4000/login", {
