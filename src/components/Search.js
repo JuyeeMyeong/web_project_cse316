@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getPrevCourses, getPrerequisites, getCourseName } from "../utils/api";
+import { getPrevCourses, getPrerequisites, getCourseName, putCourses, putCurrEnrolled } from "../utils/api";
 import useCookieUtil from "../hooks/useCookieUtil";
 
 function Search({ filteredCourses, name }) {
@@ -61,6 +61,10 @@ function Search({ filteredCourses, name }) {
       alert(errors.join("\n"));
     }
     if (register.length > 0) {
+      const response = await putCurrEnrolled(stuId, register);
+      if (response === "Success") {
+        await Promise.all(register.map(course => putCourses(course)));
+      };
       alert('Courses Selected: \n' + register.join(', '));
     }
   };

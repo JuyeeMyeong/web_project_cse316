@@ -246,7 +246,7 @@ app.put("/currEnrolled", function (req, res) {
   const stuId = req.body.stuId;
   const currEnrolledCourse = req.body.currEnrolledCourse;
   con.query(
-    "UPDATE Users SET currEnrolledCourse = ? WHERE stuId=?",
+    "UPDATE User SET currEnrolledCourse = ? WHERE student_id=?",
     [JSON.stringify(currEnrolledCourse), stuId],
     function (err, result) {
       if (err) throw err;

@@ -12,7 +12,7 @@ export async function getPrevCourses(stuId) {
     throw new Error("There was an error fetching the prerequisites for a course. Please try again.");
   }
   return [];
-}
+};
 
 // get prerequisite list based on course_id
 export async function getPrerequisites(courseId) {
@@ -26,10 +26,33 @@ export async function getPrerequisites(courseId) {
     throw new Error("There was an error fetching the courses for the user. Please try again.");
   }
   return [];
-}
+};
 
 //get course_name based on course_id
 export async function getCourseName(courseId) {
     const response = await axios.get(`http://localhost:4000/getCourseName?courseId=${courseId}`);
     return response.data.data[0];
-}
+};
+
+// put course_id & decrease course's leftSeat by 1
+export async function putCourses(courseId) {
+    const response = await axios.put(`http://localhost:4000/courses`, {
+        course_id: courseId
+    });
+
+    return response.data;
+};
+
+export async function putCurrEnrolled(stuId, currEnrolledCourse) {
+    const requestData = { stuId: stuId, currEnrolledCourse: currEnrolledCourse };
+  
+    try {
+      const response = await axios.put(`http://localhost:4000/currEnrolled`, requestData);
+      alert("Courses Updated! Please go to SelectCourses");
+      return response.data;
+    } catch (error) {
+      console.error("Failed to update courses:", error);
+      throw error;
+    }
+  };
+  
