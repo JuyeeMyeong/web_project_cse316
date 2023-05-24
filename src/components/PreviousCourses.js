@@ -4,63 +4,17 @@ import Navbar from "./Navbar";
 import axios from 'axios';
 //utils
 import cookieUtil from "../utils/cookieUtil";
+//hooks
+import useFetchCourses from "../hooks/useFetchCourses";
+import useUpdateCourses from "../hooks/useUpdateCourses";
 
 function PreviousCourses() {
   const {
-    stuId, setStuId, isLoggedIn, setIsLoggedIn, cookies, prevCourses, setPrevCourses
+    stuId, isLoggedIn, prevCourses, setPrevCourses
   } = cookieUtil ();
 
-  const [courseList, setCourseList] = useState([]);
-
-  useEffect(() => {
-    axios.get("http://localhost:4000/course")
-      .then((response) => {
-        if (response.data.status === "success") {
-          const courseIds = response.data.data.map((course) => course.course_id);
-          setCourseList(courseIds);
-        }
-      })
-      .catch((error) => {
-        console.error('Failed to fetch courses:', error);
-      });
-  }, []);
-
-  const onCheckedItem = useCallback(
-    (checked, item) => {
-      if (checked) {
-        setPrevCourses((prev) => [...prev, item]);
-      } else if (!checked) {
-        setPrevCourses(prevCourses.filter((el) => el !== item));
-      }
-    },
-    [prevCourses, setPrevCourses]
-  );
-
-  const updateCourses = () => {
-    if(!isLoggedIn) {
-        alert("Please Login first...")
-        return;
-    } 
-    if (stuId === undefined) {
-      console.error('Failed to update courses: stuId is undefined');
-      return;
-    }
-  
-    if (prevCourses === undefined ) {
-      console.error('Failed to update courses: checkedList is undefined');
-      return;
-    }
-  
-    const requestData = { courses: prevCourses };
-  
-    axios.put(`http://localhost:4000/user/${stuId}`, requestData)
-      .then((response) => {
-        alert("Courses Updated! Please go to SelectCourses")
-      })
-      .catch((error) => {
-        console.error('Failed to update courses:', error);
-      });
-  };
+  const courseList = useFetchCourses();
+  const { onCheckedItem, updateCourses } = useUpdateCourses(stuId, prevCourses, setPrevCourses, isLoggedIn);
 
   return (
     <div>
