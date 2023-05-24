@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export default function useSearch(
   isLoggedIn,
   searchString,
@@ -6,22 +8,50 @@ export default function useSearch(
   setShowCourses,
   showCourses,
   setName,
-  preName
+  preName,
+  stuId
 ) {
-  const handleSearch = () => {
-    //check if the user's logged in first
+  const checkLoginStatus = async () => {
     if (!isLoggedIn) {
       alert("Please Login first...");
-      return;
-    }
+      return false;
+    };
+    
+    try {
+      const response = await axios.post("http://localhost:4000/userCheck", {
+        stuId: stuId,
+        name: preName,
+      });
+      const data = response.data;
 
-    //set filtered courses & show courses (true) & setName (pass it to Search)
+      if (data.status === "Success") {
+        return true;
+      } else {
+        throw new Error("Login failed");
+      }
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  };
+
+  const performSearch = () => {
     const filteredCourses = courseList.filter((course) =>
       course.toLowerCase().includes(searchString.toLowerCase())
     );
     setFilteredCourses(filteredCourses);
+  };
+
+  const updateUI = () => {
     setShowCourses(!showCourses);
     setName(preName);
+  };
+
+  const handleSearch = async () => {
+    if (await checkLoginStatus()) {
+      performSearch();
+      updateUI();
+    }
   };
 
   return handleSearch;
