@@ -35,7 +35,7 @@ con.query("CREATE DATABASE IF NOT EXISTS ??", db, function (err, result) {
       }
       // Create User Table: User (column: id, student_id, first_name, last_name, password, courses)
       con.query(
-        "CREATE TABLE IF NOT EXISTS User ( id INT PRIMARY KEY AUTO_INCREMENT, student_id VARCHAR(50) NOT NULL UNIQUE, first_name VARCHAR(100), last_name VARCHAR(100), password VARCHAR(1024), courses JSON)",
+        "CREATE TABLE IF NOT EXISTS User ( id INT PRIMARY KEY AUTO_INCREMENT, student_id VARCHAR(50) NOT NULL UNIQUE, first_name VARCHAR(100), last_name VARCHAR(100), password VARCHAR(1024), courses JSON, currEnrolledCourse JSON)",
         function (err) {
           if (err) throw err;
           console.log("User Table created");
@@ -43,7 +43,7 @@ con.query("CREATE DATABASE IF NOT EXISTS ??", db, function (err, result) {
       );
       // Create User Table: Courses (column: id, course_id, course_name)
       con.query(
-        "CREATE TABLE IF NOT EXISTS Courses ( id INT PRIMARY KEY AUTO_INCREMENT, course_id VARCHAR(255), course_name VARCHAR(255))",
+        "CREATE TABLE IF NOT EXISTS Courses ( id INT PRIMARY KEY AUTO_INCREMENT, course_id VARCHAR(255), course_name VARCHAR(255), leftSeat INT)",
         function (err) {
           if (err) throw err;
           console.log("Courses Table created");
