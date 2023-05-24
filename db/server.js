@@ -78,6 +78,23 @@ app.get("/course", function (req, res) {
   });
 });
 
+// GET: get course id
+app.get("/getCourseName", function (req, res) {
+  const { courseId } = req.query;
+  con.query(
+    "SELECT course_name FROM Courses where course_id=?",
+    [courseId],
+    function (err, data, fields) {
+      if (err) throw err;
+      res.status(200).json({
+        status: "success",
+        length: data?.length,
+        data: data,
+      });
+    }
+  );
+});
+
 // Login by student id and password(using hashing)
 app.post("/userCheck", function (req, res) {
   const stuId = req.body.stuId;
