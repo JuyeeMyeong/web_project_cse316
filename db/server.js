@@ -27,17 +27,23 @@ app.listen(PORT, () => {
 });
 
 // GET: get user info by its student id
-app.get("/user", function (req, res) {
-  const { stuId } = req.query;
+app.get("/user/:student_id", function (req, res) {
+  const student_id = Number(req.params.student_id);
+
+  if (isNaN(student_id)) {
+    res.status(400).json({ error: 'Invalid student id' });
+    return;
+  }
+
   con.query(
-    "SELECT * FROM User WHERE stuId=?",
-    [stuId],
+    "SELECT * FROM User WHERE student_id=?",
+    [student_id],
     function (err, data, fields) {
       if (err) throw err;
       res.status(200).json({
         status: "success",
         length: data?.length,
-        userId: data[0].stuId,
+        data: data[0],
       });
     }
   );
@@ -89,18 +95,18 @@ app.post("/login", function (req, res) {
       }
 
       const id = data[0].id;
-      const hashCheck = hashutil(
-        data[0].first_name,
-        data[0].last_name,
-        password
-      );
+      // const hashCheck = hashutil(
+      //   data[0].first_name,
+      //   data[0].last_name,
+      //   password
+      // );
 
-      if (hashCheck !== data[0].password) {
-        res
-          .status(402)
-          .json({ status: "Failed", message: "Invalid password." });
-        return;
-      }
+      // if (hashCheck !== data[0].password) {
+      //   res
+      //     .status(402)
+      //     .json({ status: "Failed", message: "Invalid password." });
+      //   return;
+      // }
 
       res.status(201).json({
         status: "Success",
