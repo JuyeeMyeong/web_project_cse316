@@ -2,44 +2,49 @@ import "../App.css";
 import React, { useState } from "react";
 import Search from "./Search";
 import Navbar from "./Navbar";
+//hooks
+import useFetchCourses from "../hooks/useFetchCourses";
+import useSearch from "../hooks/useSearch";
 //utils
 import cookieUtil from "../utils/cookieUtil";
 
 function SelectCourses() {
   //cookieUtil
-  const { stuId, isLoggedIn, prevCourses, setPrevCourses } = cookieUtil();
+  const { isLoggedIn } = cookieUtil();
 
+  // get all courseList from uesFetchCourses
+  const courseList = useFetchCourses();
+
+  //useState for filteredCourses (pass it to Search)
+  const [filteredCourses, setFilteredCourses] = useState([]);
+
+  /**      searchString, name (input) //          **/
   const [searchString, setSearchString] = useState("");
   const [name, setName] = useState("Tony");
   const [preName, setPreName] = useState("");
+
+  //Show Courses || Hide Courses
   const [showCourses, setShowCourses] = useState(false);
 
+  /**        onChange function for searchString & preName           **/
   const changeSearchString = (e) => {
     setSearchString(e.target.value);
   };
-
   const changeNameString = (e) => {
     setPreName(e.target.value);
   };
 
-  const handleSearch = () => {
-    if (!isLoggedIn) {
-      alert("Please Login first...");
-      return;
-    }
-
-    const filteredCourses = prevCourses.filter((course) =>
-      course.name.toLowerCase().includes(searchString.toLowerCase())
-    );
-
-    setPrevCourses(filteredCourses);
-    setShowCourses(!showCourses);
-    setName(preName);
-  };
-
-  const handleRegistration = (selectedCourses) => {
-    console.log("Registered courses:", selectedCourses);
-  };
+  /**        Show Courses Button           **/
+  const handleSearch = useSearch(
+    isLoggedIn,
+    searchString,
+    setFilteredCourses,
+    courseList,
+    setShowCourses,
+    showCourses,
+    setName,
+    preName
+  );
 
   return (
     <div>
@@ -84,11 +89,7 @@ function SelectCourses() {
             </div>
           </div>
           {showCourses && (
-            <Search
-              prevCourses={prevCourses}
-              handleRegistration={handleRegistration}
-              name={name}
-            />
+            <Search filteredCourses={filteredCourses} name={name} />
           )}
         </div>
       </div>
