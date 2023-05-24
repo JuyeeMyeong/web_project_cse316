@@ -1,7 +1,22 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function Search({ prevCourses, handleRegistration, name }) {
+function Search({ filteredCourses, name }) {
+  
+  const [prerequisite, setPrerequisite] = useState({});
+  async function getPrerequisites(courseId) {
+    try {
+      const response = await axios.get(`http://localhost:4000/prerequisite?courseId=${courseId}`);
+      if (response.data && response.data.data) {
+        return JSON.parse(response.data.data.prerequisite);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    return [];
+  };
+
+
   const [selectedCourses, setSelectedCourses] = useState([]);
 
   const handleCheckboxChange = (courseName) => {
@@ -18,10 +33,10 @@ function Search({ prevCourses, handleRegistration, name }) {
     const errors = [];
 
     for (let course of selectedCourses) {
-      const prerequisites = await getPrerequisites();
+      const prerequisites = await getPrerequisites(course);
 
       const hasPrerequisites = prerequisites.every((prerequisite) =>
-        selectedCourses.includes(prerequisite)
+        filteredCourses.find((course) => course.name === prerequisite)
       );
 
       if (!hasPrerequisites) {
@@ -30,7 +45,7 @@ function Search({ prevCourses, handleRegistration, name }) {
         );
       }
 
-      if (prevCourses.find((prevCourse) => prevCourse.name === course)) {
+      if (filteredCourses.find((prevCourse) => prevCourse.name === course)) {
         errors.push(`You have already taken ${course}.`);
       }
     }
@@ -39,28 +54,16 @@ function Search({ prevCourses, handleRegistration, name }) {
       alert(errors.join("\n"));
     } else {
       alert("Courses registered successfully!");
-      handleRegistration(selectedCourses);
+      // handleRegistration(selectedCourses);
     }
   };
-
-  async function getPrerequisites() {
-    try {
-      const response = await axios.get(`http://localhost:4000/prerequisite`);
-      if (response.data.courses) {
-        return response.data.courses;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-    return [];
-  }
 
   return (
     <div className="courseContainer">
       <div className="listBox">
         <h4 id="searchHdr">{name}, here are the courses you may select.</h4>
         <div className="d-flex flex-column">
-          {prevCourses.map((course, index) => (
+          {filteredCourses.map((course, index) => (
             <div key={index}>
               <input
                 type="checkbox"
@@ -72,7 +75,7 @@ function Search({ prevCourses, handleRegistration, name }) {
                 htmlFor={`course-${index}`}
                 style={{ fontStyle: "italic", fontWeight: "600" }}
               >
-                {course.name}
+                {course}
               </label>
             </div>
           ))}
