@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useCookies } from "react-cookie";
 //components
 import Home from "./components/Home";
 import Instructions from "./components/Instructions";
@@ -18,25 +17,9 @@ function App() {
     stuId,
     setStuId,
     isLoggedIn,
-    setIsLoggedIn,
-    cookies,
     handleLogin,
     handleLogout,
   } = cookieUtil();
-
-  //check login status in cookies
-  const fetchLoggedInStatus = async () => {
-    if (cookies.isLoggedIn) {
-      setIsLoggedIn(true);
-      setStuId(cookies.stuId);
-    } else {
-      setIsLoggedIn(false);
-      setStuId("");
-    }
-  };
-  useEffect(() => {
-    fetchLoggedInStatus();
-  }, [cookies]);
 
   /****
    * Routes -> Home / Instructions / Login / PreviousCourses / SelectCourses
