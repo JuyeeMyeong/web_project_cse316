@@ -31,7 +31,7 @@ app.get("/user/:student_id", function (req, res) {
   const student_id = Number(req.params.student_id);
 
   if (isNaN(student_id)) {
-    res.status(400).json({ error: 'Invalid student id' });
+    res.status(400).json({ error: "Invalid student id" });
     return;
   }
 
@@ -60,7 +60,7 @@ app.get("/prerequisite", function (req, res) {
       res.status(200).json({
         status: "success",
         length: data?.length,
-        data: data[0]
+        data: data[0],
       });
     }
   );
@@ -76,6 +76,42 @@ app.get("/course", function (req, res) {
       data: data,
     });
   });
+});
+
+// Login by student id and password(using hashing)
+app.post("/userCheck", function (req, res) {
+  const stuId = req.body.stuId;
+  const name = req.body.name;
+  const first_name = name.split(" ")[0];
+  const last_name = name.split(" ")[1];
+
+  con.query(
+    "SELECT * FROM User WHERE student_id = ?",
+    [stuId],
+    function (err, data, field) {
+      if (err) throw err;
+      if (data.length === 0) {
+        res.status(400).json({
+          status: "Failed",
+        });
+        return;
+      }
+      if (
+        data[0].first_name === first_name &&
+        data[0].last_name === last_name
+      ) {
+        res.status(201).json({
+          status: "Success",
+          data: data,
+        });
+      } else {
+        res.status(401).json({
+          status: "Failed",
+          message: "Student Id and name do not match",
+        });
+      }
+    }
+  );
 });
 
 // Login by student id and password(using hashing)
