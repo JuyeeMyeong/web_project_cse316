@@ -7,7 +7,9 @@ function Instructions() {
     return (
         <div>
             <Navbar />
-
+{/**    4 paragraphs with a lightblue bg
+ *      2 pixel solid grey border / font-size 24pixels
+ *      font Helvetica     **/}
             <div className='instruction'>
                 <p className='textShown text-center'>First, proceed to 'Login' page and enter your 9 digit student id and your password. Click the 'Login' button to verify your password and save your student id for the session.</p>
                 <p className='textShown text-center'>Next, proceed to 'Enter Previous Courses'. Click on each course you have completed with a C or better grade. Click Set Previous Courses.</p>
