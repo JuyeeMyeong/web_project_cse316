@@ -31,7 +31,7 @@ function Search({ filteredCourses, name }) {
       );
 
       if (hasPrerequisites === false) {
-        errors.push(`You don't have the necessary prerequisites for ${course}.`);
+        errors.push(`${course} requires ${prerequisites}`);
         continue;
       };
 
@@ -46,7 +46,7 @@ function Search({ filteredCourses, name }) {
     }
     if (register.length > 0) {
       setRegisterable(register);
-      console.log("register this: ", register);
+      console.log("Courses Selected:\n", register);
     }
   };
 
