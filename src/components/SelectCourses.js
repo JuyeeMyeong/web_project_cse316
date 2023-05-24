@@ -50,7 +50,7 @@ function SelectCourses() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar header={"Course Man => Search/Register"} navColor={"grey"}/>
       <div className="selectCoursePage d-flex flex-column align-items-center">
         <div className="form-container d-flex flex-column">
 
@@ -98,7 +98,7 @@ function SelectCourses() {
               </button>
             </div>
           </div>
-          
+
           {/*   Show Search page when press show courses button    */}
           {showCourses && (
             <Search filteredCourses={filteredCourses} name={name} />

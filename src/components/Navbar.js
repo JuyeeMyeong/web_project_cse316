@@ -2,7 +2,7 @@ import "../App.css";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-function Navbar() {
+function Navbar({header, navColor}) {
   /********    is Nav Expanded?   ***********/
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const handleNavExpand = () => {
@@ -14,7 +14,7 @@ function Navbar() {
   return (
     <div>
       {/*     CourseMan Header     */}
-      <h2 className="text-center">CourseMan!</h2>
+      <h2 className="text-center">{header}</h2>
 
       {/*     Hamburger button when width < 40em     */}
       <div className="button-container">

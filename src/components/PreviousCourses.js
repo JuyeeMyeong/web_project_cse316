@@ -21,7 +21,7 @@ function PreviousCourses() {
   /*********        Return            ********/
   return (
     <div>
-      <Navbar />
+      <Navbar header={"CourseMan!"} navColor={"blurred"}/>
 
       <div className="previousTitle text-center">
         <h1 className="title">Previous Courses</h1>

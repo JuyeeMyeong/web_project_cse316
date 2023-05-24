@@ -6,21 +6,23 @@ function Search({ filteredCourses, name }) {
   const { stuId } = useCookieUtil();
 
   const [selectedCourses, setSelectedCourses] = useState([]);
-  const [courseNames, setCourseNames] = useState({});
+  const [courseInfo, setCourseInfo] = useState({});
 
   useEffect(() => {
-    const fetchCourseNames = async () => {
-      const fetchedCourseNames = await Promise.all(
+    const fetchCourseInfo = async () => {
+      const fetchedCourseInfo = await Promise.all(
         filteredCourses.map(async (course) => {
-          const name = await getCourseName(course);
-          return [course, name];
+          const data = await getCourseName(course);
+
+          return [course, { name: data.course_name, leftSeat: data.leftSeat }];
         })
       );
-      setCourseNames(Object.fromEntries(fetchedCourseNames));
+      setCourseInfo(Object.fromEntries(fetchedCourseInfo));
     };
 
-    fetchCourseNames();
+    fetchCourseInfo();
   }, [filteredCourses]);
+
 
   const handleCheckboxChange = (courseName) => {
     setSelectedCourses((prevSelectedCourses) => {
@@ -80,7 +82,7 @@ function Search({ filteredCourses, name }) {
                 htmlFor={`course-${index}`}
                 style={{ fontStyle: "italic", fontWeight: "600" }}
               >
-                {course} {courseNames[course]}
+                {course} {courseInfo[course]?.name} - {courseInfo[course]?.leftSeat} of 40
               </label>
             </div>
           ))}

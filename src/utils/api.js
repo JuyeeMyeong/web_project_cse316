@@ -31,5 +31,5 @@ export async function getPrerequisites(courseId) {
 //get course_name based on course_id
 export async function getCourseName(courseId) {
     const response = await axios.get(`http://localhost:4000/getCourseName?courseId=${courseId}`);
-    return response.data.data[0].course_name;
+    return response.data.data[0];
 }
