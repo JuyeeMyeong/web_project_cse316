@@ -53,9 +53,13 @@ function SelectCourses() {
       <Navbar />
       <div className="selectCoursePage d-flex flex-column align-items-center">
         <div className="form-container d-flex flex-column">
+
+          {/*   SearchForm   */}
           <div className="searchForm">
             <div className="formTitle">Search Form</div>
             <div className="d-flex justify-content-between searchRow">
+
+              {/*   Name    */}
               <label id="Name" htmlFor="" className="userName">
                 Name:
               </label>
@@ -69,6 +73,8 @@ function SelectCourses() {
               ></input>
             </div>
             <div className="d-flex justify-content-between searchRow">
+
+              {/*   searchFor    */}
               <label id="SearchFor" htmlFor="" className="searchBox">
                 Search for:
               </label>
@@ -82,6 +88,8 @@ function SelectCourses() {
               ></input>
             </div>
             <div>
+
+              {/*   Show Courses button    */}
               <button
                 className="showCoursebtn"
                 onClick={() => handleSearch("search string")}
@@ -90,6 +98,8 @@ function SelectCourses() {
               </button>
             </div>
           </div>
+          
+          {/*   Show Search page when press show courses button    */}
           {showCourses && (
             <Search filteredCourses={filteredCourses} name={name} />
           )}
