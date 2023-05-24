@@ -17,6 +17,7 @@ export default function useSearch(
       alert("Please Login first...");
       return;
     };
+
     try {
         const response = await axios.post("http://localhost:4000/userCheck", {
           stuId: stuId,
@@ -34,13 +35,21 @@ export default function useSearch(
             setShowCourses(!showCourses);
             setName(preName);
             return true; // user Check!
-            
         } else {
-          throw new Error("Login failed");
+          // The server responded, but the login check failed.
+          alert("Login check failed. Please enter correct name and ID.");
+          return false;
         }
       } catch (error) {
-        console.log(error);
-        return false; // not a right name
+        // An error occurred during execution of the `try`.
+        if (error.response) {
+            // The server responded with a status code that falls out of the range of 2xx
+            alert("Login check failed. Please enter correct name and ID.");
+          } else {
+            // Something happened in setting up the request that triggered an Error
+            alert("A network error occurred. Please try again later.");
+          }
+        return false; 
       }
   };
 
