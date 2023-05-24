@@ -1,8 +1,8 @@
 import { useCookies } from 'react-cookie';
-import React, { useState, useEffect }  from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default cookieUtil = () => {
+const useCookieUtil = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [stuId, setStuId] = useState('');
     const [cookies, setCookie, removeCookie] = useCookies(['isLoggedIn', 'stuId']);
@@ -31,7 +31,7 @@ export default cookieUtil = () => {
         setIsLoggedIn(false);
         setStuId('');
       }
-    }, [cookies]);
+    }, [cookies, setPrevCourses]);
 
     const handleLogout = () => {
       removeCookie('isLoggedIn');
@@ -65,5 +65,7 @@ export default cookieUtil = () => {
     };
   
 
-    return (stuId, setStuId, isLoggedIn, setIsLoggedIn, prevCourses, setPrevCourses, cookies, handleLogin, handleLogout);
+    return { stuId, setStuId, isLoggedIn, setIsLoggedIn, prevCourses, setPrevCourses, cookies, handleLogin, handleLogout };
 }
+
+export default useCookieUtil;
