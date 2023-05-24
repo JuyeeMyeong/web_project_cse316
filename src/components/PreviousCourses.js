@@ -2,7 +2,7 @@ import "../App.css";
 import React from "react";
 import Navbar from "./Navbar";
 //utils
-import cookieUtil from "../utils/cookieUtil";
+import cookieUtil from "../hooks/useCookieUtil";
 //hooks
 import useFetchCourses from "../hooks/useFetchCourses";
 import useUpdateCourses from "../hooks/useUpdateCourses";

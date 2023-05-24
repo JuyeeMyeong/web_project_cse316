@@ -6,7 +6,7 @@ import Navbar from "./Navbar";
 import useFetchCourses from "../hooks/useFetchCourses";
 import useSearch from "../hooks/useSearch";
 //utils
-import cookieUtil from "../utils/cookieUtil";
+import cookieUtil from "../hooks/useCookieUtil";
 
 function SelectCourses() {
   //cookieUtil
@@ -35,6 +35,9 @@ function SelectCourses() {
   };
 
   /**        Show Courses Button           **/
+
+  //여기서 Student_id 이름 확인하고 confirm 해주기!!!!!!!!
+  /*******************************************/
   const handleSearch = useSearch(
     isLoggedIn,
     searchString,

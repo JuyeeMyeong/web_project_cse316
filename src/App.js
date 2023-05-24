@@ -7,8 +7,8 @@ import Instructions from "./components/Instructions";
 import Login from "./components/Login";
 import PreviousCourses from "./components/PreviousCourses";
 import SelectCourses from "./components/SelectCourses";
-//utils
-import cookieUtil from "./utils/cookieUtil";
+//hooks
+import useCookieUtil from "./hooks/useCookieUtil";
 
 function App() {
 
@@ -19,7 +19,7 @@ function App() {
     isLoggedIn,
     handleLogin,
     handleLogout,
-  } = cookieUtil();
+  } = useCookieUtil();
 
   /****
    * Routes -> Home / Instructions / Login / PreviousCourses / SelectCourses
