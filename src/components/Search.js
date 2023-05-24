@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 function Search({ prevCourses, handleRegistration, name }) {
   const [selectedCourses, setSelectedCourses] = useState([]);
