@@ -16,7 +16,6 @@ const useCookieUtil = () => {
         setIsLoggedIn(true);
         setStuId(student_id);
 
-        const requestData = {}; 
         axios.get(`http://localhost:4000/user/${student_id}`)
         .then((response) => {
           if (response.data.courses && response.data.courses.length !== 0) {

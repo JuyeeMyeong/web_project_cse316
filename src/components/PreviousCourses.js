@@ -1,7 +1,6 @@
 import "../App.css";
-import React, { useState, useEffect, useCallback } from "react";
+import React from "react";
 import Navbar from "./Navbar";
-import axios from 'axios';
 //utils
 import cookieUtil from "../utils/cookieUtil";
 //hooks

@@ -1,8 +1,7 @@
 import '../App.css';
-import React, { useState, useEffect }  from 'react';
+import React, { useState }  from 'react';
 import Search from './Search';
 import Navbar from './Navbar';
-import axios from 'axios';
 //utils
 import cookieUtil from '../utils/cookieUtil';
 
@@ -32,7 +31,7 @@ function SelectCourses() {
         return;
       } 
 
-      
+
         const filteredCourses = prevCourses.filter((course) =>
           course.name.toLowerCase().includes(searchString.toLowerCase())
         );
