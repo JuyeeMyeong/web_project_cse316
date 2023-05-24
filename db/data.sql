@@ -49,10 +49,10 @@ INSERT INTO Courses (course_id, course_name, leftSeat)
        VALUES ("CSE114", "Intro to Object-Oriented Programming", 40);
 
 INSERT INTO Courses (course_id, course_name, leftSeat)
-       VALUES ("CSE214", "Data Structures", '[]', 40);
+       VALUES ("CSE214", "Data Structures", 40);
 
 INSERT INTO Courses (course_id, course_name, leftSeat)
-       VALUES ("CSE215", "Foundation of Comp Science", '[]', 40);
+       VALUES ("CSE215", "Foundation of Comp Science", 40);
 
 INSERT INTO Courses (course_id, course_name, leftSeat)
        VALUES ("CSE216", "Programming Abstractions", 40);
