@@ -1,21 +1,35 @@
 import React, { useState } from "react";
 import axios from "axios";
+import useCookieUtil from "../hooks/useCookieUtil";
 
 function Search({ filteredCourses, name }) {
-  
-  const [prerequisite, setPrerequisite] = useState({});
-  async function getPrerequisites(courseId) {
+  const { stuId } = useCookieUtil();
+
+  async function getPrevCourses() {
     try {
-      const response = await axios.get(`http://localhost:4000/prerequisite?courseId=${courseId}`);
+      const response = await axios.get(`http://localhost:4000/user/${stuId}`);
       if (response.data && response.data.data) {
-        return JSON.parse(response.data.data.prerequisite);
+        return response.data.data.courses;
       }
     } catch (error) {
       console.log(error);
+      alert("There was an error fetching the prerequisites for a course. Please try again.");
     }
     return [];
   };
 
+  async function getPrerequisites(courseId) {
+    try {
+      const response = await axios.get(`http://localhost:4000/prerequisite?courseId=${courseId}`);
+      if (response.data && response.data.data) {
+        return response.data.data.prerequisite;
+      }
+    } catch (error) {
+      console.log(error);
+      alert("There was an error fetching the courses for user. Please try again.");
+    }
+    return [];
+  };
 
   const [selectedCourses, setSelectedCourses] = useState([]);
 
@@ -34,9 +48,14 @@ function Search({ filteredCourses, name }) {
 
     for (let course of selectedCourses) {
       const prerequisites = await getPrerequisites(course);
+      const prevCourses = await getPrevCourses();
+
+      console.log("course", course);
+      console.log("prereq", prerequisites);
+      console.log("prev", prevCourses);
 
       const hasPrerequisites = prerequisites.every((prerequisite) =>
-        filteredCourses.find((course) => course.name === prerequisite)
+        filteredCourses.find((course) => course === prerequisite)
       );
 
       if (!hasPrerequisites) {
@@ -44,8 +63,7 @@ function Search({ filteredCourses, name }) {
           `You don't have the necessary prerequisites for ${course}.`
         );
       }
-
-      if (filteredCourses.find((prevCourse) => prevCourse.name === course)) {
+      if (prevCourses.find((prev) => prev === course)) {
         errors.push(`You have already taken ${course}.`);
       }
     }

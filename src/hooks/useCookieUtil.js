@@ -25,7 +25,7 @@ const useCookieUtil = () => {
         .get(`http://localhost:4000/user/${student_id}`)
         .then((response) => {
           if (response.data.courses && response.data.courses.length !== 0) {
-            setPrevCourses(response.data.courses);
+            setPrevCourses(response.data.data.courses);
           }
         })
         .catch((err) => {
