@@ -30,7 +30,7 @@ function Login({ stuId, setStuId, onLogin, isLoggedIn, onLogout }) {
 
   return (
     <div>
-      <Navbar />
+      <Navbar header={"CourseMan!"} navColor={"blurred"} textColor={"white"} />
 
       {/*********
        *    IF the user's logged in, there is logout Button

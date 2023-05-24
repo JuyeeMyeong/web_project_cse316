@@ -50,15 +50,17 @@ function SelectCourses() {
 
   return (
     <div>
-      <Navbar header={"Course Man => Search/Register"} navColor={"grey"}/>
+      <Navbar
+        header={"Course Man => Search/Register"}
+        navColor={"grey"}
+        textColor={"black"}
+      />
       <div className="selectCoursePage d-flex flex-column align-items-center">
         <div className="form-container d-flex flex-column">
-
           {/*   SearchForm   */}
           <div className="searchForm">
             <div className="formTitle">Search Form</div>
             <div className="d-flex justify-content-between searchRow">
-
               {/*   Name    */}
               <label id="Name" htmlFor="" className="userName">
                 Name:
@@ -73,7 +75,6 @@ function SelectCourses() {
               ></input>
             </div>
             <div className="d-flex justify-content-between searchRow">
-
               {/*   searchFor    */}
               <label id="SearchFor" htmlFor="" className="searchBox">
                 Search for:
@@ -88,7 +89,6 @@ function SelectCourses() {
               ></input>
             </div>
             <div>
-
               {/*   Show Courses button    */}
               <button
                 className="showCoursebtn"

@@ -5,7 +5,7 @@ import Navbar from "./Navbar";
 function Instructions() {
   return (
     <div>
-      <Navbar />
+      <Navbar header={"CourseMan!"} navColor={"blurred"} textColor={"white"} />
       {/**    4 paragraphs with a lightblue bg
        *      2 pixel solid grey border / font-size 24pixels
        *      font Helvetica     **/}
