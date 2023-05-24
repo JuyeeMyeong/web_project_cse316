@@ -227,7 +227,6 @@ app.put("/courses", function (req, res) {
     "SELECT * From Courses WHERE course_id=?",
     [course_id],
     function (error, result) {
-      console.log(result[0].leftSeat);
       if (error) throw error;
       con.query(
         "UPDATE Courses SET leftSeat = ? WHERE course_id=?",
@@ -239,6 +238,21 @@ app.put("/courses", function (req, res) {
           });
         }
       );
+    }
+  );
+});
+
+app.put("/currEnrolled", function (req, res) {
+  const stuId = req.body.stuId;
+  const currEnrolledCourse = req.body.currEnrolledCourse;
+  con.query(
+    "UPDATE Users SET currEnrolledCourse = ? WHERE stuId=?",
+    [JSON.stringify(currEnrolledCourse), stuId],
+    function (err, result) {
+      if (err) throw err;
+      res.status(201).json({
+        data: result,
+      });
     }
   );
 });
