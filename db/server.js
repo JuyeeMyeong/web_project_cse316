@@ -17,6 +17,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// use port 4000 for the server
 const PORT = process.env.PORT || 4000;
 
 app.use(express.static(path.join(__dirname, "..", "public")));
@@ -25,6 +26,7 @@ app.listen(PORT, () => {
   console.log(`Check out the app at http://localhost:${PORT}`);
 });
 
+// GET: get user info by its student id
 app.get("/user", function (req, res) {
   const { stuId } = req.query;
   con.query(
@@ -41,6 +43,7 @@ app.get("/user", function (req, res) {
   );
 });
 
+// GET: get prerequistie course name by course id
 app.get("/prerequisite", function (req, res) {
   const { courseId } = req.query;
   con.query(
@@ -56,17 +59,19 @@ app.get("/prerequisite", function (req, res) {
   );
 });
 
+// GET: get course id
 app.get("/course", function (req, res) {
   con.query("SELECT course_id FROM Courses", function (err, data, fields) {
     if (err) throw err;
     res.status(200).json({
       status: "success",
       length: data?.length,
+      data: data,
     });
   });
 });
 
-// Login
+// Login by student id and password(using hashing)
 app.post("/login", function (req, res) {
   const student_id = req.body.stuId;
   const password = req.body.password;
@@ -133,6 +138,7 @@ app.get("/api/checkLoggedInStatus", checkLoggedIn, (req, res) => {
   }
 });
 
+//PUT: update student courses by their student id
 app.put("/user/:id", function (req, res) {
   const userId = req.params.id;
   const { courses } = req.body;
