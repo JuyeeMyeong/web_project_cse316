@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// get previous courses selected based on student_id
 export async function getPrevCourses(stuId) {
   try {
     const response = await axios.get(`http://localhost:4000/user/${stuId}`);
@@ -13,6 +14,7 @@ export async function getPrevCourses(stuId) {
   return [];
 }
 
+// get prerequisite list based on course_id
 export async function getPrerequisites(courseId) {
   try {
     const response = await axios.get(`http://localhost:4000/prerequisite?courseId=${courseId}`);
