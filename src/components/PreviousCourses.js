@@ -46,7 +46,7 @@ function PreviousCourses() {
       return;
     }
   
-    if (checkedList === undefined ) {
+    if (prevCourses === undefined ) {
       console.error('Failed to update courses: checkedList is undefined');
       return;
     }
