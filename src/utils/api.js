@@ -48,7 +48,6 @@ export async function putCurrEnrolled(stuId, currEnrolledCourse) {
   
     try {
       const response = await axios.put(`http://localhost:4000/currEnrolled`, requestData);
-      alert("Courses Updated! Please go to SelectCourses");
       return response.data;
     } catch (error) {
       console.error("Failed to update courses:", error);
