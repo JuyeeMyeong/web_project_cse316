@@ -5,6 +5,8 @@ var db = "courseman";
 
 console.log("hi! im sql");
 
+dotenv.config();
+
 var con = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
