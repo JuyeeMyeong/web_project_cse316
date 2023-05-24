@@ -34,7 +34,7 @@ export default function useSearch(
             setShowCourses(!showCourses);
             setName(preName);
             return true; // user Check!
-
+            
         } else {
           throw new Error("Login failed");
         }
