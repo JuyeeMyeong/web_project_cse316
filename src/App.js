@@ -8,11 +8,13 @@ import Instructions from "./components/Instructions";
 import Login from "./components/Login";
 import PreviousCourses from "./components/PreviousCourses";
 import SelectCourses from "./components/SelectCourses";
+//utils
+import cookieUtil from "./utils/cookieUtil";
 
 function App() {
-  const [cookies, setCookie, removeCookie] = useCookies(['isLoggedIn']);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [stuId, setStuId] = useState("");
+  const {
+    stuId, setStuId, isLoggedIn, setIsLoggedIn, cookies, handleLogin, handleLogout
+  } = cookieUtil ();
 
   const fetchLoggedInStatus = async () => {
     if (cookies.isLoggedIn) {
@@ -27,45 +29,6 @@ function App() {
   useEffect(() => {
     fetchLoggedInStatus();
   }, [cookies]);
-
-  const handleLogin = async (stuId, password) => {
-    try {
-      const response = await fetch("http://localhost:4000/login", {
-        method: "POST",
-        body: JSON.stringify({
-          stuId: stuId,
-          password: password,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      const data = await response.json();
-
-      if (data.status === "Success") {
-        setStuId(stuId);
-        setCookie('isLoggedIn', true, { path: '/' });
-        setCookie('stuId', stuId, { path: '/' });
-        setIsLoggedIn(true);
-        return true; // Login Success!
-      } else {
-        throw new Error("Login failed");
-      }
-    } catch (error) {
-      console.log(error);
-      return false; // Login Failed!
-    }
-  };
-
-
-  const handleLogout = () => {
-    removeCookie('isLoggedIn');
-    removeCookie('stuId');
-    setIsLoggedIn(false);
-    setStuId('');
-  };
-
 
 
   return (
