@@ -50,10 +50,6 @@ function Search({ filteredCourses, name }) {
       const prerequisites = await getPrerequisites(course);
       const prevCourses = await getPrevCourses();
 
-      console.log("course", course);
-      console.log("prereq", prerequisites);
-      console.log("prev", prevCourses);
-
       const hasPrerequisites = prerequisites.every((prerequisite) =>
         filteredCourses.find((course) => course === prerequisite)
       );
@@ -71,6 +67,7 @@ function Search({ filteredCourses, name }) {
     if (errors.length > 0) {
       alert(errors.join("\n"));
     } else {
+
       alert("Courses registered successfully!");
       // handleRegistration(selectedCourses);
     }
