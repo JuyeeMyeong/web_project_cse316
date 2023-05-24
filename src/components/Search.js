@@ -20,7 +20,7 @@ function Search({ filteredCourses, name }) {
 
   const handleRegisterClick = async () => {
     const errors = [];
-    let register = [];
+    const register = [];
 
     for (let course of selectedCourses) {
       const prerequisites = await getPrerequisites(course);
@@ -46,7 +46,7 @@ function Search({ filteredCourses, name }) {
     }
     if (register.length > 0) {
       setRegisterable(register);
-      console.log("Courses Selected:\n", register);
+      alert('Courses Selected: \n' + register.join(', '));
     }
   };
 
