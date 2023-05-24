@@ -1,12 +1,26 @@
-import React, { useState } from "react";
-import { getPrevCourses, getPrerequisites } from "../utils/api";
+import React, { useState, useEffect } from "react";
+import { getPrevCourses, getPrerequisites, getCourseName } from "../utils/api";
 import useCookieUtil from "../hooks/useCookieUtil";
 
 function Search({ filteredCourses, name }) {
   const { stuId } = useCookieUtil();
 
   const [selectedCourses, setSelectedCourses] = useState([]);
-  const [registerable, setRegisterable] = useState([]);
+  const [courseNames, setCourseNames] = useState({});
+
+  useEffect(() => {
+    const fetchCourseNames = async () => {
+      const fetchedCourseNames = await Promise.all(
+        filteredCourses.map(async (course) => {
+          const name = await getCourseName(course);
+          return [course, name];
+        })
+      );
+      setCourseNames(Object.fromEntries(fetchedCourseNames));
+    };
+
+    fetchCourseNames();
+  }, [filteredCourses]);
 
   const handleCheckboxChange = (courseName) => {
     setSelectedCourses((prevSelectedCourses) => {
@@ -45,7 +59,6 @@ function Search({ filteredCourses, name }) {
       alert(errors.join("\n"));
     }
     if (register.length > 0) {
-      setRegisterable(register);
       alert('Courses Selected: \n' + register.join(', '));
     }
   };
@@ -67,7 +80,7 @@ function Search({ filteredCourses, name }) {
                 htmlFor={`course-${index}`}
                 style={{ fontStyle: "italic", fontWeight: "600" }}
               >
-                {course}
+                {course} {courseNames[course]}
               </label>
             </div>
           ))}
