@@ -10,16 +10,16 @@ const useCookieUtil = () => {
 
     useEffect(() => {
       const isLoggedInCookie = cookies.isLoggedIn;
-      const stuIdCookie = cookies.stuId;
+      const student_id = cookies.stuId;
     
-      if (isLoggedInCookie && stuIdCookie) {
+      if (isLoggedInCookie && student_id) {
         setIsLoggedIn(true);
-        setStuId(stuIdCookie);
+        setStuId(student_id);
 
         const requestData = {}; 
-        axios.get(`http://localhost:4000/user/${stuIdCookie}`, requestData)
+        axios.get(`http://localhost:4000/user/${student_id}`)
         .then((response) => {
-          if (response.data.courses.length !== 0) {
+          if (response.data.courses && response.data.courses.length !== 0) {
             setPrevCourses(response.data.courses);
           }
           console.log(response);
