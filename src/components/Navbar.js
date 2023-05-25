@@ -39,9 +39,9 @@ function Navbar({ header, navColor, textColor, navMargin, position }) {
           className="header d-flex align-items-center"
           style={{
             background: navColor,
-            height: navMargin,
             marginBottom: 0,
-            transform: position,
+            // height: navMargin,
+            // transform: position,
           }}
         >
           {/*     NavLink to Home     */}
