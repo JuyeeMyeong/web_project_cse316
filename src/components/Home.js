@@ -6,7 +6,7 @@ function Home() {
   return (
     <div>
       <Navbar
-        header={"Course Man => Search/Register"}
+        header={"CourseMan!"}
         navColor={"blurred"}
         textColor={"white"}
       />
