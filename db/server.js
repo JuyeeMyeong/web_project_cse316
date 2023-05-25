@@ -8,6 +8,7 @@ import hashutil from "./../src/utils/hashutil.mjs";
 
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+import { elementAcceptingRef } from "@mui/utils";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -224,45 +225,140 @@ app.put("/user/:id", function (req, res) {
 
 app.put("/courses", function (req, res) {
   const course_id = req.body.course_id;
+
   con.query(
-    "SELECT * From Courses WHERE course_id=?",
+    "UPDATE Courses SET leftSeat = leftSeat - 1 WHERE course_id = ?",
     [course_id],
-    function (error, result) {
-      if (error) throw error;
-      con.query(
-        "UPDATE Courses SET leftSeat = ? WHERE course_id=?",
-        [result[0].leftSeat - 1, course_id],
-        function (err, re) {
-          if (err) throw err;
-          res.status(201).json({
-            data: re,
-          });
-        }
-      );
+    function (err, re) {
+      if (err) throw err;
+      res.status(201).json({
+        data: re,
+      });
     }
   );
 });
 
-app.put("/leftSeatRestore", function (req, res) {
-  const course_id = req.body.course_id;
-  con.query(
-    "SELECT * From Courses WHERE course_id=?",
-    [course_id],
-    function (error, result) {
-      if (error) throw error;
-      con.query(
-        "UPDATE Courses SET leftSeat = ? WHERE course_id=?",
-        [result[0].leftSeat + 1, course_id],
-        function (err, re) {
+app.put("/courseRestore", function (req, res) {
+  const courseIds = req.body.course_ids;
+  console.log(courseIds);
+
+  for (let i = 0 ; i < courseIds.length; i ++) {
+    con.query(
+      "SELECT * FROM Courses WHERE course_id = ?",
+      [courseIds[i]],
+      function (error, result) {
+        if (error) throw error;
+
+        con.query(
+          "UPDATE Courses SET leftSeat = leftSeat + 1 WHERE course_id = ?",
+          [courseIds[i]],
+          function (err, res) {
+            if (err) throw err;
+          }
+        );
+
+        con.query(
+          "UPDATE User SET currEnrolledCourse = '[]' WHERE student_id = ?",
+          [req.body.student_id],
+          function (err, result) {
           if (err) throw err;
+    
           res.status(201).json({
-            data: re,
+            status: "Success",
+            message: "Courses updated successfully.",
           });
         }
       );
+      }
+    )
+  }
+
+  // con.query(
+  //   "SELECT * FROM Courses WHERE course_id IN (?)",
+  //   [courseIds],
+  //   function (error, results) {
+  //     if (error) throw error;
+
+  //     for (let i = 0; i < results.length; i++) {
+  //       con.query(
+  //         "UPDATE Courses SET leftSeat = ? WHERE course_id = ?",
+  //         [results[i].leftSeat + 1, results[i].course_id],
+  //         function (err, result) {
+  //           if (err) throw err;
+  //         }
+  //       );
+  //     }
+
+  //     // Update currEnrolledCourses of the user to an empty array
+  //     con.query(
+  //       "UPDATE User SET currEnrolledCourse = '[]' WHERE student_id = ?",
+  //       [req.body.student_id],
+  //       function (err, result) {
+  //         if (err) throw err;
+
+  //         res.status(201).json({
+  //           status: "Success",
+  //           message: "Courses updated successfully.",
+  //         });
+  //       }
+  //     );
+  //   }
+  // );
+});
+
+
+
+app.put("/leftSeatRestore", function (req, res) {
+  const stuId = req.body.stuId;
+
+  con.query(
+    "SELECT currEnrolledCourse FROM User WHERE student_id = ?",
+    [stuId],
+    function (error, result) {
+      if (error) throw error;
+      if (result && result.length > 0) {
+        const enrolled = result[0].currEnrolledCourse;
+        if (enrolled.length !== 0) {
+          const courseIds = enrolled.map((course) => course.course_id);
+          con.query(
+            "SELECT * FROM Courses WHERE course_id IN (?)",
+            [courseIds],
+            function (err, re) {
+              if (err) throw err;
+    
+              for (let i = 0; i < re.length; i++) {
+                const course = re[i];
+                con.query(
+                  "UPDATE Courses SET leftSeat = ? WHERE course_id = ?",
+                  [course.leftSeat + 1, course.course_id],
+                  function (er, res) {
+                    if (er) throw er;
+                  }
+                );
+              }
+              res.status(201).json({
+                status: "Success",
+                message: "Course restore successful.",
+              });
+            }
+          );
+        } else {
+          res.status(200).json({
+            status: "Success",
+            message: "No enrolled courses found.",
+          });
+        }
+      } else {
+        res.status(200).json({
+          status: "Success",
+          message: "User not found or no enrolled courses.",
+        });
+      }
     }
   );
 });
+
+
 
 app.put("/currEnrolled", function (req, res) {
   const stuId = req.body.stuId;
@@ -273,6 +369,7 @@ app.put("/currEnrolled", function (req, res) {
     function (err, result) {
       if (err) throw err;
       res.status(201).json({
+        status: "Success",
         data: result,
       });
     }

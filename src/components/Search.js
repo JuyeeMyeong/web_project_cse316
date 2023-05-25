@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { getPrevCourses, getPrerequisites, getCourseName, putCourses, putCurrEnrolled } from "../utils/api";
+import { getPrevCourses, getPrerequisites, getCourseName, putCourses, putCurrEnrolled, registerAgain, getEnrolled } from "../utils/api";
 import useCookieUtil from "../hooks/useCookieUtil";
+import { useNavigate } from "react-router-dom";
 
 function Search({ filteredCourses, name }) {
+  const navigate = useNavigate();
   const { stuId } = useCookieUtil();
 
   const [selectedCourses, setSelectedCourses] = useState([]);
@@ -35,8 +37,18 @@ function Search({ filteredCourses, name }) {
   };
 
   const handleRegisterClick = async () => {
+    const enrolled = await getEnrolled(stuId);
+    if (enrolled.length > 0) {
+      console.log("enrolled", enrolled);
+      await registerAgain(stuId);
+    }
     const errors = [];
     const register = [];
+
+    if (!selectedCourses || selectedCourses.length === 0) {
+      alert("No courses selected.");
+      return;
+    }
 
     for (let course of selectedCourses) {
       const prerequisites = await getPrerequisites(course);
@@ -62,10 +74,12 @@ function Search({ filteredCourses, name }) {
     }
     if (register.length > 0) {
       const response = await putCurrEnrolled(stuId, register);
-      if (response === "Success") {
-        await Promise.all(register.map(course => putCourses(course)));
-      };
-      alert('Courses Selected: \n' + register.join(', '));
+      if (response === 201) {
+        // Registration was successful
+        register.map((course) => putCourses(course));
+        alert('Courses Selected: \n' + register.join(', '));
+        navigate('/');
+      }
     }
   };
 

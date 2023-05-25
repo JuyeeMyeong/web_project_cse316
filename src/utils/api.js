@@ -30,8 +30,11 @@ export async function getPrerequisites(courseId) {
 
 //get course_name based on course_id
 export async function getCourseName(courseId) {
-    const response = await axios.get(`http://localhost:4000/getCourseName?courseId=${courseId}`);
+  const response = await axios.get(`http://localhost:4000/getCourseName?courseId=${courseId}`);
+  if(response.data) {
     return response.data.data[0];
+  }
+  return "";
 };
 
 // put course_id & decrease course's leftSeat by 1
@@ -48,10 +51,31 @@ export async function putCurrEnrolled(stuId, currEnrolledCourse) {
   
     try {
       const response = await axios.put(`http://localhost:4000/currEnrolled`, requestData);
-      return response.data;
+      return response.status;
     } catch (error) {
       console.error("Failed to update courses:", error);
       throw error;
     }
-  };
-  
+};
+
+export async function registerAgain(stuId) {
+  const requestData = { stuId: stuId };
+
+  try {
+    const response = await axios.put(`http://localhost:4000/leftSeatRestore`, requestData);
+    return response.status;
+  } catch (error) {
+    console.error("Failed to restore registered courses: ", error);
+    throw error;
+  }
+}
+
+export async function getEnrolled(student_id) {
+  try {
+    const response = await axios.get(`http://localhost:4000/user/${student_id}`);
+    return response.data.data.currEnrolledCourse;
+  } catch (error) {
+    console.error("Failed to get the data from the user. Please try again.", error);
+    throw error;
+  }
+}

@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import axios from "axios";
+import { getEnrolled } from "../utils/api";
 
 export default function useUpdateCourses(
   stuId,
@@ -20,7 +21,7 @@ export default function useUpdateCourses(
     [prevCourses, setPrevCourses]
   );
 
-  const updateCourses = () => {
+  const updateCourses = async () => {
     if (!isLoggedIn) {
       //check if the user's logged in
       alert("Please Login first...");
@@ -39,16 +40,25 @@ export default function useUpdateCourses(
       return;
     }
     const requestData = { courses: prevCourses };
+
     //update new Courses to verified users
-    axios
-      .put(`http://localhost:4000/user/${stuId}`, requestData)
-      .then((response) => {
-        alert("Courses Updated! Please go to SelectCourses");
-      })
-      .catch((error) => {
-        console.error("Failed to update courses:", error);
+    try {
+      // Update new courses to verified users
+      await axios.put(`http://localhost:4000/user/${stuId}`, requestData);
+  
+      // Increment leftSeat for each course
+      await axios.put("http://localhost:4000/courseRestore", {
+        course_ids: await getEnrolled(stuId),
+        student_id: stuId,
       });
-  };
+
+  
+      alert("Courses Updated! Please go to SelectCourses and register courses again.");
+    } catch (error) {
+      console.error("Failed to update courses:", error);
+      alert("An error occurred while updating courses. Please try again.");
+    }
+};
 
   return { onCheckedItem, updateCourses };
 }
