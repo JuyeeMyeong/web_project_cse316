@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import axios from "axios";
 import { getEnrolled } from "../utils/api";
+import { useNavigate } from "react-router-dom";
 
 export default function useUpdateCourses(
   stuId,
@@ -8,6 +9,7 @@ export default function useUpdateCourses(
   setPrevCourses,
   isLoggedIn
 ) {
+  const navigate = useNavigate();
   // make previous Courses array based on checked items
   const onCheckedItem = useCallback(
     (checked, item) => {
