@@ -53,12 +53,14 @@ function SelectCourses() {
       <Navbar
         header={"Course Man => Search/Register"}
         navColor={
-          "linear-gradient(to left, rgba(128,128,128, 0.5) 0%, rgba(128,128,128, 1) 49%, rgba(128,128,128, 0.5) 100%)"
+          "linear-gradient(to left, rgba(128,128,128, 0.6) 0%, rgba(128,128,128, 1) 49%, rgba(128,128,128, 0.1) 100%)"
         }
         textColor={"black"}
         navMargin={"fit-content"}
+        style={{marginBottom: 0}}
       />
-      <div className="selectCoursePage d-flex flex-column align-items-center">
+      <div className="selectCoursePage d-flex flex-column align-items-center" 
+      style={{marginTop : 0}}>
         <div className="form-container d-flex flex-column">
           {/*   SearchForm   */}
           <div className="searchForm">

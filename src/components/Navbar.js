@@ -37,8 +37,7 @@ function Navbar({ header, navColor, textColor, navMargin }) {
       >
         <ul
           className="header d-flex align-items-center"
-          // style={{ background: navColor, height: navMargin }}
-          style={{ background: navColor }}
+          style={{ background: navColor, height: navMargin, marginBottom: 0 }}
         >
           {/*     NavLink to Home     */}
           <li className="navigator topnav text-center">
