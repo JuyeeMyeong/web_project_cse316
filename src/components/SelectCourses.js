@@ -52,7 +52,9 @@ function SelectCourses() {
     <div>
       <Navbar
         header={"Course Man => Search/Register"}
-        navColor={"grey"}
+        navColor={
+          "linear-gradient(to left, rgba(128,128,128, 0.5) 0%, rgba(128,128,128, 1) 49%, rgba(128,128,128, 0.5) 100%)"
+        }
         textColor={"black"}
       />
       <div className="selectCoursePage d-flex flex-column align-items-center">

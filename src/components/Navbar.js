@@ -35,7 +35,10 @@ function Navbar({ header, navColor, textColor }) {
             : "header-container navigation-menu notExpanded"
         }
       >
-        <ul className="header d-flex align-items-center">
+        <ul
+          className="header d-flex align-items-center"
+          style={{ background: navColor }}
+        >
           {/*     NavLink to Home     */}
           <li className="navigator topnav text-center">
             <NavLink

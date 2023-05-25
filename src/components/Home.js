@@ -7,8 +7,8 @@ function Home() {
     <div>
       <Navbar
         header={"Course Man => Search/Register"}
-        navColor={"grey"}
-        textColor={"black"}
+        navColor={"blurred"}
+        textColor={"white"}
       />
     </div>
   );
