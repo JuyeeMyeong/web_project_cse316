@@ -51,6 +51,17 @@ ul {
   font-size: 18px;
 }
 
+#default {
+  height: 50px;
+}
+
+#grey {
+  /* transform: translate(0%,20%); */
+  background: linear-gradient(to left, rgba(128,128,128, 0.6) 0%, rgba(128,128,128, 1) 49%, rgba(128,128,128, 0.1) 100%);
+  height: fit-content;
+  margin-bottom: 0px;
+}
+
 @supports (backdrop-filter: blur(1rem)){
   .header {
     float: right;
@@ -93,6 +104,17 @@ ul {
     transition: transform 0.3s ease-out;
   }
 
+  #default {
+   height: 100%;
+  }
+
+  #grey {
+    /* transform: translateY(5%); */
+    height: 100%;
+    background: transparent;
+  }
+  
+
   .navigation-menu ul {
     flex-direction: column;
     justify-content: start;
@@ -110,6 +132,7 @@ ul {
     transform: translateX(30%);
   }
 
+ 
   .header {
     z-index: 1;
   }

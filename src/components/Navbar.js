@@ -2,7 +2,14 @@ import "../App.css";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-function Navbar({ header, navColor, textColor, navMargin, position }) {
+function Navbar({
+  header,
+  navColor,
+  textColor,
+  // navMargin,
+  // position,
+  // smallPosition,
+}) {
   /********    is Nav Expanded?   ***********/
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const handleNavExpand = () => {
@@ -12,7 +19,7 @@ function Navbar({ header, navColor, textColor, navMargin, position }) {
 
   /********    Return   ***********/
   return (
-    <div>
+    <>
       {/*     CourseMan Header     */}
       <h2 className="text-center" style={{ color: textColor }}>
         {header}
@@ -36,13 +43,14 @@ function Navbar({ header, navColor, textColor, navMargin, position }) {
         }
       >
         <ul
+          id={navColor === "blurred" ? "default" : "grey"}
           className="header d-flex align-items-center"
-          style={{
-            background: navColor,
-            marginBottom: 0,
-            // height: navMargin,
-            // transform: position,
-          }}
+          // style={{
+          //   background: navColor,
+          //   // marginBottom: 0,
+          //   height: navMargin,
+          //   // transform: {position: smallPosition},
+          // }}
         >
           {/*     NavLink to Home     */}
           <li className="navigator topnav text-center">
@@ -110,7 +118,7 @@ function Navbar({ header, navColor, textColor, navMargin, position }) {
           </li>
         </ul>
       </div>
-    </div>
+    </>
   );
 }
 
