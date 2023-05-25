@@ -243,6 +243,27 @@ app.put("/courses", function (req, res) {
   );
 });
 
+app.put("/leftSeatRestore", function (req, res) {
+  const course_id = req.body.course_id;
+  con.query(
+    "SELECT * From Courses WHERE course_id=?",
+    [course_id],
+    function (error, result) {
+      if (error) throw error;
+      con.query(
+        "UPDATE Courses SET leftSeat = ? WHERE course_id=?",
+        [result[0].leftSeat + 1, course_id],
+        function (err, re) {
+          if (err) throw err;
+          res.status(201).json({
+            data: re,
+          });
+        }
+      );
+    }
+  );
+});
+
 app.put("/currEnrolled", function (req, res) {
   const stuId = req.body.stuId;
   const currEnrolledCourse = req.body.currEnrolledCourse;
