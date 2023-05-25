@@ -9,7 +9,7 @@ USE courseman;
 
 
 -- User Table --
-CREATE TABLE IF NOT EXISTS User ( id INT PRIMARY KEY AUTO_INCREMENT, student_id VARCHAR(50) NOT NULL UNIQUE, first_name VARCHAR(100), last_name VARCHAR(100), password VARCHAR(1024), courses JSON, currEnrolledCourse JSON)
+CREATE TABLE IF NOT EXISTS User ( id INT PRIMARY KEY AUTO_INCREMENT, student_id VARCHAR(50) NOT NULL UNIQUE, first_name VARCHAR(100), last_name VARCHAR(100), password VARCHAR(1024), courses JSON, currEnrolledCourse JSON);
 
 INSERT INTO User (student_id, first_name, last_name, password, courses, currEnrolledCourse) 
         VALUES (113659563, "Harry", "Chung", "e38804c45d255359322d3a3c9d58522fe0528e87784b6724fca79dd67b891dd",  '["CSE101", "CSE114"]', '[]');
@@ -40,7 +40,7 @@ INSERT INTO User (student_id, first_name, last_name, password, courses, currEnro
 
 
 -- Course Table --
-CREATE TABLE IF NOT EXISTS Courses ( id INT PRIMARY KEY AUTO_INCREMENT, course_id VARCHAR(255), course_name VARCHAR(255), leftSeat INT)
+CREATE TABLE IF NOT EXISTS Courses ( id INT PRIMARY KEY AUTO_INCREMENT, course_id VARCHAR(255), course_name VARCHAR(255), leftSeat INT);
 
 INSERT INTO Courses (course_id, course_name, leftSeat)
        VALUES ("CSE101", "Computer Science Principles", 40);
@@ -91,7 +91,7 @@ INSERT INTO Courses (course_id, course_name, leftSeat)
        VALUES ("CSE416", "Software Engineering", 40);
 
 -- Prerequsite Table --
-CREATE TABLE IF NOT EXISTS Prerequisites (id INT PRIMARY KEY AUTO_INCREMENT, course_id VARCHAR(255), prerequisite JSON)
+CREATE TABLE IF NOT EXISTS Prerequisites (id INT PRIMARY KEY AUTO_INCREMENT, course_id VARCHAR(255), prerequisite JSON);
 
 INSERT INTO Prerequisites (course_id, prerequisite)
        VALUES ("CSE101", '[]');

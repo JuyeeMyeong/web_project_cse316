@@ -45,20 +45,21 @@ export default function useUpdateCourses(
     try {
       // Update new courses to verified users
       await axios.put(`http://localhost:4000/user/${stuId}`, requestData);
-  
+
       // Increment leftSeat for each course
       await axios.put("http://localhost:4000/courseRestore", {
         course_ids: await getEnrolled(stuId),
         student_id: stuId,
       });
 
-  
-      alert("Courses Updated! Please go to SelectCourses and register courses again.");
+      alert(
+        "Courses Updated! Please go to SelectCourses and register courses again."
+      );
     } catch (error) {
       console.error("Failed to update courses:", error);
       alert("An error occurred while updating courses. Please try again.");
     }
-};
+  };
 
   return { onCheckedItem, updateCourses };
 }

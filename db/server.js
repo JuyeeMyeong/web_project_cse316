@@ -251,21 +251,20 @@ app.put("/courseRestore", function (req, res) {
         con.query(
           "UPDATE Courses SET leftSeat = leftSeat + 1 WHERE course_id = ?",
           [courseIds[i]],
-          function (err, res) {
+          function (err, re) {
             if (err) throw err;
-          }
-        );
+            con.query(
+              "UPDATE User SET currEnrolledCourse = '[]' WHERE student_id = ?",
+              [req.body.student_id],
+              function (er, result) {
+                if (er) throw err;
 
-        con.query(
-          "UPDATE User SET currEnrolledCourse = '[]' WHERE student_id = ?",
-          [req.body.student_id],
-          function (err, result) {
-            if (err) throw err;
-
-            res.status(201).json({
-              status: "Success",
-              message: "Courses updated successfully.",
-            });
+                res.status(201).json({
+                  status: "Success",
+                  message: "Courses updated successfully.",
+                });
+              }
+            );
           }
         );
       }
