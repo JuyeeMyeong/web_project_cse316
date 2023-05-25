@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import axios from "axios";
 import { getEnrolled } from "../utils/api";
+import { useNavigate } from "react-router-dom";
 
 export default function useUpdateCourses(
   stuId,
@@ -8,6 +9,8 @@ export default function useUpdateCourses(
   setPrevCourses,
   isLoggedIn
 ) {
+
+  const navigate = useNavigate();
   // make previous Courses array based on checked items
   const onCheckedItem = useCallback(
     (checked, item) => {
@@ -34,9 +37,7 @@ export default function useUpdateCourses(
       prevCourses === undefined ||
       prevCourses.length === 0
     ) {
-      console.error(
-        "Failed to update courses: stuId or prevCourses is undefined"
-      );
+      console.error("Failed to update courses: stuId or prevCourses is undefined");
       return;
     }
     const requestData = { courses: prevCourses };
@@ -51,8 +52,7 @@ export default function useUpdateCourses(
         course_ids: await getEnrolled(stuId),
         student_id: stuId,
       });
-
-  
+      navigate('/');
       alert("Courses Updated! Please go to SelectCourses and register courses again.");
     } catch (error) {
       console.error("Failed to update courses:", error);
