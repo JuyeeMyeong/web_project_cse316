@@ -57,10 +57,13 @@ function SelectCourses() {
         }
         textColor={"black"}
         navMargin={"fit-content"}
-        style={{marginBottom: 0}}
+        style={{ marginBottom: 0 }}
+        position={"translate(0%,20%)"}
       />
-      <div className="selectCoursePage d-flex flex-column align-items-center" 
-      style={{marginTop : 0}}>
+      <div
+        className="selectCoursePage d-flex flex-column align-items-center"
+        style={{ marginTop: 0 }}
+      >
         <div className="form-container d-flex flex-column">
           {/*   SearchForm   */}
           <div className="searchForm">
