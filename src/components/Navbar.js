@@ -2,7 +2,7 @@ import "../App.css";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-function Navbar({ header, navColor, textColor }) {
+function Navbar({ header, navColor, textColor, navMargin }) {
   /********    is Nav Expanded?   ***********/
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const handleNavExpand = () => {
@@ -37,6 +37,7 @@ function Navbar({ header, navColor, textColor }) {
       >
         <ul
           className="header d-flex align-items-center"
+          // style={{ background: navColor, height: navMargin }}
           style={{ background: navColor }}
         >
           {/*     NavLink to Home     */}

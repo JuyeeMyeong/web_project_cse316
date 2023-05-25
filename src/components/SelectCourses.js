@@ -56,6 +56,7 @@ function SelectCourses() {
           "linear-gradient(to left, rgba(128,128,128, 0.5) 0%, rgba(128,128,128, 1) 49%, rgba(128,128,128, 0.5) 100%)"
         }
         textColor={"black"}
+        navMargin={"fit-content"}
       />
       <div className="selectCoursePage d-flex flex-column align-items-center">
         <div className="form-container d-flex flex-column">
