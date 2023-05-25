@@ -1,6 +1,5 @@
 import { useCallback } from "react";
 import axios from "axios";
-import { getEnrolled } from "../utils/api";
 import { useNavigate } from "react-router-dom";
 
 export default function useUpdateCourses(
@@ -42,23 +41,22 @@ export default function useUpdateCourses(
       return;
     }
     const requestData = { courses: prevCourses };
+    const defaultData = { stuId: stuId, currEnrolledCourse: []}
 
     //update new Courses to verified users
+
     try {
       // Update new courses to verified users
       await axios.put(`http://localhost:4000/user/${stuId}`, requestData);
+      //update currEnrolled of User table based on student_id
+      await axios.put(`http://localhost:4000/currEnrolled`, defaultData);
+      //update the leftSeat values in the Courses table
+      await axios.get("http://localhost:4000/updateLeftSeat");
+      alert("Courses Updated! Please go to SelectCourses and register courses again.");
+      navigate('/'); //go back to Home
 
-      // Increment leftSeat for each course
-      await axios.put("http://localhost:4000/courseRestore", {
-        course_ids: await getEnrolled(stuId),
-        student_id: stuId,
-      });
-
-      alert(
-        "Courses Updated! Please go to SelectCourses and register courses again."
-      );
-      navigate('/')
     } catch (error) {
+      //error handling
       console.error("Failed to update courses:", error);
       alert("An error occurred while updating courses. Please try again.");
     }
