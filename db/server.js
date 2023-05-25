@@ -8,7 +8,6 @@ import hashutil from "./../src/utils/hashutil.mjs";
 
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-import { elementAcceptingRef } from "@mui/utils";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -242,7 +241,7 @@ app.put("/courseRestore", function (req, res) {
   const courseIds = req.body.course_ids;
   console.log(courseIds);
 
-  for (let i = 0 ; i < courseIds.length; i ++) {
+  for (let i = 0; i < courseIds.length; i++) {
     con.query(
       "SELECT * FROM Courses WHERE course_id = ?",
       [courseIds[i]],
@@ -261,16 +260,16 @@ app.put("/courseRestore", function (req, res) {
           "UPDATE User SET currEnrolledCourse = '[]' WHERE student_id = ?",
           [req.body.student_id],
           function (err, result) {
-          if (err) throw err;
-    
-          res.status(201).json({
-            status: "Success",
-            message: "Courses updated successfully.",
-          });
-        }
-      );
+            if (err) throw err;
+
+            res.status(201).json({
+              status: "Success",
+              message: "Courses updated successfully.",
+            });
+          }
+        );
       }
-    )
+    );
   }
 
   // con.query(
@@ -306,8 +305,6 @@ app.put("/courseRestore", function (req, res) {
   // );
 });
 
-
-
 app.put("/leftSeatRestore", function (req, res) {
   const stuId = req.body.stuId;
 
@@ -325,7 +322,7 @@ app.put("/leftSeatRestore", function (req, res) {
             [courseIds],
             function (err, re) {
               if (err) throw err;
-    
+
               for (let i = 0; i < re.length; i++) {
                 const course = re[i];
                 con.query(
@@ -357,8 +354,6 @@ app.put("/leftSeatRestore", function (req, res) {
     }
   );
 });
-
-
 
 app.put("/currEnrolled", function (req, res) {
   const stuId = req.body.stuId;
