@@ -57,6 +57,7 @@ export default function useUpdateCourses(
       alert(
         "Courses Updated! Please go to SelectCourses and register courses again."
       );
+      navigate('/')
     } catch (error) {
       console.error("Failed to update courses:", error);
       alert("An error occurred while updating courses. Please try again.");
