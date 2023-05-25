@@ -5,10 +5,7 @@ import { NavLink } from "react-router-dom";
 function Navbar({
   header,
   navColor,
-  textColor,
-  // navMargin,
-  // position,
-  // smallPosition,
+  textColor
 }) {
   /********    is Nav Expanded?   ***********/
   const [isNavExpanded, setIsNavExpanded] = useState(false);
@@ -19,11 +16,7 @@ function Navbar({
 
   /********    Return   ***********/
   return (
-    <>
-      {/*     CourseMan Header     */}
-      <h2 className="text-center" style={{ color: textColor }}>
-        {header}
-      </h2>
+    <div id="navigationBar">
 
       {/*     Hamburger button when width < 40em     */}
       <div className="button-container">
@@ -33,6 +26,11 @@ function Navbar({
           <div className="bar3"></div>
         </button>
       </div>
+      
+      {/*     CourseMan Header     */}
+      <h2 id={header==="CourseMan!"? "blur" : "notBlur"}className="text-center" style={{ color: textColor }}>
+        {header}
+      </h2>
 
       {/*     expanded menu when width > 40em     */}
       <div
@@ -118,7 +116,7 @@ function Navbar({
           </li>
         </ul>
       </div>
-    </>
+    </div>
   );
 }
 

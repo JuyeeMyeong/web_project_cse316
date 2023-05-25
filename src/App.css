@@ -1,3 +1,4 @@
+
 body {
   background-image: url("../public/SUNYKorea_AcBldg.jpg");
   overflow-x: hidden;
@@ -18,6 +19,16 @@ ul {
 }
 
 /***********           Navbar               ***********/
+#navigationBar h2{
+  margin: 10px;
+}
+
+#notBlur {
+  padding: 10px;
+  font-weight: 700;
+  font-size: 35px;
+}
+
 .navBtn {
   display: none;
 }
@@ -167,7 +178,7 @@ ul {
 
 @media (max-width: 40em){
   .instruction {
-    margin: 20px 40px;
+    margin: -15px 40px;
   }
 }
 
@@ -278,9 +289,18 @@ ul {
 }
 
 @media (max-width: 40em) {
+  .previousTitle h1 {
+    font-size: 28px;
+  }
+
   .coursePage {
     margin: 0 30px;
-    padding: 10px;
+    padding: 0 10px;
+  }
+
+  .coursePage h3 {
+    margin-top: 0;
+    font-size: 20px;
   }
 
   .courseList {

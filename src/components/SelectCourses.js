@@ -56,10 +56,6 @@ function SelectCourses() {
           "linear-gradient(to left, rgba(128,128,128, 0.6) 0%, rgba(128,128,128, 1) 49%, rgba(128,128,128, 0.1) 100%)"
         }
         textColor={"black"}
-        // navMargin={"fit-content"}
-        // style={{ marginBottom: 0 }}
-        // position={"translate(0%,80%)"}
-        // smallPosition={"translate(0%,20%)"}
       />
       <div
         className="selectCoursePage d-flex flex-column align-items-center"
