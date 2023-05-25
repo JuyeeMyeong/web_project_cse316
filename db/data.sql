@@ -12,21 +12,21 @@ USE courseman;
 CREATE TABLE IF NOT EXISTS User ( id INT PRIMARY KEY AUTO_INCREMENT, student_id VARCHAR(50) NOT NULL UNIQUE, first_name VARCHAR(100), last_name VARCHAR(100), password VARCHAR(1024), courses JSON, currEnrolledCourse JSON)
 
 INSERT INTO User (student_id, first_name, last_name, password, courses, currEnrolledCourse) 
-        VALUES (113659563, "Harry", "Chung", "e71b258f98d6b92aef96ebb947b7843a199973603961c66b1f91d92b4c335e33",  '["CSE101", "CSE114"]', '[]');
+        VALUES (113659563, "Harry", "Chung", "e38804c45d255359322d3a3c9d58522fe0528e87784b6724fca79dd67b891dd",  '["CSE101", "CSE114"]', '[]');
 INSERT INTO User (student_id, first_name, last_name, password, courses, currEnrolledCourse) VALUES 
-    (114631693, "Matt", "Lee", "a24136aef3bad4fd8ddb24eundefined195a036283480eb5983e2350ede94e41863ee", '[]', '[]');
+    (114631693, "Matt", "Lee", "6844891ec0555125b3788cf825824ac211e9966a16be060de2687fafundefined60c624", '[]', '[]');
 INSERT INTO User (student_id, first_name, last_name, password, courses, currEnrolledCourse) VALUES 
-    (113539682, "SUE", "Park", "31c41d99fb6d906bf76d0c2a7406d00125d1aeff67bfa8f276d8e05dda0cac5", '[]', '[]');
+    (113539682, "SUE", "Park", "bbeb6ed240a9db9016271d0896994458530a129dde38eceb90a91187f75842e", '[]', '[]');
 INSERT INTO User (student_id, first_name, last_name, password, courses, currEnrolledCourse) VALUES 
-    (123456789, 'John', 'Doe', "596cd873e1ebf0c7undefined9317c022b0908426f729842b395012269114bc51cfc509", '[]', '[]');
+    (123456789, 'John', 'Doe', "f9a35197d7069a376dd11f2d51ecc5c6aaf4457aad46fcf647b80006c4bb899", '[]', '[]');
 INSERT INTO User (student_id, first_name, last_name, password, courses, currEnrolledCourse) VALUES 
     (234567891, 'Jane', 'Doe', "93f28e576bb68bba43aea3fff519fec3ac029ca4c27fc3984488bee030597960", '[]', '[]');
 INSERT INTO User (student_id, first_name, last_name, password, courses, currEnrolledCourse) VALUES 
-    (345678912, 'Bob', 'Smith', "3eb1e8ede6397f63f8f8df299678be1b3ee3bd1dd58e7fb3a0c338a96da8e6a6", '[]', '[]');
+    (345678912, 'Bob', 'Smith', "fded68986f1f3541231239169895fbe4b4160125aa8dd58c5e7266959d740bc", '[]', '[]');
 INSERT INTO User (student_id, first_name, last_name, password, courses, currEnrolledCourse) VALUES 
-    (456789123, 'Alice', 'Johnson', "f2865342ddfac10e283d5a7ce609877e779ea43b260536f44d456fdcfc1c0", '[]', '[]');
+    (456789123, 'Alice', 'Johnson', "1c21dd241e2b153ffcc25df4740e2d119035f9e017133dbf75464fd968241d77", '[]', '[]');
 INSERT INTO User (student_id, first_name, last_name, password, courses, currEnrolledCourse) VALUES 
-    (567891234, 'Charlie', 'Brown', "bffea713undefined1fadcaefb581851aa02364d34b8586undefined3bb39b215f4229undefined3bba52", '[]', '[]');
+    (567891234, 'Charlie', 'Brown', "a40682392a09ceae9066e66d469a4cb749bff9393c313cf0undefined5ea79c77fcc2eb", '[]', '[]');
 -- INSERT INTO User (student_id, first_name, last_name, password, courses) VALUES 
 --     (678912345, 'Lucy', 'Van Pelt', "", "");
 -- INSERT INTO User (student_id, first_name, last_name, password, courses) VALUES 

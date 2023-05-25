@@ -149,18 +149,19 @@ app.post("/login", function (req, res) {
       }
 
       const id = data[0].id;
-      // const hashCheck = hashutil(
-      //   data[0].first_name,
-      //   data[0].last_name,
-      //   password
-      // );
-
-      // if (hashCheck !== data[0].password) {
-      //   res
-      //     .status(402)
-      //     .json({ status: "Failed", message: "Invalid password." });
-      //   return;
-      // }
+      const hashCheck = hashutil(
+        data[0].first_name,
+        data[0].last_name,
+        password
+      );
+      console.log(hashCheck);
+      console.log(data[0].password);
+      if (hashCheck !== data[0].password) {
+        res
+          .status(402)
+          .json({ status: "Failed", message: "Invalid password." });
+        return;
+      }
 
       res.status(201).json({
         status: "Success",
@@ -231,6 +232,27 @@ app.put("/courses", function (req, res) {
       con.query(
         "UPDATE Courses SET leftSeat = ? WHERE course_id=?",
         [result[0].leftSeat - 1, course_id],
+        function (err, re) {
+          if (err) throw err;
+          res.status(201).json({
+            data: re,
+          });
+        }
+      );
+    }
+  );
+});
+
+app.put("/leftSeatRestore", function (req, res) {
+  const course_id = req.body.course_id;
+  con.query(
+    "SELECT * From Courses WHERE course_id=?",
+    [course_id],
+    function (error, result) {
+      if (error) throw error;
+      con.query(
+        "UPDATE Courses SET leftSeat = ? WHERE course_id=?",
+        [result[0].leftSeat + 1, course_id],
         function (err, re) {
           if (err) throw err;
           res.status(201).json({
