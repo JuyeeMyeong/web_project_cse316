@@ -191,7 +191,7 @@ app.get("/api/checkLoggedInStatus", checkLoggedIn, (req, res) => {
   console.log("User:", req.session.user);
   if (req.session.user) {
     const { email } = req.session.user;
-    res.status(200).json({ email });
+    res.status(201).json({ email });
   } else {
     res
       .status(401)
@@ -213,7 +213,7 @@ app.put("/user/:id", function (req, res) {
         res.status(500).json({ error: "Failed to update courses" });
       } else {
         if (result.affectedRows > 0) {
-          res.status(200).json({ message: "Courses updated successfully" });
+          res.status(201).json({ message: "Courses updated successfully" });
         } else {
           res.status(404).json({ error: "User not found" });
         }
@@ -222,138 +222,7 @@ app.put("/user/:id", function (req, res) {
   );
 });
 
-app.put("/courses", function (req, res) {
-  const course_id = req.body.course_id;
-
-  con.query(
-    "UPDATE Courses SET leftSeat = leftSeat - 1 WHERE course_id = ?",
-    [course_id],
-    function (err, re) {
-      if (err) throw err;
-      res.status(201).json({
-        data: re,
-      });
-    }
-  );
-});
-
-app.put("/courseRestore", function (req, res) {
-  const courseIds = req.body.course_ids;
-  console.log(courseIds);
-
-  for (let i = 0; i < courseIds.length; i++) {
-    con.query(
-      "SELECT * FROM Courses WHERE course_id = ?",
-      [courseIds[i]],
-      function (error, result) {
-        if (error) throw error;
-
-        con.query(
-          "UPDATE Courses SET leftSeat = leftSeat + 1 WHERE course_id = ?",
-          [courseIds[i]],
-          function (err, re) {
-            if (err) throw err;
-            con.query(
-              "UPDATE User SET currEnrolledCourse = '[]' WHERE student_id = ?",
-              [req.body.student_id],
-              function (er, result) {
-                if (er) throw err;
-
-                res.status(201).json({
-                  status: "Success",
-                  message: "Courses updated successfully.",
-                });
-              }
-            );
-          }
-        );
-      }
-    );
-  }
-
-  // con.query(
-  //   "SELECT * FROM Courses WHERE course_id IN (?)",
-  //   [courseIds],
-  //   function (error, results) {
-  //     if (error) throw error;
-
-  //     for (let i = 0; i < results.length; i++) {
-  //       con.query(
-  //         "UPDATE Courses SET leftSeat = ? WHERE course_id = ?",
-  //         [results[i].leftSeat + 1, results[i].course_id],
-  //         function (err, result) {
-  //           if (err) throw err;
-  //         }
-  //       );
-  //     }
-
-  //     // Update currEnrolledCourses of the user to an empty array
-  //     con.query(
-  //       "UPDATE User SET currEnrolledCourse = '[]' WHERE student_id = ?",
-  //       [req.body.student_id],
-  //       function (err, result) {
-  //         if (err) throw err;
-
-  //         res.status(201).json({
-  //           status: "Success",
-  //           message: "Courses updated successfully.",
-  //         });
-  //       }
-  //     );
-  //   }
-  // );
-});
-
-app.put("/leftSeatRestore", function (req, res) {
-  const stuId = req.body.stuId;
-
-  con.query(
-    "SELECT currEnrolledCourse FROM User WHERE student_id = ?",
-    [stuId],
-    function (error, result) {
-      if (error) throw error;
-      if (result && result.length > 0) {
-        const enrolled = result[0].currEnrolledCourse;
-        if (enrolled.length !== 0) {
-          const courseIds = enrolled.map((course) => course.course_id);
-          con.query(
-            "SELECT * FROM Courses WHERE course_id IN (?)",
-            [courseIds],
-            function (err, re) {
-              if (err) throw err;
-
-              for (let i = 0; i < re.length; i++) {
-                const course = re[i];
-                con.query(
-                  "UPDATE Courses SET leftSeat = ? WHERE course_id = ?",
-                  [course.leftSeat + 1, course.course_id],
-                  function (er, res) {
-                    if (er) throw er;
-                  }
-                );
-              }
-              res.status(201).json({
-                status: "Success",
-                message: "Course restore successful.",
-              });
-            }
-          );
-        } else {
-          res.status(200).json({
-            status: "Success",
-            message: "No enrolled courses found.",
-          });
-        }
-      } else {
-        res.status(200).json({
-          status: "Success",
-          message: "User not found or no enrolled courses.",
-        });
-      }
-    }
-  );
-});
-
+//get currEnrolledCourse based on student_id 
 app.put("/currEnrolled", function (req, res) {
   const stuId = req.body.stuId;
   const currEnrolledCourse = req.body.currEnrolledCourse;
@@ -368,4 +237,64 @@ app.put("/currEnrolled", function (req, res) {
       });
     }
   );
+});
+
+//update leftSeat # of each course after updating currEnrolledCourse of User
+app.get("/updateLeftSeat", function (req, res) {
+  //default value 40
+  con.query("UPDATE Courses SET leftSeat = 40", function (err, result) {
+    if (err) {
+      console.error("Failed to update leftSeat:", err);
+      res.status(500).json({
+        status: "Error",
+        message: "Failed to update leftSeat",
+      });
+      return;
+    }
+
+    //get all currEnrolledCourse from User table
+    con.query("SELECT currEnrolledCourse FROM User", function (err, users) {
+      if (err) {
+        console.error("Failed to fetch currEnrolledCourse:", err);
+        res.status(500).json({
+          status: "Error",
+          message: "Failed to fetch currEnrolledCourse",
+        });
+        return;
+      }
+
+      //for each course in currEnrolledCourse
+      users.forEach((user) => {
+        try {
+          const currEnrolledCourse = user.currEnrolledCourse;
+
+          //if there is no currEnrolled Course, just return
+          if (!currEnrolledCourse || currEnrolledCourse.length === 0) {
+            return;
+          }
+          //or UPDATE the Courses table (leftSeat = leftSeat - 1) based on course_id
+          currEnrolledCourse.forEach((courseId) => {
+            con.query(
+              "UPDATE Courses SET leftSeat = leftSeat - 1 WHERE course_id = ?",
+              [courseId],
+              function (err, result) {
+                if (err) {
+                  console.error("Failed to update leftSeat:", courseId);
+                }
+              }
+            );
+          }); // error handling
+        } catch (error) {
+          console.error("Something went wrong while getting currEnrolledCourse for user:", error);
+        }
+      });
+
+      console.log("leftSeat values updated");
+      //success status
+      res.status(201).json({
+        status: "Success",
+        message: "LeftSeat values updated successfully.",
+      });
+    });
+  });
 });
