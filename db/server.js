@@ -222,7 +222,7 @@ app.put("/user/:id", function (req, res) {
   );
 });
 
-//get currEnrolledCourse based on student_id 
+//get currEnrolledCourse based on student_id
 app.put("/currEnrolled", function (req, res) {
   const stuId = req.body.stuId;
   const currEnrolledCourse = req.body.currEnrolledCourse;
@@ -285,7 +285,10 @@ app.get("/updateLeftSeat", function (req, res) {
             );
           }); // error handling
         } catch (error) {
-          console.error("Something went wrong while getting currEnrolledCourse for user:", error);
+          console.error(
+            "Something went wrong while getting currEnrolledCourse for user:",
+            error
+          );
         }
       });
 

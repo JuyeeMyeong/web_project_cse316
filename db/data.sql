@@ -20,9 +20,9 @@ INSERT INTO User (student_id, first_name, last_name, password, courses, currEnro
 INSERT INTO User (student_id, first_name, last_name, password, courses, currEnrolledCourse) VALUES 
     (123456789, 'John', 'Doe', "f9a35197d7069a376dd11f2d51ecc5c6aaf4457aad46fcf647b80006c4bb899", '[]', '[]');
 INSERT INTO User (student_id, first_name, last_name, password, courses, currEnrolledCourse) VALUES 
-    (234567891, 'Jane', 'Doe', "93f28e576bb68bba43aea3fff519fec3ac029ca4c27fc3984488bee030597960", '[]', '[]');
+    (234567891, 'Jane', 'Doe', "fded68986f1f3541231239169895fbe4b4160125aa8dd58c5e7266959d740bc", '[]', '[]');
 INSERT INTO User (student_id, first_name, last_name, password, courses, currEnrolledCourse) VALUES 
-    (345678912, 'Bob', 'Smith', "fded68986f1f3541231239169895fbe4b4160125aa8dd58c5e7266959d740bc", '[]', '[]');
+    (345678912, 'Bob', 'Smith', "a47e3e70undefinedac546eda6472b7e4f7aac3bbd33a2ef3ead8ca5ed95bf3dbe5e867", '[]', '[]');
 INSERT INTO User (student_id, first_name, last_name, password, courses, currEnrolledCourse) VALUES 
     (456789123, 'Alice', 'Johnson', "1c21dd241e2b153ffcc25df4740e2d119035f9e017133dbf75464fd968241d77", '[]', '[]');
 INSERT INTO User (student_id, first_name, last_name, password, courses, currEnrolledCourse) VALUES 
