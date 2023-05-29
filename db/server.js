@@ -262,7 +262,6 @@ app.get("/updateLeftSeat", function (req, res) {
         });
         return;
       }
-
       //for each course in currEnrolledCourse
       users.forEach((user) => {
         try {

@@ -41,7 +41,7 @@ export default function useUpdateCourses(
       return;
     }
     const requestData = { courses: prevCourses };
-    const defaultData = { stuId: stuId, currEnrolledCourse: []}
+    const defaultData = { stuId: stuId, currEnrolledCourse: [] };
 
     //update new Courses to verified users
 
@@ -52,9 +52,11 @@ export default function useUpdateCourses(
       await axios.put(`http://localhost:4000/currEnrolled`, defaultData);
       //update the leftSeat values in the Courses table
       await axios.get("http://localhost:4000/updateLeftSeat");
-      alert("Courses Updated! Please go to SelectCourses and register courses again.");
-      navigate('/'); //go back to Home
 
+      alert(
+        "Courses Updated! Please go to SelectCourses and register courses again."
+      );
+      navigate("/"); //go back to Home
     } catch (error) {
       //error handling
       console.error("Failed to update courses:", error);

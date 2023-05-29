@@ -14,17 +14,26 @@ function Search({ filteredCourses, name }) {
       <div className="listBox">
         <h4 id="searchHdr">{name} here are the courses you may select.</h4>
         <div className="d-flex flex-column">
-          
           {/* filtered Courses are shown here */}
           {filteredCourses.map((course, index) => (
             <div key={index}>
               {/* checkbox & checkbox change (make the checked items into list) */}
-              <input
-                type="checkbox"
-                id={`course-${index}`}
-                checked={selectedCourses.includes(course)}
-                onChange={() => handleCheckboxChange(course)}
-              />
+              {courseInfo[course]?.leftSeat > 0 ? (
+                <input
+                  type="checkbox"
+                  id={`course-${index}`}
+                  checked={selectedCourses.includes(course)}
+                  onChange={() => handleCheckboxChange(course)}
+                />
+              ) : (
+                <input
+                  type="checkbox"
+                  id={`course-${index}`}
+                  checked={selectedCourses.includes(course)}
+                  disabled
+                />
+              )}
+
               <label
                 htmlFor={`course-${index}`}
                 style={{ fontStyle: "italic", fontWeight: "600" }}
