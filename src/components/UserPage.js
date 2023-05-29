@@ -46,7 +46,7 @@ function UserPage({ stuId, onLogout }) {
                 Logout
           </button>
         </div>
-        <div className="userProfileLine"></div>
+        <div className="userProfileLine d-flex align-items-center justify-content-center">
         <div id="square" ref={squareRef}>
           <div class="top"></div>
           <div class="bottom"></div>
@@ -54,6 +54,7 @@ function UserPage({ stuId, onLogout }) {
           <div class="front"></div>
           <div class="left"></div>
           <div class="right"></div>
+        </div>
         </div>
       </div>
     </div>
