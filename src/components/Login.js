@@ -2,6 +2,7 @@ import "../App.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+import UserPage from "./UserPage";
 
 function Login({ stuId, setStuId, onLogin, isLoggedIn, onLogout }) {
   //password string
@@ -37,11 +38,9 @@ function Login({ stuId, setStuId, onLogin, isLoggedIn, onLogout }) {
        *    Otherwise, login page
        * ********/}
       {isLoggedIn ? (
-        <div className="text-center">
+        <div className="container">
           {/* Logout Button */}
-          <button id="Logoutbtn" type="button" form="" onClick={onLogout}>
-            Logout
-          </button>
+          <UserPage stuId={stuId} onLogout={onLogout}/>
         </div>
       ) : (
         <div className="LoginPage">

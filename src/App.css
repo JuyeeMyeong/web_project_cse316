@@ -375,3 +375,72 @@ ul {
   background-color: lightblue;
   font-style: italic;
 }
+
+/***********         UserPage              ***********/
+#Logoutbtn {
+  border-radius: 5px;
+  border-style: none;
+  background-color: #4682B4;
+}
+
+#Logoutbtn:hover {
+  color: lightblue;
+}
+
+#userpage {
+  height: 300px;
+  margin: 0 80px;
+  border-radius: 20px;
+  background-color: #4682B4;
+}
+
+.nameSection {
+  top: 20px; 
+  margin-left: 30px;
+}
+
+.userProfileLine {
+  width: 150px;
+  height: 300px;
+  background-color: aliceblue;
+}
+
+#square {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  margin: auto;
+  transform-style: preserve-3d;
+  transition: .2s;
+}
+
+#square div {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border: 2px solid #ccc;
+}
+
+#square .front {
+  transform: translateZ(50px);
+}
+
+#square .back {
+  transform: rotateY(180deg) translateZ(50px);
+}
+
+#square .left {
+  transform: rotateY(-90deg) translateZ(50px);
+}
+
+#square .right {
+  transform: rotateY(90deg) translateZ(50px);
+}
+
+#square .top {
+  transform: rotateX(90deg) translateZ(50px);
+}
+
+#square .bottom {
+  transform: rotateX(-90deg) translateZ(50px);
+}
