@@ -29,6 +29,10 @@ root directory of the projecgt & db folder}
 To use data.sql file, you have to go to MySQL Command Line Client and write a command:
 source _your sql file path_
 
+or, you can go to MySQL Workbench 
+'open a SQL script file in a new query tab' button
+and run this data.sql file.
+
 In the project directory, you can run:
 
 ### `npm install`
