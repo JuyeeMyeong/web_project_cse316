@@ -1,3 +1,5 @@
+//Juyee Myeong juyee.myeong@stonybrook.edu
+//Juyeon Nam juyeon.nam@stonybrook.edu
 import "../App.css";
 import React, { useEffect, useRef } from "react";
 
@@ -42,18 +44,21 @@ function UserPage({ stuId, onLogout }) {
       <div className="d-flex justify-content-between flex-wrap">
         <div className="nameSection">
           <h2>Student ID: {stuId}</h2>
-          <button id="Logoutbtn" type="button" form="" onClick={onLogout}>
+          <p> 
+            If you want to logout, click, 
+            <button id="Logoutbtn" type="button" form="" onClick={onLogout}>
                 Logout
-          </button>
+            </button>
+          </p>
         </div>
         <div className="userProfileLine d-flex align-items-center justify-content-center">
         <div id="square" ref={squareRef}>
-          <div class="top"></div>
-          <div class="bottom"></div>
-          <div class="back"></div>
-          <div class="front"></div>
-          <div class="left"></div>
-          <div class="right"></div>
+          <div className="top"></div>
+          <div className="bottom"></div>
+          <div className="back"></div>
+          <div className="front"></div>
+          <div className="left"></div>
+          <div className="right"></div>
         </div>
         </div>
       </div>

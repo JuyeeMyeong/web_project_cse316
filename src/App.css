@@ -381,6 +381,7 @@ ul {
   border-radius: 5px;
   border-style: none;
   background-color: #4682B4;
+  border: 1px solid black;
 }
 
 #Logoutbtn:hover {
@@ -444,4 +445,55 @@ ul {
 
 #square .bottom {
   transform: rotateX(-90deg) translateZ(50px);
+}
+
+@media (max-width: 62em){
+  .userProfileLine {
+    width: 150px;
+    height: 150px;
+    background-color: black;
+    border-radius: 50%;
+    margin: auto;
+  }
+  
+  #square {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    margin: auto;
+    transform-style: preserve-3d;
+    transition: .2s;
+  }
+  
+  #square div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border: 2px solid #ccc;
+  }
+  
+  #square .front {
+    transform: translateZ(25px);
+  }
+  
+  #square .back {
+    transform: rotateY(180deg) translateZ(25px);
+  }
+  
+  #square .left {
+    transform: rotateY(-90deg) translateZ(25px);
+  }
+  
+  #square .right {
+    transform: rotateY(90deg) translateZ(25px);
+  }
+  
+  #square .top {
+    transform: rotateX(90deg) translateZ(25px);
+  }
+  
+  #square .bottom {
+    transform: rotateX(-90deg) translateZ(25px);
+  }
+
 }
