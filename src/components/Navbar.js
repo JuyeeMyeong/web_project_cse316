@@ -1,12 +1,11 @@
+// Juyee Myeong juyee.myeong@stonybrook.edu
+// Juyeon Nam juyeon.nam@stonybrook.edu
+
 import "../App.css";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-function Navbar({
-  header,
-  navColor,
-  textColor
-}) {
+function Navbar({ header, navColor, textColor }) {
   /********    is Nav Expanded?   ***********/
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const handleNavExpand = () => {
@@ -17,7 +16,6 @@ function Navbar({
   /********    Return   ***********/
   return (
     <div id="navigationBar">
-
       {/*     Hamburger button when width < 40em     */}
       <div className="button-container">
         <button className={btnClass} onClick={handleNavExpand}>
@@ -26,9 +24,13 @@ function Navbar({
           <div className="bar3"></div>
         </button>
       </div>
-      
+
       {/*     CourseMan Header     */}
-      <h2 id={header==="CourseMan!"? "blur" : "notBlur"}className="text-center" style={{ color: textColor }}>
+      <h2
+        id={header === "CourseMan!" ? "blur" : "notBlur"}
+        className="text-center"
+        style={{ color: textColor }}
+      >
         {header}
       </h2>
 

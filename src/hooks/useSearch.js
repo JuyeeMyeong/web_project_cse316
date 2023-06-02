@@ -1,3 +1,6 @@
+// Juyee Myeong juyee.myeong@stonybrook.edu
+// Juyeon Nam juyeon.nam@stonybrook.edu
+
 import axios from "axios";
 
 export default function useSearch(

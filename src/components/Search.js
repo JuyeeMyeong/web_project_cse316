@@ -1,3 +1,6 @@
+// Juyee Myeong juyee.myeong@stonybrook.edu
+// Juyeon Nam juyeon.nam@stonybrook.edu
+
 import React from "react";
 import { useRegister } from "../hooks/useRegister";
 

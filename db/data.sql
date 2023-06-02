@@ -1,3 +1,6 @@
+-- Juyee Myeong juyee.myeong@stonybrook.edu 
+-- Juyeon Nam juyeon.nam@stonybrook.edu
+
 -- Use data.sql
 -- <Mysql command line client>
 -- source <data.sql path>

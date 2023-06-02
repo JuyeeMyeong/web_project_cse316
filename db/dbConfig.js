@@ -1,3 +1,6 @@
+// Juyee Myeong juyee.myeong@stonybrook.edu
+// Juyeon Nam juyeon.nam@stonybrook.edu
+
 import dotenv from "dotenv";
 import mysql from "mysql2";
 

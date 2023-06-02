@@ -1,3 +1,6 @@
+// Juyee Myeong juyee.myeong@stonybrook.edu
+// Juyeon Nam juyeon.nam@stonybrook.edu
+
 import "../App.css";
 import React, { useState } from "react";
 import Search from "./Search";

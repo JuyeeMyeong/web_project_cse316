@@ -1,4 +1,7 @@
-import React, { Component } from 'react';
+// Juyee Myeong juyee.myeong@stonybrook.edu
+// Juyeon Nam juyeon.nam@stonybrook.edu
+
+import React, { Component } from "react";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -8,8 +11,8 @@ class ErrorBoundary extends Component {
 
   componentDidCatch(error, info) {
     this.setState({ hasError: true });
-    console.log('Error:', error);
-    console.log('Info:', info);
+    console.log("Error:", error);
+    console.log("Info:", info);
   }
 
   render() {

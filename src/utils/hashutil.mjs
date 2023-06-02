@@ -1,4 +1,6 @@
-//Juyee Myeong, Juyeong Nam
+// Juyee Myeong juyee.myeong@stonybrook.edu
+// Juyeon Nam juyeon.nam@stonybrook.edu
+
 import sha256 from "crypto-js/sha256.js";
 
 var UInt32 = function (value) {

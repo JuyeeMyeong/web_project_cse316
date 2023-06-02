@@ -1,3 +1,6 @@
+// Juyee Myeong juyee.myeong@stonybrook.edu
+// Juyeon Nam juyeon.nam@stonybrook.edu
+
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -11,19 +14,13 @@ import SelectCourses from "./components/SelectCourses";
 import useCookieUtil from "./hooks/useCookieUtil";
 
 function App() {
-
-//cookieUtil
-  const {
-    stuId,
-    setStuId,
-    isLoggedIn,
-    handleLogin,
-    handleLogout,
-  } = useCookieUtil();
+  //cookieUtil
+  const { stuId, setStuId, isLoggedIn, handleLogin, handleLogout } =
+    useCookieUtil();
 
   /****
    * Routes -> Home / Instructions / Login / PreviousCourses / SelectCourses
-   * 
+   *
    * *******/
   return (
     <div className="App">

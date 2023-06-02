@@ -1,3 +1,6 @@
+// Juyee Myeong juyee.myeong@stonybrook.edu
+// Juyeon Nam juyeon.nam@stonybrook.edu
+
 import "../App.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -40,7 +43,7 @@ function Login({ stuId, setStuId, onLogin, isLoggedIn, onLogout }) {
       {isLoggedIn ? (
         <div className="container">
           {/* Logout Button */}
-          <UserPage stuId={stuId} onLogout={onLogout}/>
+          <UserPage stuId={stuId} onLogout={onLogout} />
         </div>
       ) : (
         <div className="LoginPage">
