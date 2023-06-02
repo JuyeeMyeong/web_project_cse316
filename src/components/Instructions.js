@@ -15,8 +15,14 @@ function Instructions() {
       <div className="instruction">
         <p className="textShown text-center">
           First, proceed to 'Login' page and enter your 9 digit student id and
-          your password. Click the 'Login' button to verify your password and
-          save your student id for the session.
+          your password.{" "}
+          <ex>
+            {" "}
+            ID: 567891234 password: abc123 (Every student's password is 'abc123'
+            in this project)
+          </ex>{" "}
+          Click the 'Login' button to verify your password and save your student
+          id for the session.
         </p>
         <p className="textShown text-center">
           Next, proceed to 'Enter Previous Courses'. Click on each course you
@@ -25,8 +31,10 @@ function Instructions() {
         <p className="textShown text-center">
           Return to the home page and click 'Select Courses'. Enter your name
           and any search term to restrict course selections with the provided
-          string in the course name. This can be left blank to see all CSE
-          courses.
+          string in the course name. Please be careful when entering your name.
+          You should write exactly the same as your register name (Especially,
+          name is case-sensitive & put both first and last name in this format:
+          'firstName lastName'). This can be left blank to see all CSE courses.
         </p>
         <p className="textShown text-center">
           Click the checkbox by each course for which you would like to
