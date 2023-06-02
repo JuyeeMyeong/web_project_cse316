@@ -13,8 +13,11 @@ mysql2: ^3.3.2
 At 'db' folder, make '.env' file and fill up:
 
 DB*HOST="\_your host name here*"
+
 DB*USER="\_your user name here*"
+
 DB*PASSWORD="\_your password here*"
+
 DB*PORT="\_your port # here*"
 
 I recommend you to use port number 4000 for this project.
