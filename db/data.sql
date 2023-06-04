@@ -17,9 +17,9 @@ CREATE TABLE IF NOT EXISTS User ( id INT PRIMARY KEY AUTO_INCREMENT, student_id 
 INSERT INTO User (student_id, first_name, last_name, password, courses, currEnrolledCourse) 
         VALUES (113659563, "Harry", "Chung", "e38804c45d255359322d3a3c9d58522fe0528e87784b6724fca79dd67b891dd",  '["CSE101", "CSE114"]', '[]');
 INSERT INTO User (student_id, first_name, last_name, password, courses, currEnrolledCourse) VALUES 
-    (114631693, "Matt", "Lee", "6844891ec0555125b3788cf825824ac211e9966a16be060de2687fafundefined60c624", '[]', '[]');
+    (114631693, "Matt", "Lee", "124f7d9cfb7da14c498781ff49752edf89cb08574cb19785aaa2a7b4722f5ed", '[]', '[]');
 INSERT INTO User (student_id, first_name, last_name, password, courses, currEnrolledCourse) VALUES 
-    (113539682, "SUE", "Park", "bbeb6ed240a9db9016271d0896994458530a129dde38eceb90a91187f75842e", '[]', '[]');
+    (113539682, "SUE", "Park", "13a0461de73c38bf3aa73ccd4f207170cf1dece6300c9fc0248a9e0d70cb995a", '[]', '[]');
 INSERT INTO User (student_id, first_name, last_name, password, courses, currEnrolledCourse) VALUES 
     (123456789, 'John', 'Doe', "f9a35197d7069a376dd11f2d51ecc5c6aaf4457aad46fcf647b80006c4bb899", '[]', '[]');
 INSERT INTO User (student_id, first_name, last_name, password, courses, currEnrolledCourse) VALUES 

@@ -10,12 +10,12 @@ let th1 = hashutil(fname1, lname1, pw1);
 
 let fname2 = "Matt";
 let lname2 = "Lee";
-let pw2 = "abc123";
+let pw2 = "def456";
 let th2 = hashutil(fname2, lname2, pw2);
 
 let fname3 = "SUE";
 let lname3 = "Park";
-let pw3 = "abc123";
+let pw3 = "rotfl1";
 let th3 = hashutil(fname3, lname3, pw3);
 
 let fname4 = "John";

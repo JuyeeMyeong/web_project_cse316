@@ -15,10 +15,9 @@ function Instructions() {
       <div className="instruction">
         <p className="textShown text-center">
           First, proceed to 'Login' page and enter your 9 digit student id and
-          your password. For example, ID: 567891234 password: abc123 (Every
-          student's password is 'abc123' in this project). Click the 'Login'
-          button to verify your password and save your student id for the
-          session.
+          your password. For example, ID: 567891234 password: abc123. Click the
+          'Login' button to verify your password and save your student id for
+          the session.
         </p>
         <p className="textShown text-center">
           Next, proceed to 'Enter Previous Courses'. Click on each course you
